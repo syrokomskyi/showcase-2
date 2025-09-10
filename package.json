@@ -1,0 +1,31 @@
+{
+  "name": "showcase-2",
+  "version": "1.0.0",
+  "description": "Showcases (sites) for Partner links platform.",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "pnpm -r build",
+    "dev": "pnpm -r dev",
+    "test": "pnpm -r test",
+    "lint": "cls && pnpm exec biome lint --write .",
+    "format": "cls && pnpm exec biome format --write .",
+    "clean": "turbo run clean",
+    "upgrade-packages": "pnpm update -r --latest",
+    "upgrade-packages:check": "pnpm outdated -r"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.2.3",
+    "@types/node": "^24.3.1",
+    "typescript": "^5.9.2"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "packageManager": "pnpm@10.15.0"
+}

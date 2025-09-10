@@ -1,0 +1,170 @@
+/* Minimalist Article Styling */
+
+.modern-article-content {
+  max-width: 65ch;
+  margin: 0 auto;
+  line-height: 1.7;
+  color: #1a1a1a;
+  font-size: 18px;
+  background: #ffffff;
+}
+
+/* Clean Typography */
+.modern-article-content h1 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #000000;
+  margin: 3rem 0 2rem 0;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+.modern-article-content h2 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #000000;
+  margin: 2.5rem 0 1rem 0;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+.modern-article-content h3 {
+  font-size: 1.375rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 2rem 0 0.75rem 0;
+  line-height: 1.4;
+}
+
+.modern-article-content h4 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 1.5rem 0 0.5rem 0;
+  line-height: 1.4;
+}
+
+/* Clean Paragraph Styling */
+.modern-article-content p {
+  margin-bottom: 1.5rem;
+  color: #2d2d2d;
+  line-height: 1.7;
+}
+
+/* Strong Text */
+.modern-article-content strong {
+  font-weight: 600;
+  color: #000000;
+}
+
+/* Italic Text */
+.modern-article-content em {
+  font-style: italic;
+  color: #2d2d2d;
+}
+
+/* Clean List Styling */
+.modern-article-content ul {
+  margin: 1.5rem 0;
+  padding-left: 1.5rem;
+}
+
+.modern-article-content ol {
+  margin: 1.5rem 0;
+  padding-left: 1.5rem;
+}
+
+.modern-article-content li {
+  margin-bottom: 0.75rem;
+  color: #2d2d2d;
+  line-height: 1.7;
+}
+
+.modern-article-content ul li {
+  list-style-type: disc;
+}
+
+.modern-article-content ol li {
+  list-style-type: decimal;
+}
+
+/* Clean Link Styling */
+.modern-article-content a {
+  color: #0066cc;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+.modern-article-content a:hover {
+  color: #004499;
+}
+
+/* Clean Blockquote Styling */
+.modern-article-content blockquote {
+  border-left: 3px solid #e0e0e0;
+  padding-left: 1.5rem;
+  margin: 2rem 0;
+  font-style: italic;
+  color: #666666;
+}
+
+/* Clean Code Styling */
+.modern-article-content code {
+  background: #f5f5f5;
+  color: #333333;
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  font-size: 0.9em;
+  font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
+}
+
+.modern-article-content pre {
+  background: #f8f8f8;
+  color: #333333;
+  padding: 1.5rem;
+  border-radius: 4px;
+  overflow-x: auto;
+  margin: 2rem 0;
+  border: 1px solid #e0e0e0;
+}
+
+.modern-article-content pre code {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+  border: none;
+  font-size: inherit;
+}
+
+/* Clean HR Styling */
+.modern-article-content hr {
+  border: none;
+  height: 1px;
+  background: #e0e0e0;
+  margin: 3rem 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .modern-article-content {
+    max-width: 100%;
+    padding: 0 1rem;
+    font-size: 16px;
+  }
+
+  .modern-article-content h1 {
+    font-size: 1.875rem;
+    margin: 2rem 0 1.5rem 0;
+  }
+
+  .modern-article-content h2 {
+    font-size: 1.5rem;
+    margin: 2rem 0 1rem 0;
+  }
+
+  .modern-article-content h3 {
+    font-size: 1.25rem;
+    margin: 1.5rem 0 0.75rem 0;
+  }
+}

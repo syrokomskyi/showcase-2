@@ -1,0 +1,16 @@
+---
+export async function getStaticPaths() {
+  const { bcmsPrivate } = await import("../../../bcms-private");
+  const blogs = await bcmsPrivate.entry.getAll("article");
+  return blogs.map((e) => ({
+    params: {
+      slug: e.meta.en?.slug || "",
+    },
+  }));
+}
+
+const { slug } = Astro.params;
+
+// Redirect to default country/language route
+return Astro.redirect(`/germany/german/articles/${slug}/`);
+---

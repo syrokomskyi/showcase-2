@@ -1,0 +1,87 @@
+---
+import type { Entry } from "@thebcms/types";
+import type {
+  ArticleEntry,
+  HomePageEntry,
+  HomePageEntryMetaItem,
+} from "../../../../bcms/types/ts";
+import { bcmsPrivate } from "../../../bcms-private";
+import { bcmsPublic } from "../../../bcms-public";
+import HomePageArticles from "../../../components/home-page/Articles";
+import HomePageHero from "../../../components/home-page/Hero";
+import Layout from "../../../layouts/Layout.astro";
+import { articleToLight } from "../../../utils/article";
+import {
+  getSupportedCountries,
+  getSupportedLanguages,
+  getCountryCode,
+  getLanguageCode,
+  getEntryMeta,
+} from "../../../utils/localization";
+
+export async function getStaticPaths() {
+  // Get supported countries and languages as full names
+  const countries = getSupportedCountries();
+  const languages = getSupportedLanguages();
+
+  const paths = [];
+  for (const country of countries) {
+    for (const language of languages) {
+      paths.push({
+        params: { country, language },
+      });
+    }
+  }
+
+  return paths;
+}
+
+const { country, language } = Astro.params;
+
+// Convert full names back to codes for internal logic
+const countryCode = getCountryCode(country);
+const languageCode = getLanguageCode(language);
+
+const homePageEntry = (await bcmsPrivate.entry.getBySlug(
+  "home",
+  "home-page",
+)) as HomePageEntry;
+const homePageMeta = getEntryMeta<HomePageEntryMetaItem>(
+  homePageEntry as Entry,
+  languageCode,
+);
+const articleEntries = (await bcmsPrivate.entry.getAll(
+  "article",
+)) as ArticleEntry[];
+const lightArticles = articleEntries.map((e) => {
+  return articleToLight(e, languageCode);
+});
+
+const bcmsConfig = bcmsPublic.getConfig();
+---
+
+<Layout
+  title={`${homePageMeta.seo?.title || homePageMeta.title} - Flavour Fushion`}
+>
+  <div>
+    <HomePageHero
+      headline={homePageMeta.headline}
+      description={homePageMeta.description}
+      browseHeroButton={homePageMeta.browse_hero_button}
+      coverImage={homePageMeta.cover_image}
+      articles={lightArticles}
+      bcmsConfig={bcmsConfig}
+      country={countryCode}
+      language={languageCode}
+      client:load
+    />
+    <HomePageArticles
+      bcmsConfig={bcmsConfig}
+      title={homePageMeta.articles_title}
+      articles={homePageMeta.articles}
+      browseArticlesButton={homePageMeta.browse_articles_button}
+      country={countryCode}
+      language={languageCode}
+    />
+  </div>
+</Layout>

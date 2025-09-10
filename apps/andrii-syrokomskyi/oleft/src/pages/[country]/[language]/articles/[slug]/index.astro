@@ -1,0 +1,218 @@
+---
+import { BCMSImage } from "@thebcms/components-react";
+import type {
+  ArticleEntry,
+  ArticleEntryMetaItem,
+  HomePageEntry,
+  HomePageEntryMetaItem,
+} from "../../../../../../bcms/types/ts";
+import { bcmsPrivate } from "../../../../../bcms-private";
+import { bcmsPublic } from "../../../../../bcms-public";
+import ArticlesCard from "../../../../../components/articles/Card";
+import Filters from "../../../../../components/articles/Filters";
+import { GoodsForArticle } from "../../../../../components/articles/GoodsForArticle";
+import Layout from "../../../../../layouts/Layout.astro";
+import {
+  articleToLight,
+  markdownToHtml,
+  removeTitle,
+} from "../../../../../utils/article";
+import {
+  getSupportedCountries,
+  getSupportedLanguages,
+  getCountryCode,
+  getLanguageCode,
+  getEntryMeta,
+} from "../../../../../utils/localization";
+import type { Entry } from "@thebcms/types";
+
+export async function getStaticPaths() {
+  // Get supported countries and languages as full names
+  const countries = getSupportedCountries();
+  const languages = getSupportedLanguages();
+
+  const blogs = (await bcmsPrivate.entry.getAll("article")) as ArticleEntry[];
+
+  const paths = [];
+  for (const country of countries) {
+    for (const language of languages) {
+      // Convert full language name back to code to access correct metadata
+      const languageCode = getLanguageCode(language);
+
+      for (const blog of blogs) {
+        // Use the correct language metadata for the slug
+        const slug =
+          blog.meta[languageCode as keyof typeof blog.meta]?.slug ||
+          blog.meta.en?.slug ||
+          "";
+
+        if (slug) {
+          paths.push({
+            params: {
+              country,
+              language,
+              slug,
+            },
+          });
+        }
+      }
+    }
+  }
+
+  return paths;
+}
+
+const { country, language, slug } = Astro.params;
+
+// Convert full names back to codes for internal logic
+const countryCode = getCountryCode(country || "");
+const languageCode = getLanguageCode(language || "");
+
+const homePageEntry = (await bcmsPrivate.entry.getBySlug(
+  "home",
+  "home-page",
+)) as HomePageEntry;
+const homePageMeta = getEntryMeta<HomePageEntryMetaItem>(
+  homePageEntry as Entry,
+  languageCode,
+);
+
+const articleEntries = (await bcmsPrivate.entry.getAll(
+  "article",
+)) as ArticleEntry[];
+// Find article using the correct language metadata
+const articleEntry = articleEntries.find((e) => {
+  const entrySlug =
+    e.meta[languageCode as keyof typeof e.meta]?.slug || e.meta.en?.slug;
+  return entrySlug === slug;
+});
+const articleEntryMeta =
+  (articleEntry?.meta[
+    languageCode as keyof typeof articleEntry.meta
+  ] as ArticleEntryMetaItem) || (articleEntry?.meta.en as ArticleEntryMetaItem);
+const lightArticles = articleEntries.map((e) => {
+  return articleToLight(e, languageCode);
+});
+
+const articleText = removeTitle(
+  articleEntryMeta.text ?? "",
+  articleEntryMeta.title ?? "UNDEFINED",
+);
+
+const categories =
+  articleEntries.reduce((acc, e) => {
+    e.meta.en?.categories?.forEach((category) => {
+      const categoryTitle = category.meta.en?.title || "";
+      if (!acc.includes(categoryTitle)) {
+        acc.push(categoryTitle);
+      }
+    });
+    return acc;
+  }, [] as string[]) || [];
+
+const similarArticles =
+  lightArticles.filter((e) => {
+    const entryCategories =
+      articleEntryMeta.categories?.map((i) => i.meta.en?.title) || [];
+    const categories = e.categories.map((i) => i) || [];
+    for (let i = 0; i < categories.length; i++) {
+      if (
+        entryCategories.includes(categories[i]) &&
+        articleEntryMeta.slug !== e.slug
+      ) {
+        return true;
+      }
+    }
+    return false;
+  }) || [];
+
+const clientConfig = bcmsPublic.getConfig();
+---
+
+<Layout
+  title={`${articleEntryMeta.seo?.title || articleEntryMeta.title} - Flavour Fushion`}
+>
+  <div class="pb-10 md:pb-16 lg:pb-[120px]">
+    <Filters
+      categories={categories}
+      country={countryCode}
+      language={languageCode}
+      client:load
+    />
+    <div class="container">
+      {
+        articleEntryMeta.cover_image && (
+          <BCMSImage
+            media={articleEntryMeta.cover_image}
+            clientConfig={clientConfig}
+            className="aspect-square rounded-2xl w-full overflow-hidden object-cover mb-5 md:aspect-[1.93] lg:mb-10"
+            client:load
+          />
+        )
+      }
+      <h1
+        class="text-center leading-none font-medium tracking-[-0.41px] text-appGray-700 mb-[14px] lg:text-[40px] lg:leading-none lg:mb-6"
+      >
+        {articleEntryMeta.title}
+      </h1>
+      {
+        articleText.length > 0 && (
+          <article class="prose prose-lg max-w-none mb-12">
+            <div class="modern-article-content" set:html={await markdownToHtml(articleText)} />
+            
+            <!-- Decorative elements -->
+            <div class="flex justify-center mt-12 mb-8">
+              <div class="flex space-x-2">
+                <div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                <div class="w-2 h-2 bg-purple-500 rounded-full animate-pulse" style="animation-delay: 0.2s"></div>
+                <div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse" style="animation-delay: 0.4s"></div>
+              </div>
+            </div>
+          </article>
+        )
+      }
+        {
+          articleEntryMeta.goods_for_article && articleEntryMeta.goods_for_article.length > 0 && (
+          <div class="flex flex-wrap gap-3 mb-8 lg:gap-4">
+            <div class="bg-[#F7F7F7] rounded-[40px] px-5 py-[13px] text-sm leading-none font-medium tracking-[-0.41px]">
+              <span class="text-[#9C9C9C]">
+                {articleEntryMeta.goods_for_article.length}
+                {articleEntryMeta.goods_for_article.length === 1
+                  ? homePageMeta.goods_singular_word
+                  : homePageMeta.goods_plural_word}
+              </span>
+            </div>
+          </div>
+          <GoodsForArticle
+            goods={articleEntryMeta.goods_for_article}
+            bcmsConfig={clientConfig}
+            previousButton={homePageMeta.previous_goods_button}
+            nextButton={homePageMeta.next_goods_button}
+            client:load
+          />
+        )
+      }
+      {
+        similarArticles.length > 0 && (
+          <div>
+            <div class="flex items-center justify-between leading-none font-medium tracking-[-0.41px] text-appGray-700 mb-8 lg:text-2xl lg:leading-none lg:mb-12">
+              <h2>Other articles you may like</h2>
+              <a href={`/${country}/${language}/articles`}> Show all </a>
+            </div>
+            <div class="grid grid-cols-2 gap-x-5 gap-y-8 lg:gap-x-16 lg:gap-y-[72px]">
+              {similarArticles.map((card) => (
+                <ArticlesCard
+                  card={card}
+                  bcmsConfig={clientConfig}
+                  country={countryCode}
+                  language={languageCode}
+                  showTitleLayer={true}
+                />
+              ))}
+            </div>
+          </div>
+        )
+      }
+    </div>
+  </div>
+</Layout>

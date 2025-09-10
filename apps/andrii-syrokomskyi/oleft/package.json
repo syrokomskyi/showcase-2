@@ -1,0 +1,42 @@
+{
+  "name": "oleft",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "packageManager": "pnpm@8.15.0",
+  "scripts": {
+    "bcms:copy": "powershell -NoProfile -Command \"Copy-Item -Path './bcms' -Destination '../mcp-server-1/bcms' -Recurse -Force\"",
+    "bcms:types": "bcms pull types lng ts && pnpm -s bcms:copy",
+    "dev": "pnpm -s bcms:types && astro dev",
+    "start": "pnpm -s bcms:types && astro dev",
+    "build": "astro check && astro build",
+    "build:local": "pnpm -s bcms:types && astro check && astro build",
+    "preview": "pnpm -s bcms:types && astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/react": "^4.3.0",
+    "@astrojs/tailwind": "^6.0.2",
+    "@astrojs/vercel": "^8.2.5",
+    "@thebcms/cli": "^1.4.0",
+    "@thebcms/client": "^1.5.5",
+    "@thebcms/components-react": "^2.0.0",
+    "@thebcms/types": "^1.3.0",
+    "@thebcms/utils": "^1.1.0",
+    "@types/react": "^19.1.7",
+    "@types/react-dom": "^19.1.7",
+    "astro": "^5.13.0",
+    "classnames": "^2.5.1",
+    "marked": "^16.1.2",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "react-transition-group": "^4.4.5",
+    "tailwindcss": "^3.4.14",
+    "typescript": "^5.9.2"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.2.0",
+    "@types/react-transition-group": "^4.4.12"
+  }
+}
