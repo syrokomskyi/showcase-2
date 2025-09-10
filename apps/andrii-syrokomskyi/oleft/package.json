@@ -5,8 +5,7 @@
   "private": true,
   "packageManager": "pnpm@8.15.0",
   "scripts": {
-    "bcms:copy": "powershell -NoProfile -Command \"Copy-Item -Path './bcms' -Destination '../mcp-server-1/bcms' -Recurse -Force\"",
-    "bcms:types": "bcms pull types lng ts && pnpm -s bcms:copy",
+    "bcms:types": "bcms pull types lng ts",
     "dev": "pnpm -s bcms:types && astro dev",
     "start": "pnpm -s bcms:types && astro dev",
     "build": "astro check && astro build",
