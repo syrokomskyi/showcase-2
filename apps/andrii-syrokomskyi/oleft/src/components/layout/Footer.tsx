@@ -7,7 +7,7 @@ const Footer: React.FC = () => {
         <div className="text-[#898C8A] leading-none font-medium tracking-[-0.41px] md:flex md:items-center md:justify-end">
           <div className="text-xs lg:text-base lg:leading-none">
             {/* TODO: Get from BCMS footer entry. */}
-            &copy; {new Date().getFullYear()} very.gift
+            &copy; {new Date().getFullYear()} oleft.market
           </div>
         </div>
       </div>
