@@ -10,7 +10,7 @@ import { bcmsPrivate } from "../../../../../bcms-private";
 import { bcmsPublic } from "../../../../../bcms-public";
 import ArticlesCard from "../../../../../components/articles/Card";
 import Filters from "../../../../../components/articles/Filters";
-import { GoodsForArticle } from "../../../../../components/articles/GoodsForArticle";
+// import { GoodsForArticle } from "../../../../../components/articles/GoodsForArticle";
 import Layout from "../../../../../layouts/Layout.astro";
 import {
   articleToLight,
@@ -183,13 +183,13 @@ const clientConfig = bcmsPublic.getConfig();
               </span>
             </div>
           </div>
-          <GoodsForArticle
-            goods={articleEntryMeta.goods_for_article}
-            bcmsConfig={clientConfig}
-            previousButton={homePageMeta.previous_goods_button}
-            nextButton={homePageMeta.next_goods_button}
-            client:load
-          />
+          // TODO <GoodsForArticle
+          //   goods={articleEntryMeta.goods_for_article}
+          //   bcmsConfig={clientConfig}
+          //   previousButton={homePageMeta.previous_goods_button}
+          //   nextButton={homePageMeta.next_goods_button}
+          //   client:load
+          // />
         )
       }
       {
