@@ -1,5 +1,4 @@
 import classnames from "classnames";
-import type React from "react";
 import { useRef, useState } from "react";
 import { Transition } from "react-transition-group";
 import ArrowIcon from "../../assets/icons/arrow-right.svg?raw";
@@ -14,13 +13,13 @@ interface Props {
   onSelect: (value: string) => void;
 }
 
-export const ArticlesDropdown: React.FC<Props> = ({
+export const ArticlesDropdown = ({
   onSelect,
   dropdownPosition = "right",
   placeholder,
   options,
   value,
-}) => {
+}: Props) => {
   const [showOptions, setShowOptions] = useState(false);
   const dropdownOptionRef = useRef<HTMLDivElement | null>(null);
   const transitionRef = useRef<HTMLDivElement | null>(null);

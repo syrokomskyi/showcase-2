@@ -10,11 +10,11 @@ interface Props {
   className?: string;
 }
 
-const ContentManager: React.FC<Props> = ({
+const ContentManager = ({
   items,
   widgetComponents,
   className = "",
-}) => {
+}: Props) => {
   return (
     <div>
       <BCMSContentManager

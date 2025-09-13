@@ -1,5 +1,4 @@
 import type { ClientConfig } from "@thebcms/client";
-import type React from "react";
 import { useMemo } from "react";
 import type {
   ArticleEntry,
@@ -18,22 +17,22 @@ import Btn from "../Btn";
 import type { Entry } from "@thebcms/types";
 
 interface Props {
-  title: string;
-  articles: ArticleEntry[];
+  title?: string;
+  articles?: ArticleEntry[];
   bcmsConfig: ClientConfig;
   browseArticlesButton?: string;
   country?: string;
   language?: string;
 }
 
-const HomePageArticles: React.FC<Props> = ({
+const HomePageArticles = ({
   title,
-  articles: items,
+  articles: items = [],
   bcmsConfig,
   browseArticlesButton,
   country = "germany",
   language = "german",
-}) => {
+}: Props) => {
   const articles = useMemo(() => {
     return items.map((e) => {
       const meta = getEntryMeta<ArticleEntryMetaItem>(e as Entry, language);
@@ -41,7 +40,7 @@ const HomePageArticles: React.FC<Props> = ({
         title: meta.title,
         slug: meta.slug,
         cover: meta.cover_image,
-        categories: meta.categories?.map(
+        categories: meta.category?.map(
           (e) => getEntryMeta<ArticleEntryMetaItem>(e as Entry, language).title,
         ),
         description: meta.description,

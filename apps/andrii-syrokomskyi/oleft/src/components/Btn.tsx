@@ -1,5 +1,4 @@
 import classNames from "classnames";
-import type React from "react";
 import type { PropsWithChildren } from "react";
 
 type Theme = "light" | "dark" | "gray";
@@ -14,7 +13,7 @@ interface BtnProps extends PropsWithChildren {
   onClick?: () => void;
 }
 
-const Btn: React.FC<BtnProps> = ({
+const Btn = ({
   theme = "light",
   size = "regular",
   to = undefined,
@@ -22,7 +21,7 @@ const Btn: React.FC<BtnProps> = ({
   className = "",
   disabled = false,
   onClick,
-}) => {
+}: BtnProps) => {
   const classes = classNames(
     "flex items-center leading-none font-medium transition-colors duration-300 border border-transparent focus:outline-none lg:text-xl lg:leading-none",
     {

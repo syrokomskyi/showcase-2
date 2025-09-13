@@ -1,4 +1,3 @@
-import type React from "react";
 import { useEffect, useState } from "react";
 import { getCountryName, getLanguageName } from "../../utils/localization";
 import { ArticlesDropdown } from "./Dropdown";
@@ -10,11 +9,11 @@ interface Props {
   language?: string;
 }
 
-const Filters: React.FC<Props> = ({
+const Filters = ({
   categories,
   country = "germany",
   language = "german",
-}) => {
+}: Props) => {
   const [searchValue, setSearchValue] = useState("");
   const [categoriesValue, setCategoriesValue] = useState("");
 

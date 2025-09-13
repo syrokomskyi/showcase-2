@@ -4,7 +4,6 @@ import type {
   PropMediaDataParsed,
   PropRichTextDataParsed,
 } from "@thebcms/types";
-import type React from "react";
 import ArrowIcon from "../../assets/icons/arrow-right.svg?raw";
 import type { ArticleLight } from "../../utils/article";
 import { getCountryName, getLanguageName } from "../../utils/localization";
@@ -23,7 +22,7 @@ interface Props {
   language?: string;
 }
 
-const HomePageHero: React.FC<Props> = ({
+const HomePageHero = ({
   headline,
   description,
   browseHeroButton,
@@ -32,7 +31,7 @@ const HomePageHero: React.FC<Props> = ({
   bcmsConfig,
   country = "germany",
   language = "german",
-}) => {
+}: Props) => {
   return (
     <section className="relative">
       <div className="container">

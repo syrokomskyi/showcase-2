@@ -1,5 +1,4 @@
 import type { ClientConfig } from "@thebcms/client";
-import type React from "react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { ArticleLight } from "../../utils/article";
 import ArticlesCard from "./Card";
@@ -13,12 +12,12 @@ interface Props {
   language?: string;
 }
 
-const ArticlesList: React.FC<Props> = ({
+const ArticlesList = ({
   articles,
   bcmsConfig,
   country = "germany",
   language = "german",
-}) => {
+}: Props) => {
   const [searchValue, setSearchValue] = useState("");
   const [categoriesValue, setCategoriesValue] = useState("");
   const articlesListDOM = useRef<HTMLDivElement | null>(null);

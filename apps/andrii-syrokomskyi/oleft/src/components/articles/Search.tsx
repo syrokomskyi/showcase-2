@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import React, {
+import {
   type ChangeEvent,
   type KeyboardEvent,
   useMemo,
@@ -24,7 +24,7 @@ interface Props {
   language?: string;
 }
 
-const ArticlesSearchBar: React.FC<Props> = ({
+const ArticlesSearchBar = ({
   value = "",
   articles = [],
   static: isStatic = false,
@@ -35,7 +35,7 @@ const ArticlesSearchBar: React.FC<Props> = ({
   className = "",
   country = "germany",
   language = "german",
-}) => {
+}: Props) => {
   const [searchValue, setSearchValue] = useState(value);
   const transitionRef = useRef(null);
 
