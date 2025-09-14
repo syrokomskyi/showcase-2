@@ -12,34 +12,33 @@ import { getEntrySlugMeta, getLanguageCode } from "../utils/localization";
 
 let { title } = Astro.props;
 
-const profileMeta = await getEntrySlugMeta<ProfileEntryMetaItem>(
+const profile = await getEntrySlugMeta<ProfileEntryMetaItem>(
     bcmsPrivate,
     "en",
     "profile",
 );
 
-const language =
-    profileMeta.language.length > 0 ? profileMeta.language[0] : "English";
+const language = profile.language.length > 0 ? profile.language[0] : "English";
 const languageCode = getLanguageCode(language);
 
 if (!title) {
-    title = profileMeta.title;
+    title = profile.title;
 }
 
-const thumbnailMeta = await getEntrySlugMeta<ThumbnailEntryMetaItem>(
+const thumbnail = await getEntrySlugMeta<ThumbnailEntryMetaItem>(
     bcmsPrivate,
     languageCode,
     "thumbnail",
 );
-const ogImageUrl = thumbnailMeta.image?.url;
+const ogImageUrl = thumbnail.image?.url;
 
-const fontMeta = await getEntrySlugMeta<FontEntryMetaItem>(
+const font = await getEntrySlugMeta<FontEntryMetaItem>(
     bcmsPrivate,
     languageCode,
     "font",
 );
 
-const footerMeta = await getEntrySlugMeta<FooterEntryMetaItem>(
+const footer = await getEntrySlugMeta<FooterEntryMetaItem>(
     bcmsPrivate,
     languageCode,
     "footer",
@@ -50,7 +49,7 @@ const footerMeta = await getEntrySlugMeta<FooterEntryMetaItem>(
 <html lang={languageCode}>
     <head>
         <meta charset="UTF-8" />
-        <meta name="description" content={profileMeta.description} />
+        <meta name="description" content={profile.description} />
         <meta name="viewport" content="width=device-width" />
         <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
         <meta name="generator" content={Astro.generator} />
@@ -59,20 +58,16 @@ const footerMeta = await getEntrySlugMeta<FooterEntryMetaItem>(
         <meta property="twitter:title" content={title} />
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:image" content={ogImageUrl} />
-        <link rel="preconnect" href={fontMeta.preconnect} />
-        <link
-            rel="preconnect"
-            href={fontMeta.crossorigin_preconnect}
-            crossorigin
-        />
-        <link rel="stylesheet" href={fontMeta.stylesheet} />
+        <link rel="preconnect" href={font.preconnect} />
+        <link rel="preconnect" href={font.crossorigin_preconnect} crossorigin />
+        <link rel="stylesheet" href={font.stylesheet} />
         <title>{title}</title>
     </head>
     <body class="font-inter overflow-x-hidden bg-white">
         <div class="overflow-hidden flex flex-col min-h-screen">
             <Header />
             <main class="flex flex-col flex-1"><slot /></main>
-            <Footer site={footerMeta.copyright_note} />
+            <Footer site={footer.copyright_note} />
         </div>
     </body>
 </html>

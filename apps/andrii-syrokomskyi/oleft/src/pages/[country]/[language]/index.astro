@@ -34,42 +34,40 @@ export async function getStaticPaths() {
   return paths;
 }
 
-const profileMeta = await getEntrySlugMeta<ProfileEntryMetaItem>(
+const profile = await getEntrySlugMeta<ProfileEntryMetaItem>(
   bcmsPrivate,
   "en",
   "profile",
 );
 
-const language =
-  profileMeta.language.length > 0 ? profileMeta.language[0] : "English";
-const country =
-  profileMeta.country.length > 0 ? profileMeta.country[0] : "Germany";
+const language = profile.language.length > 0 ? profile.language[0] : "English";
+const country = profile.country.length > 0 ? profile.country[0] : "Germany";
 const languageCode = getLanguageCode(language);
 const countryCode = getCountryCode(country);
-const title = profileMeta.title;
+const title = profile.title;
 
-const homePageMeta = await getEntrySlugMeta<HomePageEntryMetaItem>(
+const homePage = await getEntrySlugMeta<HomePageEntryMetaItem>(
   bcmsPrivate,
   languageCode,
   "home-page",
   "home",
 );
 
-const articleEntries = await bcmsPrivate.entry.getAll("article");
-const lightArticles = articleEntries.map((e) => {
+const articles = await bcmsPrivate.entry.getAll("article");
+const lightArticles = articles.map((e) => {
   return articleToLight(e as ArticleEntry, languageCode);
 });
 
 const bcmsConfig = bcmsPublic.getConfig();
 ---
 
-<Layout title={`${homePageMeta.seo?.title ?? homePageMeta.title} - ${title}`}>
+<Layout title={`${homePage.seo?.title ?? homePage.title} - ${title}`}>
   <div>
     <HomePageHero
-      headline={homePageMeta.headline}
-      description={homePageMeta.description}
-      browseHeroButton={homePageMeta.browse_hero_button}
-      coverImage={homePageMeta.cover_image}
+      headline={homePage.headline}
+      description={homePage.description}
+      browseHeroButton={homePage.browse_hero_button}
+      coverImage={homePage.cover_image}
       articles={lightArticles}
       bcmsConfig={bcmsConfig}
       country={countryCode}
@@ -78,9 +76,9 @@ const bcmsConfig = bcmsPublic.getConfig();
     />
     <HomePageArticles
       bcmsConfig={bcmsConfig}
-      title={homePageMeta.articles_title}
-      articles={homePageMeta.articles}
-      browseArticlesButton={homePageMeta.browse_articles_button}
+      title={homePage.articles_title}
+      articles={homePage.articles}
+      browseArticlesButton={homePage.browse_articles_button}
       country={countryCode}
       language={languageCode}
     />
