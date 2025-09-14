@@ -1,13 +1,30 @@
 ---
+import type { Entry } from "@thebcms/types";
+import type { FooterEntry, FooterEntryMetaItem } from "../../bcms/types/ts";
+import { bcmsPrivate } from "../bcms-private";
 import Footer from "../components/layout/Footer";
 import Header from "../components/layout/Header";
+import { getEntryMeta, getLanguageCode } from "../utils/localization";
 
 interface Props {
     title: string;
+    site?: string;
 }
 
 const { title } = Astro.props;
 const ogImageUrl = "/thumbnail.jpg";
+
+const { language } = Astro.params;
+const languageCode = getLanguageCode(language ?? "en");
+
+const footerEntry = (await bcmsPrivate.entry.getBySlug(
+    "footer",
+    "footer",
+)) as FooterEntry;
+const footerMeta = getEntryMeta<FooterEntryMetaItem>(
+    footerEntry as Entry,
+    languageCode,
+);
 ---
 
 <!doctype html>
@@ -38,7 +55,7 @@ const ogImageUrl = "/thumbnail.jpg";
         <div class="overflow-hidden flex flex-col min-h-screen">
             <Header />
             <main class="flex flex-col flex-1"><slot /></main>
-            <Footer />
+            <Footer site={footerMeta.copyright_note} />
         </div>
     </body>
 </html>
