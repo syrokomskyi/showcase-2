@@ -1,4 +1,4 @@
-import type { Entry } from "@thebcms/types";
+import type { EntryParsed } from "@thebcms/types";
 
 export const DEFAULT_COUNTRY_CODE: keyof typeof COUNTRY_MAPPING = "de";
 export const DEFAULT_LANGUAGE_CODE: keyof typeof LANGUAGE_MAPPING = "de";
@@ -82,13 +82,17 @@ export function getSupportedLanguageCodes(): string[] {
   return Object.keys(LANGUAGE_MAPPING);
 }
 
-export function getEntryMeta<T>(e: Entry, languageOrCode: string): T {
+export function getEntryMeta<R, E extends EntryParsed = EntryParsed>(
+  e: E,
+  languageOrCode: string,
+): R {
   const languageCode = isLanguageCode(languageOrCode)
     ? languageOrCode
     : getLanguageCode(languageOrCode);
+  // biome-ignore lint/suspicious/noExplicitAny: simplify code
   const meta = e.meta[languageCode as keyof typeof e.meta] as any;
 
   return (
     (meta?.title?.length ?? 0) > 0 ? meta : e.meta["en" as keyof typeof e.meta]
-  ) as T;
+  ) as R;
 }
