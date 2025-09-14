@@ -1,8 +1,6 @@
 ---
-import type { Entry } from "@thebcms/types";
 import type {
   ArticleEntry,
-  HomePageEntry,
   HomePageEntryMetaItem,
 } from "../../../../bcms/types/ts";
 import { bcmsPrivate } from "../../../bcms-private";
@@ -35,31 +33,29 @@ export async function getStaticPaths() {
   return paths;
 }
 
-const { country, language } = Astro.params;
-const countryCode = getCountryCode(country);
+const profileEntry = await bcmsPrivate.entry.getBySlug("profile", "profile");
+const profileMeta = getEntryMeta<ProfileEntryMetaItem>(profileEntry, "en");
+const language =
+  profileMeta.language.length > 0 ? profileMeta.language[0] : "English";
+const country = profileMeta.country.length > 0 ? profileMeta.country[0] : "USA";
 const languageCode = getLanguageCode(language);
+const countryCode = getCountryCode(country);
+const title = profileMeta.title;
 
-const homePageEntry = (await bcmsPrivate.entry.getBySlug(
-  "home",
-  "home-page",
-)) as HomePageEntry;
+const homePageEntry = await bcmsPrivate.entry.getBySlug("home", "home-page");
 const homePageMeta = getEntryMeta<HomePageEntryMetaItem>(
-  homePageEntry as Entry,
+  homePageEntry,
   languageCode,
 );
-const articleEntries = (await bcmsPrivate.entry.getAll(
-  "article",
-)) as ArticleEntry[];
+const articleEntries = await bcmsPrivate.entry.getAll("article");
 const lightArticles = articleEntries.map((e) => {
-  return articleToLight(e, languageCode);
+  return articleToLight(e as ArticleEntry, languageCode);
 });
 
 const bcmsConfig = bcmsPublic.getConfig();
 ---
 
-<Layout
-  title={`${homePageMeta.seo?.title || homePageMeta.title} - Flavour Fushion`}
->
+<Layout title={`${homePageMeta.seo?.title || homePageMeta.title} - ${title}`}>
   <div>
     <HomePageHero
       headline={homePageMeta.headline}

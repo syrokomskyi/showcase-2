@@ -1,29 +1,41 @@
 ---
-import type { Entry } from "@thebcms/types";
-import type { FooterEntry, FooterEntryMetaItem } from "../../bcms/types/ts";
+import type {
+    FontEntryMetaItem,
+    FooterEntryMetaItem,
+    ProfileEntryMetaItem,
+    ThumbnailEntryMetaItem,
+} from "../../bcms/types/ts";
 import { bcmsPrivate } from "../bcms-private";
 import Footer from "../components/layout/Footer";
 import Header from "../components/layout/Header";
 import { getEntryMeta, getLanguageCode } from "../utils/localization";
 
-const { title } = Astro.props;
-const ogImageUrl = "/thumbnail.jpg";
+const profileEntry = await bcmsPrivate.entry.getBySlug("profile", "profile");
+const profileMeta = getEntryMeta<ProfileEntryMetaItem>(profileEntry, "en");
+const language =
+    profileMeta.language.length > 0 ? profileMeta.language[0] : "English";
+const languageCode = getLanguageCode(language);
+const title = profileMeta.title;
 
-const { language } = Astro.params;
-const languageCode = getLanguageCode(language ?? "en");
-
-const footerEntry = (await bcmsPrivate.entry.getBySlug(
-    "footer",
-    "footer",
-)) as FooterEntry;
-const footerMeta = getEntryMeta<FooterEntryMetaItem>(
-    footerEntry as Entry,
+const thumbnailEntry = await bcmsPrivate.entry.getBySlug(
+    "thumbnail",
+    "thumbnail",
+);
+const thumbnailMeta = getEntryMeta<ThumbnailEntryMetaItem>(
+    thumbnailEntry,
     languageCode,
 );
+const ogImageUrl = thumbnailMeta.image?.url;
+
+const fontEntry = await bcmsPrivate.entry.getBySlug("font", "font");
+const fontMeta = getEntryMeta<FontEntryMetaItem>(fontEntry, languageCode);
+
+const footerEntry = await bcmsPrivate.entry.getBySlug("footer", "footer");
+const footerMeta = getEntryMeta<FooterEntryMetaItem>(footerEntry, languageCode);
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={languageCode}>
     <head>
         <meta charset="UTF-8" />
         <meta
@@ -35,15 +47,16 @@ const footerMeta = getEntryMeta<FooterEntryMetaItem>(
         <meta name="generator" content={Astro.generator} />
         <meta property="og:image" content={ogImageUrl} />
         <meta property="og:image:secure_url" content={ogImageUrl} />
-        <meta property="twitter:title" content="Flavour Fushion" />
+        <meta property="twitter:title" content={title} />
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:image" content={ogImageUrl} />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="preconnect" href={fontMeta.preconnect} />
         <link
-            href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-            rel="stylesheet"
+            rel="preconnect"
+            href={fontMeta.crossorigin_preconnect}
+            crossorigin
         />
+        <link rel="stylesheet" href={fontMeta.stylesheet} />
         <title>{title}</title>
     </head>
     <body class="font-inter overflow-x-hidden bg-white">
