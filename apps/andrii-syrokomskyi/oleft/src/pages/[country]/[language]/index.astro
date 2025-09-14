@@ -2,6 +2,7 @@
 import type {
   ArticleEntry,
   HomePageEntryMetaItem,
+  ProfileEntryMetaItem,
 } from "../../../../bcms/types/ts";
 import { bcmsPrivate } from "../../../bcms-private";
 import { bcmsPublic } from "../../../bcms-public";
@@ -37,7 +38,8 @@ const profileEntry = await bcmsPrivate.entry.getBySlug("profile", "profile");
 const profileMeta = getEntryMeta<ProfileEntryMetaItem>(profileEntry, "en");
 const language =
   profileMeta.language.length > 0 ? profileMeta.language[0] : "English";
-const country = profileMeta.country.length > 0 ? profileMeta.country[0] : "USA";
+const country =
+  profileMeta.country.length > 0 ? profileMeta.country[0] : "Germany";
 const languageCode = getLanguageCode(language);
 const countryCode = getCountryCode(country);
 const title = profileMeta.title;
