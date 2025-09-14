@@ -38,10 +38,7 @@ const footerMeta = getEntryMeta<FooterEntryMetaItem>(footerEntry, languageCode);
 <html lang={languageCode}>
     <head>
         <meta charset="UTF-8" />
-        <meta
-            name="description"
-            content="Jumpstart your Astro project with this BCMS starter. Easily manage your content and scale your application without the backend hassle. Get started now!"
-        />
+        <meta name="description" content={profileMeta.description} />
         <meta name="viewport" content="width=device-width" />
         <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
         <meta name="generator" content={Astro.generator} />
