@@ -10,12 +10,17 @@ import Footer from "../components/layout/Footer";
 import Header from "../components/layout/Header";
 import { getEntryMeta, getLanguageCode } from "../utils/localization";
 
+let { title } = Astro.props;
+
 const profileEntry = await bcmsPrivate.entry.getBySlug("profile", "profile");
 const profileMeta = getEntryMeta<ProfileEntryMetaItem>(profileEntry, "en");
 const language =
     profileMeta.language.length > 0 ? profileMeta.language[0] : "English";
 const languageCode = getLanguageCode(language);
-const title = profileMeta.title;
+
+if (!title) {
+    title = profileMeta.title;
+}
 
 const thumbnailEntry = await bcmsPrivate.entry.getBySlug(
     "thumbnail",
