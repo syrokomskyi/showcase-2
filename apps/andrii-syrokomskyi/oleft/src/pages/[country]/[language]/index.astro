@@ -12,15 +12,14 @@ import HomePageHero from "../../../components/home-page/Hero";
 import Layout from "../../../layouts/Layout.astro";
 import { articleToLight } from "../../../utils/article";
 import {
+  getCountryCode,
+  getEntryMeta,
+  getLanguageCode,
   getSupportedCountries,
   getSupportedLanguages,
-  getCountryCode,
-  getLanguageCode,
-  getEntryMeta,
 } from "../../../utils/localization";
 
 export async function getStaticPaths() {
-  // Get supported countries and languages as full names
   const countries = getSupportedCountries();
   const languages = getSupportedLanguages();
 
@@ -37,8 +36,6 @@ export async function getStaticPaths() {
 }
 
 const { country, language } = Astro.params;
-
-// Convert full names back to codes for internal logic
 const countryCode = getCountryCode(country);
 const languageCode = getLanguageCode(language);
 
