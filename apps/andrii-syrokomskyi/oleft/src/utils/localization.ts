@@ -1,3 +1,4 @@
+import type { Client } from "@thebcms/client";
 import type { EntryParsed } from "@thebcms/types";
 
 export const DEFAULT_COUNTRY_CODE: keyof typeof COUNTRY_MAPPING = "de";
@@ -80,6 +81,16 @@ export function getSupportedCountryCodes(): string[] {
 
 export function getSupportedLanguageCodes(): string[] {
   return Object.keys(LANGUAGE_MAPPING);
+}
+
+export async function getEntrySlugMeta<R>(
+  client: Client,
+  languageCode: string,
+  template: string,
+  slug?: string,
+): Promise<R> {
+  const entry = await client.entry.getBySlug(slug ?? template, template);
+  return getEntryMeta(entry, languageCode);
 }
 
 export function getEntryMeta<R, E extends EntryParsed = EntryParsed>(

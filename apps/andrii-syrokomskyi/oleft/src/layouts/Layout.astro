@@ -8,12 +8,16 @@ import type {
 import { bcmsPrivate } from "../bcms-private";
 import Footer from "../components/layout/Footer";
 import Header from "../components/layout/Header";
-import { getEntryMeta, getLanguageCode } from "../utils/localization";
+import { getEntrySlugMeta, getLanguageCode } from "../utils/localization";
 
 let { title } = Astro.props;
 
-const profileEntry = await bcmsPrivate.entry.getBySlug("profile", "profile");
-const profileMeta = getEntryMeta<ProfileEntryMetaItem>(profileEntry, "en");
+const profileMeta = await getEntrySlugMeta<ProfileEntryMetaItem>(
+    bcmsPrivate,
+    "en",
+    "profile",
+);
+
 const language =
     profileMeta.language.length > 0 ? profileMeta.language[0] : "English";
 const languageCode = getLanguageCode(language);
@@ -22,21 +26,24 @@ if (!title) {
     title = profileMeta.title;
 }
 
-const thumbnailEntry = await bcmsPrivate.entry.getBySlug(
-    "thumbnail",
-    "thumbnail",
-);
-const thumbnailMeta = getEntryMeta<ThumbnailEntryMetaItem>(
-    thumbnailEntry,
+const thumbnailMeta = await getEntrySlugMeta<ThumbnailEntryMetaItem>(
+    bcmsPrivate,
     languageCode,
+    "thumbnail",
 );
 const ogImageUrl = thumbnailMeta.image?.url;
 
-const fontEntry = await bcmsPrivate.entry.getBySlug("font", "font");
-const fontMeta = getEntryMeta<FontEntryMetaItem>(fontEntry, languageCode);
+const fontMeta = await getEntrySlugMeta<FontEntryMetaItem>(
+    bcmsPrivate,
+    languageCode,
+    "font",
+);
 
-const footerEntry = await bcmsPrivate.entry.getBySlug("footer", "footer");
-const footerMeta = getEntryMeta<FooterEntryMetaItem>(footerEntry, languageCode);
+const footerMeta = await getEntrySlugMeta<FooterEntryMetaItem>(
+    bcmsPrivate,
+    languageCode,
+    "footer",
+);
 ---
 
 <!doctype html>
