@@ -132,11 +132,11 @@ const clientConfig = bcmsPublic.getConfig();
   title={`${articleEntryMeta.seo?.title ?? articleEntryMeta.title} - ${title}`}
 >
   <div class="pb-10 md:pb-16 lg:pb-[120px]">
-    <Filters
+    <!-- TODO <Filters
       country={countryCode}
       language={languageCode}
       client:load
-    />
+    /> -->
     <div class="container">
       {
         articleEntryMeta.cover_image && (

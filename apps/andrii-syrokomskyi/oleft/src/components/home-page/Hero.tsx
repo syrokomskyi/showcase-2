@@ -8,7 +8,6 @@ import ArrowIcon from "../../assets/icons/arrow-right.svg?raw";
 import { defaultCountry, defaultLanguage } from "../../configure";
 import type { ArticleLight } from "../../utils/article";
 import { getCountryName, getLanguageName } from "../../utils/localization";
-import ArticlesSearchBar from "../articles/Search";
 import Btn from "../Btn";
 import ContentManager from "../ContentManager";
 
@@ -60,12 +59,12 @@ const HomePageHero = ({
               </Btn>
             )}
           </div>
-          <ArticlesSearchBar
+          {/* TODO <ArticlesSearchBar
             articles={articles}
             country={country}
             language={language}
             className="absolute z-10 top-10 right-0 w-[300px] max-lg:hidden"
-          />
+          /> */}
         </div>
       </div>
       <div className="absolute top-0 left-0 size-full">
