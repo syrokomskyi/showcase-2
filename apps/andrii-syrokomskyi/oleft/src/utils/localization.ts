@@ -42,19 +42,19 @@ export const LANGUAGE_CODE_MAPPING = Object.fromEntries(
 
 // Helper functions
 export function getCountryName(code: string): string {
-  return COUNTRY_MAPPING[code as keyof typeof COUNTRY_MAPPING] || code;
+  return COUNTRY_MAPPING[code as keyof typeof COUNTRY_MAPPING] ?? code;
 }
 
 export function getLanguageName(code: string): string {
-  return LANGUAGE_MAPPING[code as keyof typeof LANGUAGE_MAPPING] || code;
+  return LANGUAGE_MAPPING[code as keyof typeof LANGUAGE_MAPPING] ?? code;
 }
 
 export function getCountryCode(name: string): string {
-  return COUNTRY_CODE_MAPPING[name] || name;
+  return COUNTRY_CODE_MAPPING[name] ?? name;
 }
 
 export function getLanguageCode(name: string): string {
-  return LANGUAGE_CODE_MAPPING[name] || name;
+  return LANGUAGE_CODE_MAPPING[name] ?? name;
 }
 
 export function isLanguageCode(name: string): boolean {

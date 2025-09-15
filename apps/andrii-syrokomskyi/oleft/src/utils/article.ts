@@ -3,12 +3,12 @@ import type {
   PropMediaDataParsed,
   PropRichTextDataParsed,
 } from "@thebcms/types";
+import { marked } from "marked";
 import type {
   ArticleEntry,
   ArticleEntryMetaItem,
 } from "../../bcms/types/ts/entry/article";
 import { getEntryMeta } from "./localization";
-import { marked } from "marked";
 
 export interface ArticleLight {
   title: string;
@@ -32,7 +32,7 @@ export const articleToLight = (
       meta.categories?.map(
         (e) =>
           getEntryMeta<ArticleEntryMetaItem>(e as Entry, language).title ?? "",
-      ) || [],
+      ) ?? [],
     description: meta.description,
   };
 };

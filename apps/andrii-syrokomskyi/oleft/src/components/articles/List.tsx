@@ -27,18 +27,18 @@ const ArticlesList = ({
     if (window.innerWidth >= 1024) {
       setArticlesPerPage(articlesPerPage);
     }
-  }, []);
+  }, [articlesPerPage]);
 
   const categoriesOptions = useMemo(() => {
     return (
       articles.reduce((acc, e) => {
         e.categories.forEach((category) => {
-          if (!acc.includes(category || "")) {
-            acc.push(category || "");
+          if (!acc.includes(category ?? "")) {
+            acc.push(category ?? "");
           }
         });
         return acc;
-      }, [] as string[]) || []
+      }, [] as string[]) ?? []
     );
   }, [articles]);
 
@@ -60,7 +60,7 @@ const ArticlesList = ({
         }
 
         return show;
-      }) || []
+      }) ?? []
     );
   }, [searchValue, categoriesValue, articles]);
 

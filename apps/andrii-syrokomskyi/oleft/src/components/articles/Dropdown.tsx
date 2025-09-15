@@ -56,7 +56,7 @@ export const ArticlesDropdown = ({
             },
           )}
         >
-          {value || placeholder}
+          {value ?? placeholder}
         </span>
         <div
           dangerouslySetInnerHTML={{ __html: ChevronIcon }}

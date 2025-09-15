@@ -1,5 +1,6 @@
 ---
 import { BCMSImage } from "@thebcms/components-react";
+import type { Entry } from "@thebcms/types";
 import type {
   ArticleEntry,
   ArticleEntryMetaItem,
@@ -18,13 +19,12 @@ import {
   removeTitle,
 } from "../../../../../utils/article";
 import {
+  getCountryCode,
+  getEntryMeta,
+  getLanguageCode,
   getSupportedCountries,
   getSupportedLanguages,
-  getCountryCode,
-  getLanguageCode,
-  getEntryMeta,
 } from "../../../../../utils/localization";
-import type { Entry } from "@thebcms/types";
 
 export async function getStaticPaths() {
   // Get supported countries and languages as full names
@@ -65,8 +65,8 @@ export async function getStaticPaths() {
 const { country, language, slug } = Astro.params;
 
 // Convert full names back to codes for internal logic
-const countryCode = getCountryCode(country || "");
-const languageCode = getLanguageCode(language || "");
+const countryCode = getCountryCode(country ?? "");
+const languageCode = getLanguageCode(language ?? "");
 
 const homePageEntry = (await bcmsPrivate.entry.getBySlug(
   "home",
@@ -83,13 +83,13 @@ const articleEntries = (await bcmsPrivate.entry.getAll(
 // Find article using the correct language metadata
 const articleEntry = articleEntries.find((e) => {
   const entrySlug =
-    e.meta[languageCode as keyof typeof e.meta]?.slug || e.meta.en?.slug;
+    e.meta[languageCode as keyof typeof e.meta]?.slug ?? e.meta.en?.slug;
   return entrySlug === slug;
 });
 const articleEntryMeta =
   (articleEntry?.meta[
     languageCode as keyof typeof articleEntry.meta
-  ] as ArticleEntryMetaItem) || (articleEntry?.meta.en as ArticleEntryMetaItem);
+  ] as ArticleEntryMetaItem) ?? (articleEntry?.meta.en as ArticleEntryMetaItem);
 const lightArticles = articleEntries.map((e) => {
   return articleToLight(e, languageCode);
 });
@@ -102,19 +102,19 @@ const articleText = removeTitle(
 const categories =
   articleEntries.reduce((acc, e) => {
     e.meta.en?.categories?.forEach((category) => {
-      const categoryTitle = category.meta.en?.title || "";
+      const categoryTitle = category.meta.en?.title ?? "";
       if (!acc.includes(categoryTitle)) {
         acc.push(categoryTitle);
       }
     });
     return acc;
-  }, [] as string[]) || [];
+  }, [] as string[]) ?? [];
 
 const similarArticles =
   lightArticles.filter((e) => {
     const entryCategories =
-      articleEntryMeta.categories?.map((i) => i.meta.en?.title) || [];
-    const categories = e.categories.map((i) => i) || [];
+      articleEntryMeta.categories?.map((i) => i.meta.en?.title) ?? [];
+    const categories = e.categories.map((i) => i) ?? [];
     for (let i = 0; i < categories.length; i++) {
       if (
         entryCategories.includes(categories[i]) &&
@@ -124,13 +124,13 @@ const similarArticles =
       }
     }
     return false;
-  }) || [];
+  }) ?? [];
 
 const clientConfig = bcmsPublic.getConfig();
 ---
 
 <Layout
-  title={`${articleEntryMeta.seo?.title || articleEntryMeta.title} - Flavour Fushion`}
+  title={`${articleEntryMeta.seo?.title ?? articleEntryMeta.title} - Flavour Fushion`}
 >
   <div class="pb-10 md:pb-16 lg:pb-[120px]">
     <Filters

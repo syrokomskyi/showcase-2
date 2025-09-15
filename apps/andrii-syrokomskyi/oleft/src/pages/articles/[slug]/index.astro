@@ -4,7 +4,7 @@ export async function getStaticPaths() {
   const blogs = await bcmsPrivate.entry.getAll("article");
   return blogs.map((e) => ({
     params: {
-      slug: e.meta.en?.slug || "",
+      slug: e.meta.en?.slug ?? "",
     },
   }));
 }

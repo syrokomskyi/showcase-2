@@ -10,17 +10,13 @@ interface Props {
   className?: string;
 }
 
-const ContentManager = ({
-  items,
-  widgetComponents,
-  className = "",
-}: Props) => {
+const ContentManager = ({ items, widgetComponents, className = "" }: Props) => {
   return (
     <div>
       <BCMSContentManager
         className={className}
         items={items}
-        widgetComponents={widgetComponents || {}}
+        widgetComponents={widgetComponents ?? {}}
       />
     </div>
   );
