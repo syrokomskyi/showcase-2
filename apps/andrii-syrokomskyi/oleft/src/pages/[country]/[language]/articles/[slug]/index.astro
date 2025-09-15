@@ -95,7 +95,7 @@ const articleText = removeTitle(
 
 const categories =
   articleEntries.reduce((acc, e) => {
-    e.meta.en?.categories?.forEach((category) => {
+    e.meta.en?.category?.forEach((category) => {
       const categoryTitle = category.meta.en?.title ?? "";
       if (!acc.includes(categoryTitle)) {
         acc.push(categoryTitle);
@@ -107,7 +107,7 @@ const categories =
 const similarArticles =
   lightArticles.filter((e) => {
     const entryCategories =
-      articleEntryMeta.categories?.map((i) => i.meta.en?.title) ?? [];
+      articleEntryMeta.category?.map((i) => i.meta.en?.title) ?? [];
     const categories = e.categories.map((i) => i) ?? [];
     for (let i = 0; i < categories.length; i++) {
       if (
@@ -166,19 +166,19 @@ const clientConfig = bcmsPublic.getConfig();
         )
       }
         {
-          articleEntryMeta.goods_for_article && articleEntryMeta.goods_for_article.length > 0 && (
+          articleEntryMeta.goods && articleEntryMeta.goods.length > 0 && (
           <div class="flex flex-wrap gap-3 mb-8 lg:gap-4">
             <div class="bg-[#F7F7F7] rounded-[40px] px-5 py-[13px] text-sm leading-none font-medium tracking-[-0.41px]">
               <span class="text-[#9C9C9C]">
-                {articleEntryMeta.goods_for_article.length}
-                {articleEntryMeta.goods_for_article.length === 1
+                {articleEntryMeta.goods.length}
+                {articleEntryMeta.goods.length === 1
                   ? homePageMeta.goods_singular_word
                   : homePageMeta.goods_plural_word}
               </span>
             </div>
           </div>
           // TODO <GoodsForArticle
-          //   goods={articleEntryMeta.goods_for_article}
+          //   goods={articleEntryMeta.goods}
           //   bcmsConfig={clientConfig}
           //   previousButton={homePageMeta.previous_goods_button}
           //   nextButton={homePageMeta.next_goods_button}
