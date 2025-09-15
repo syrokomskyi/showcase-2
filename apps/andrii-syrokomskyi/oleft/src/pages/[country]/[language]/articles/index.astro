@@ -12,13 +12,13 @@ import Layout from "../../../../layouts/Layout.astro";
 import { articleToLight } from "../../../../utils/article";
 import {
   getCountryCode,
+  getEntrySlugMeta,
   getLanguageCode,
   getSupportedCountries,
   getSupportedLanguages,
 } from "../../../../utils/localization";
 
 export async function getStaticPaths() {
-  // Get supported countries and languages as full names
   const countries = getSupportedCountries();
   const languages = getSupportedLanguages();
 
@@ -36,15 +36,16 @@ export async function getStaticPaths() {
 
 const { country, language } = Astro.params;
 
-// Convert full names back to codes for internal logic
 const countryCode = getCountryCode(country ?? "");
 const languageCode = getLanguageCode(language ?? "");
 
-const articlesPageEntry = (await bcmsPrivate.entry.getBySlug(
-  "articles",
+const articlesPageEntry = await getEntrySlugMeta<ArticlesPageEntryMetaItem>(
+  bcmsPrivate,
+  languageCode,
   "articles-page",
-)) as ArticlesPageEntry;
-const articlesPageMeta = articlesPageEntry.meta.en as ArticlesPageEntryMetaItem;
+  "articles",
+);
+
 const articleEntries = (await bcmsPrivate.entry.getAll(
   "article",
 )) as ArticleEntry[];
@@ -56,11 +57,11 @@ const clientConfig = bcmsPublic.getConfig();
 ---
 
 <Layout
-  title={`${articlesPageMeta.seo?.title ?? articlesPageMeta.title} - Flavour Fushion`}
+  title={`${articlesPageEntry.seo?.title ?? articlesPageEntry.title} - Flavour Fushion`}
 >
   <div class="container pt-24 pb-8 md:pb-16 lg:pt-[104px] lg:pb-[120px]">
     <ContentManager
-      items={articlesPageMeta.headline?.nodes ?? []}
+      items={articlesPageEntry.headline?.nodes ?? []}
       className="articlesPage--title text-xl leading-[1.2] font-medium text-center text-appGray-700 mb-8 md:text-3xl lg:text-[56px] lg:leading-[1.2] lg:mb-10"
     />
     <ArticlesList
