@@ -8,6 +8,7 @@ import {
 } from "react";
 import { Transition } from "react-transition-group";
 import SearchIcon from "../../assets/icons/search.svg?raw";
+import { defaultCountry, defaultLanguage } from "../../configure";
 import type { ArticleLight } from "../../utils/article";
 import { getCountryName, getLanguageName } from "../../utils/localization";
 
@@ -33,8 +34,8 @@ const ArticlesSearchBar = ({
   onInput,
   onEnter,
   className = "",
-  country = "germany",
-  language = "german",
+  country = defaultCountry,
+  language = defaultLanguage,
 }: Props) => {
   const [searchValue, setSearchValue] = useState(value);
   const transitionRef = useRef(null);

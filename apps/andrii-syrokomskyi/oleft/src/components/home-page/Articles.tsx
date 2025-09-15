@@ -1,10 +1,12 @@
 import type { ClientConfig } from "@thebcms/client";
+import type { Entry } from "@thebcms/types";
 import { useMemo } from "react";
 import type {
   ArticleEntry,
   ArticleEntryMetaItem,
 } from "../../../bcms/types/ts";
 import ArrowIcon from "../../assets/icons/arrow-right.svg?raw";
+import { defaultCountry, defaultLanguage } from "../../configure";
 import type { ArticleLight } from "../../utils/article";
 import {
   getCountryName,
@@ -14,7 +16,6 @@ import {
 import ArticlesCard from "../articles/Card";
 import ArticlesSearchBar from "../articles/Search";
 import Btn from "../Btn";
-import type { Entry } from "@thebcms/types";
 
 interface Props {
   title?: string;
@@ -30,8 +31,8 @@ const HomePageArticles = ({
   articles: items = [],
   bcmsConfig,
   browseArticlesButton,
-  country = "germany",
-  language = "german",
+  country = defaultCountry,
+  language = defaultLanguage,
 }: Props) => {
   const articles = useMemo(() => {
     return items.map((e) => {
@@ -46,7 +47,7 @@ const HomePageArticles = ({
         description: meta.description,
       } as ArticleLight;
     });
-  }, [items]);
+  }, [items, language]);
 
   return (
     <section className="py-8 lg:py-20 xl:pt-[128px] xl:pb-[120px]">

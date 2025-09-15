@@ -1,6 +1,7 @@
 import type { ClientConfig } from "@thebcms/client";
 import { BCMSImage } from "@thebcms/components-react";
 import classnames from "classnames";
+import { defaultCountry, defaultLanguage } from "../../configure";
 import type { ArticleLight } from "../../utils/article";
 import { getCountryName, getLanguageName } from "../../utils/localization";
 import ContentManager from "../ContentManager";
@@ -17,8 +18,8 @@ const ArticlesCard = ({
   card,
   showTitleLayer,
   bcmsConfig,
-  country = "germany",
-  language = "german",
+  country = defaultCountry,
+  language = defaultLanguage,
 }: Props) => {
   return (
     <article>

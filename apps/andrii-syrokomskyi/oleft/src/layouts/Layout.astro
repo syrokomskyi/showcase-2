@@ -8,17 +8,19 @@ import type {
 import { bcmsPrivate } from "../bcms-private";
 import Footer from "../components/layout/Footer";
 import Header from "../components/layout/Header";
+import { defaultLanguage, defaultLanguageCodeInBcms } from "../configure";
 import { getEntrySlugMeta, getLanguageCode } from "../utils/localization";
 
 let { title } = Astro.props;
 
 const profile = await getEntrySlugMeta<ProfileEntryMetaItem>(
     bcmsPrivate,
-    "en",
+    defaultLanguageCodeInBcms,
     "profile",
 );
 
-const language = profile.language.length > 0 ? profile.language[0] : "English";
+const language =
+    profile.language.length > 0 ? profile.language[0] : defaultLanguage;
 const languageCode = getLanguageCode(language);
 
 if (!title) {

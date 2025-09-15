@@ -8,6 +8,11 @@ import { bcmsPrivate } from "../../../bcms-private";
 import { bcmsPublic } from "../../../bcms-public";
 import HomePageArticles from "../../../components/home-page/Articles";
 import HomePageHero from "../../../components/home-page/Hero";
+import {
+  defaultCountry,
+  defaultLanguage,
+  defaultLanguageCodeInBcms,
+} from "../../../configure";
 import Layout from "../../../layouts/Layout.astro";
 import { articleToLight } from "../../../utils/article";
 import {
@@ -36,12 +41,14 @@ export async function getStaticPaths() {
 
 const profile = await getEntrySlugMeta<ProfileEntryMetaItem>(
   bcmsPrivate,
-  "en",
+  defaultLanguageCodeInBcms,
   "profile",
 );
 
-const language = profile.language.length > 0 ? profile.language[0] : "English";
-const country = profile.country.length > 0 ? profile.country[0] : "Germany";
+const language =
+  profile.language.length > 0 ? profile.language[0] : defaultLanguage;
+const country =
+  profile.country.length > 0 ? profile.country[0] : defaultCountry;
 const languageCode = getLanguageCode(language);
 const countryCode = getCountryCode(country);
 const title = profile.title;

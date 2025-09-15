@@ -5,6 +5,7 @@ import type {
   PropRichTextDataParsed,
 } from "@thebcms/types";
 import ArrowIcon from "../../assets/icons/arrow-right.svg?raw";
+import { defaultCountry, defaultLanguage } from "../../configure";
 import type { ArticleLight } from "../../utils/article";
 import { getCountryName, getLanguageName } from "../../utils/localization";
 import ArticlesSearchBar from "../articles/Search";
@@ -29,8 +30,8 @@ const HomePageHero = ({
   coverImage,
   articles,
   bcmsConfig,
-  country = "germany",
-  language = "german",
+  country = defaultCountry,
+  language = defaultLanguage,
 }: Props) => {
   return (
     <section className="relative">

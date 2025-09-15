@@ -1,5 +1,6 @@
 import type { ClientConfig } from "@thebcms/client";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { defaultCountry, defaultLanguage } from "../../configure";
 import type { ArticleLight } from "../../utils/article";
 import ArticlesCard from "./Card";
 import { ArticlesDropdown } from "./Dropdown";
@@ -15,8 +16,8 @@ interface Props {
 const ArticlesList = ({
   articles,
   bcmsConfig,
-  country = "germany",
-  language = "german",
+  country = defaultCountry,
+  language = defaultLanguage,
 }: Props) => {
   const [searchValue, setSearchValue] = useState("");
   const [categoriesValue, setCategoriesValue] = useState("");

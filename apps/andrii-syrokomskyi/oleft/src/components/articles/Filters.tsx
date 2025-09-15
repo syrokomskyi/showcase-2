@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { defaultCountry, defaultLanguage } from "../../configure";
 import { getCountryName, getLanguageName } from "../../utils/localization";
 import { ArticlesDropdown } from "./Dropdown";
 import ArticlesSearchBar from "./Search";
@@ -11,8 +12,8 @@ interface Props {
 
 const Filters = ({
   categories,
-  country = "germany",
-  language = "german",
+  country = defaultCountry,
+  language = defaultLanguage,
 }: Props) => {
   const [searchValue, setSearchValue] = useState("");
   const [categoriesValue, setCategoriesValue] = useState("");
@@ -31,7 +32,7 @@ const Filters = ({
     if (categoriesValue) {
       filterRedirect("c", categoriesValue);
     }
-  }, [searchValue, categoriesValue]);
+  }, [searchValue, categoriesValue, filterRedirect]);
 
   return (
     <div className="pt-24 mb-8 md:pt-6 lg:pb-6 lg:border-b lg:border-[#F0F0F0] lg:mb-14">
