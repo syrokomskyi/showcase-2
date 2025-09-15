@@ -47,10 +47,10 @@ const Breadcrumb = ({
     return items;
   }, [pathname, language, articleTitle, country]);
 
-  // Don't render breadcrumb on home page
+  // don't render breadcrumb on home page
   if (
-    pathname === `/${country}/${language}/` ||
-    pathname === `/${country}/${language}`
+    pathname === `/${country}/${language}` ||
+    pathname === `/${country}/${language}/`
   ) {
     return null;
   }
