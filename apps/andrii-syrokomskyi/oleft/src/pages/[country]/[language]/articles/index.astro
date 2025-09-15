@@ -1,18 +1,5 @@
 ---
-import type {
-  ArticleEntry,
-  ArticlesPageEntryMetaItem,
-  ProfileEntryMetaItem,
-} from "../../../../../bcms/types/ts";
-import { bcmsPublic } from "../../../../bcms-public";
-import ArticlesList from "../../../../components/articles/List";
-import ContentManager from "../../../../components/ContentManager";
-import Layout from "../../../../layouts/Layout.astro";
-import { articleToLight } from "../../../../utils/article";
 import {
-  getCountryCode,
-  getEntrySlugMeta,
-  getLanguageCode,
   getSupportedCountries,
   getSupportedLanguages,
 } from "../../../../utils/localization";
@@ -35,49 +22,7 @@ export async function getStaticPaths() {
 
 const { country, language } = Astro.params;
 
-const countryCode = getCountryCode(country);
-const languageCode = getLanguageCode(language);
-
-const profile = await getEntrySlugMeta<ProfileEntryMetaItem>(
-  bcmsPublic,
-  languageCode,
-  "profile",
-);
-
-const title = profile.title;
-
-const articlesPageEntry = await getEntrySlugMeta<ArticlesPageEntryMetaItem>(
-  bcmsPublic,
-  languageCode,
-  "articles-page",
-  "articles",
-);
-
-// TODO Replace by analogy with getEntrySlugMeta().
-const articleEntries = (await bcmsPublic.entry.getAll(
-  "article",
-)) as ArticleEntry[];
-const lightArticles = articleEntries.map((e) => {
-  return articleToLight(e, languageCode);
-});
-
-const clientConfig = bcmsPublic.getConfig();
+// redirect to home
+// TODO Implement a page with list of articles. See ContentManager and ArticlesList components.
+return Astro.redirect(`/${country}/${language}/`);
 ---
-
-<Layout
-  title={`${articlesPageEntry.seo?.title ?? articlesPageEntry.title} - ${title}`}
->
-  <div class="container pt-24 pb-8 md:pb-16 lg:pt-[104px] lg:pb-[120px]">
-    <ContentManager
-      items={articlesPageEntry.headline?.nodes ?? []}
-      className="articlesPage--title text-xl leading-[1.2] font-medium text-center text-appGray-700 mb-8 md:text-3xl lg:text-[56px] lg:leading-[1.2] lg:mb-10"
-    />
-    <ArticlesList
-      articles={lightArticles}
-      bcmsConfig={clientConfig}
-      country={countryCode}
-      language={languageCode}
-      client:load
-    />
-  </div>
-</Layout>
