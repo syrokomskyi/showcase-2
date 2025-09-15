@@ -8,7 +8,6 @@ import type {
 } from "../../../../../../bcms/types/ts";
 import { bcmsPublic } from "../../../../../bcms-public";
 import ArticlesCard from "../../../../../components/articles/Card";
-import Filters from "../../../../../components/articles/Filters";
 // import { GoodsForArticle } from "../../../../../components/articles/GoodsForArticle";
 import Layout from "../../../../../layouts/Layout.astro";
 import {
@@ -130,6 +129,7 @@ const clientConfig = bcmsPublic.getConfig();
 
 <Layout
   title={`${articleEntryMeta.seo?.title ?? articleEntryMeta.title} - ${title}`}
+  articleTitle={articleEntryMeta.title}
 >
   <div class="pb-10 md:pb-16 lg:pb-[120px]">
     <!-- TODO <Filters

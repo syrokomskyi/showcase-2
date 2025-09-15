@@ -8,16 +8,31 @@ import type {
 import { bcmsPublic } from "../bcms-public";
 import Footer from "../components/layout/Footer";
 import Header from "../components/layout/Header";
-import { defaultLanguage, defaultLanguageCodeInBcms } from "../configure";
-import { getEntrySlugMeta, getLanguageCode } from "../utils/localization";
+import {
+    defaultCountry,
+    defaultLanguage,
+    defaultLanguageCodeInBcms,
+} from "../configure";
+import {
+    getCountryCode,
+    getEntrySlugMeta,
+    getLanguageCode,
+} from "../utils/localization";
 
 let { title } = Astro.props;
+const { articleTitle } = Astro.props;
+
+const pathname = Astro.url.pathname;
 
 const profile = await getEntrySlugMeta<ProfileEntryMetaItem>(
     bcmsPublic,
     defaultLanguageCodeInBcms,
     "profile",
 );
+
+const country =
+    profile.country.length > 0 ? profile.country[0] : defaultCountry;
+const countryCode = getCountryCode(country);
 
 const language =
     profile.language.length > 0 ? profile.language[0] : defaultLanguage;
@@ -70,7 +85,13 @@ const footer = await getEntrySlugMeta<FooterEntryMetaItem>(
     </head>
     <body class="font-inter overflow-x-hidden bg-white">
         <div class="overflow-hidden flex flex-col min-h-screen">
-            <Header />
+            <Header
+                pathname={pathname}
+                country={countryCode}
+                language={languageCode}
+                articleTitle={articleTitle}
+                client:load
+            />
             <main class="flex flex-col flex-1"><slot /></main>
             <Footer site={footer.copyright_note} />
         </div>
