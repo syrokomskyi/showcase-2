@@ -28,17 +28,17 @@ export async function getStaticPaths() {
   const countries = getSupportedCountries();
   const languages = getSupportedLanguages();
 
-  const blogs = (await bcmsPublic.entry.getAll("article")) as ArticleEntry[];
+  const articles = (await bcmsPublic.entry.getAll("article")) as ArticleEntry[];
 
   const paths = [];
   for (const country of countries) {
     for (const language of languages) {
       const languageCode = getLanguageCode(language);
 
-      for (const blog of blogs) {
+      for (const article of articles) {
         const slug =
-          blog.meta[languageCode as keyof typeof blog.meta]?.slug ||
-          blog.meta.en?.slug ||
+          article.meta[languageCode as keyof typeof article.meta]?.slug ||
+          article.meta.en?.slug ||
           "";
         if (slug) {
           paths.push({
@@ -133,7 +133,6 @@ const clientConfig = bcmsPublic.getConfig();
 >
   <div class="pb-10 md:pb-16 lg:pb-[120px]">
     <Filters
-      categories={categories}
       country={countryCode}
       language={languageCode}
       client:load
