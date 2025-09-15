@@ -1,10 +1,8 @@
 ---
 import { BCMSImage } from "@thebcms/components-react";
-import type { Entry } from "@thebcms/types";
 import type {
   ArticleEntry,
   ArticleEntryMetaItem,
-  HomePageEntry,
   HomePageEntryMetaItem,
 } from "../../../../../../bcms/types/ts";
 import { bcmsPrivate } from "../../../../../bcms-private";
@@ -20,7 +18,7 @@ import {
 } from "../../../../../utils/article";
 import {
   getCountryCode,
-  getEntryMeta,
+  getEntrySlugMeta,
   getLanguageCode,
   getSupportedCountries,
   getSupportedLanguages,
@@ -63,13 +61,11 @@ const { country, language, slug } = Astro.params;
 const countryCode = getCountryCode(country ?? "");
 const languageCode = getLanguageCode(language ?? "");
 
-const homePageEntry = (await bcmsPrivate.entry.getBySlug(
-  "home",
-  "home-page",
-)) as HomePageEntry;
-const homePageMeta = getEntryMeta<HomePageEntryMetaItem>(
-  homePageEntry as Entry,
+const homePage = await getEntrySlugMeta<HomePageEntryMetaItem>(
+  bcmsPrivate,
   languageCode,
+  "home-page",
+  "home",
 );
 
 const articleEntries = (await bcmsPrivate.entry.getAll(
@@ -172,8 +168,8 @@ const clientConfig = bcmsPublic.getConfig();
               <span class="text-[#9C9C9C]">
                 {articleEntryMeta.goods.length}
                 {articleEntryMeta.goods.length === 1
-                  ? homePageMeta.goods_singular_word
-                  : homePageMeta.goods_plural_word}
+                  ? homePage.goods_singular_word
+                  : homePage.goods_plural_word}
               </span>
             </div>
           </div>
