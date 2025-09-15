@@ -27,7 +27,6 @@ import {
 } from "../../../../../utils/localization";
 
 export async function getStaticPaths() {
-  // Get supported countries and languages as full names
   const countries = getSupportedCountries();
   const languages = getSupportedLanguages();
 
@@ -36,16 +35,13 @@ export async function getStaticPaths() {
   const paths = [];
   for (const country of countries) {
     for (const language of languages) {
-      // Convert full language name back to code to access correct metadata
       const languageCode = getLanguageCode(language);
 
       for (const blog of blogs) {
-        // Use the correct language metadata for the slug
         const slug =
           blog.meta[languageCode as keyof typeof blog.meta]?.slug ||
           blog.meta.en?.slug ||
           "";
-
         if (slug) {
           paths.push({
             params: {
@@ -64,7 +60,6 @@ export async function getStaticPaths() {
 
 const { country, language, slug } = Astro.params;
 
-// Convert full names back to codes for internal logic
 const countryCode = getCountryCode(country ?? "");
 const languageCode = getLanguageCode(language ?? "");
 
@@ -80,7 +75,6 @@ const homePageMeta = getEntryMeta<HomePageEntryMetaItem>(
 const articleEntries = (await bcmsPrivate.entry.getAll(
   "article",
 )) as ArticleEntry[];
-// Find article using the correct language metadata
 const articleEntry = articleEntries.find((e) => {
   const entrySlug =
     e.meta[languageCode as keyof typeof e.meta]?.slug ?? e.meta.en?.slug;
