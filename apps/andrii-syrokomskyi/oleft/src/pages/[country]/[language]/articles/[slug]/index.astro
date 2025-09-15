@@ -4,6 +4,7 @@ import type {
   ArticleEntry,
   ArticleEntryMetaItem,
   HomePageEntryMetaItem,
+  ProfileEntryMetaItem,
 } from "../../../../../../bcms/types/ts";
 import { bcmsPrivate } from "../../../../../bcms-private";
 import { bcmsPublic } from "../../../../../bcms-public";
@@ -58,8 +59,16 @@ export async function getStaticPaths() {
 
 const { country, language, slug } = Astro.params;
 
-const countryCode = getCountryCode(country ?? "");
-const languageCode = getLanguageCode(language ?? "");
+const countryCode = getCountryCode(country);
+const languageCode = getLanguageCode(language);
+
+const profile = await getEntrySlugMeta<ProfileEntryMetaItem>(
+  bcmsPrivate,
+  languageCode,
+  "profile",
+);
+
+const title = profile.title;
 
 const homePage = await getEntrySlugMeta<HomePageEntryMetaItem>(
   bcmsPrivate,
@@ -121,7 +130,7 @@ const clientConfig = bcmsPublic.getConfig();
 ---
 
 <Layout
-  title={`${articleEntryMeta.seo?.title ?? articleEntryMeta.title} - Flavour Fushion`}
+  title={`${articleEntryMeta.seo?.title ?? articleEntryMeta.title} - ${title}`}
 >
   <div class="pb-10 md:pb-16 lg:pb-[120px]">
     <Filters

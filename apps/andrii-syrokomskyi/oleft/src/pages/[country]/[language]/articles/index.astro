@@ -1,8 +1,8 @@
 ---
 import type {
   ArticleEntry,
-  ArticlesPageEntry,
   ArticlesPageEntryMetaItem,
+  ProfileEntryMetaItem,
 } from "../../../../../bcms/types/ts";
 import { bcmsPrivate } from "../../../../bcms-private";
 import { bcmsPublic } from "../../../../bcms-public";
@@ -36,8 +36,16 @@ export async function getStaticPaths() {
 
 const { country, language } = Astro.params;
 
-const countryCode = getCountryCode(country ?? "");
-const languageCode = getLanguageCode(language ?? "");
+const countryCode = getCountryCode(country);
+const languageCode = getLanguageCode(language);
+
+const profile = await getEntrySlugMeta<ProfileEntryMetaItem>(
+  bcmsPrivate,
+  languageCode,
+  "profile",
+);
+
+const title = profile.title;
 
 const articlesPageEntry = await getEntrySlugMeta<ArticlesPageEntryMetaItem>(
   bcmsPrivate,
@@ -58,7 +66,7 @@ const clientConfig = bcmsPublic.getConfig();
 ---
 
 <Layout
-  title={`${articlesPageEntry.seo?.title ?? articlesPageEntry.title} - Flavour Fushion`}
+  title={`${articlesPageEntry.seo?.title ?? articlesPageEntry.title} - ${title}`}
 >
   <div class="container pt-24 pb-8 md:pb-16 lg:pt-[104px] lg:pb-[120px]">
     <ContentManager
