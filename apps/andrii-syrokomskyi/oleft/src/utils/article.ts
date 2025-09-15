@@ -1,5 +1,5 @@
 import type {
-  Entry,
+  EntryParsed,
   PropMediaDataParsed,
   PropRichTextDataParsed,
 } from "@thebcms/types";
@@ -22,16 +22,20 @@ export const articleToLight = (
   article: ArticleEntry,
   language: string,
 ): ArticleLight => {
-  const meta = getEntryMeta<ArticleEntryMetaItem>(article as Entry, language);
+  const meta = getEntryMeta<ArticleEntryMetaItem>(
+    article as EntryParsed,
+    language,
+  );
 
   return {
     title: meta.title,
     slug: meta.slug,
     cover: meta.cover_image,
     categories:
-      meta.categories?.map(
+      meta.category?.map(
         (e) =>
-          getEntryMeta<ArticleEntryMetaItem>(e as Entry, language).title ?? "",
+          getEntryMeta<ArticleEntryMetaItem>(e as EntryParsed, language)
+            .title ?? "",
       ) ?? [],
     description: meta.description,
   };
