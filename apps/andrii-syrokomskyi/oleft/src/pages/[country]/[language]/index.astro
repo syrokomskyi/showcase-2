@@ -53,6 +53,7 @@ const homePage = await getEntrySlugMeta<HomePageEntryMetaItem>(
   "home",
 );
 
+// TODO Replace by analogy with getEntrySlugMeta().
 const articles = await bcmsPrivate.entry.getAll("article");
 const lightArticles = articles.map((e) => {
   return articleToLight(e as ArticleEntry, languageCode);
