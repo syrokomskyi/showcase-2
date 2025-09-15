@@ -6,6 +6,7 @@ import type {
     ThumbnailEntryMetaItem,
 } from "../../bcms/types/ts";
 import { bcmsPrivate } from "../bcms-private";
+import { bcmsPublic } from "../bcms-public";
 import Footer from "../components/layout/Footer";
 import Header from "../components/layout/Header";
 import { defaultLanguage, defaultLanguageCodeInBcms } from "../configure";
@@ -28,11 +29,14 @@ if (!title) {
 }
 
 const thumbnail = await getEntrySlugMeta<ThumbnailEntryMetaItem>(
-    bcmsPrivate,
+    bcmsPublic,
     languageCode,
     "thumbnail",
 );
-const ogImageUrl = thumbnail.image?.url;
+const thumbnailMedia = await bcmsPublic.media.getById(thumbnail.image._id);
+const ogImageUrl =
+    bcmsPublic.getConfig().cmsOrigin +
+    bcmsPublic.media.toUri(thumbnailMedia._id, thumbnailMedia.name);
 
 const font = await getEntrySlugMeta<FontEntryMetaItem>(
     bcmsPrivate,
