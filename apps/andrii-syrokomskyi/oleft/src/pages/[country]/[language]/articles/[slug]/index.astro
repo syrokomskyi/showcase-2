@@ -68,6 +68,7 @@ const homePage = await getEntrySlugMeta<HomePageEntryMetaItem>(
   "home",
 );
 
+// TODO Replace by analogy with getEntrySlugMeta().
 const articleEntries = (await bcmsPrivate.entry.getAll(
   "article",
 )) as ArticleEntry[];
