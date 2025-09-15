@@ -4,7 +4,6 @@ import type {
   HomePageEntryMetaItem,
   ProfileEntryMetaItem,
 } from "../../../../bcms/types/ts";
-import { bcmsPrivate } from "../../../bcms-private";
 import { bcmsPublic } from "../../../bcms-public";
 import HomePageArticles from "../../../components/home-page/Articles";
 import HomePageHero from "../../../components/home-page/Hero";
@@ -40,7 +39,7 @@ export async function getStaticPaths() {
 }
 
 const profile = await getEntrySlugMeta<ProfileEntryMetaItem>(
-  bcmsPrivate,
+  bcmsPublic,
   defaultLanguageCodeInBcms,
   "profile",
 );
@@ -54,14 +53,14 @@ const countryCode = getCountryCode(country);
 const title = profile.title;
 
 const homePage = await getEntrySlugMeta<HomePageEntryMetaItem>(
-  bcmsPrivate,
+  bcmsPublic,
   languageCode,
   "home-page",
   "home",
 );
 
 // TODO Replace by analogy with getEntrySlugMeta().
-const articles = await bcmsPrivate.entry.getAll("article");
+const articles = await bcmsPublic.entry.getAll("article");
 const lightArticles = articles.map((e) => {
   return articleToLight(e as ArticleEntry, languageCode);
 });

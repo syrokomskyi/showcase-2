@@ -6,7 +6,6 @@ import type {
   HomePageEntryMetaItem,
   ProfileEntryMetaItem,
 } from "../../../../../../bcms/types/ts";
-import { bcmsPrivate } from "../../../../../bcms-private";
 import { bcmsPublic } from "../../../../../bcms-public";
 import ArticlesCard from "../../../../../components/articles/Card";
 import Filters from "../../../../../components/articles/Filters";
@@ -29,7 +28,7 @@ export async function getStaticPaths() {
   const countries = getSupportedCountries();
   const languages = getSupportedLanguages();
 
-  const blogs = (await bcmsPrivate.entry.getAll("article")) as ArticleEntry[];
+  const blogs = (await bcmsPublic.entry.getAll("article")) as ArticleEntry[];
 
   const paths = [];
   for (const country of countries) {
@@ -63,7 +62,7 @@ const countryCode = getCountryCode(country);
 const languageCode = getLanguageCode(language);
 
 const profile = await getEntrySlugMeta<ProfileEntryMetaItem>(
-  bcmsPrivate,
+  bcmsPublic,
   languageCode,
   "profile",
 );
@@ -71,14 +70,14 @@ const profile = await getEntrySlugMeta<ProfileEntryMetaItem>(
 const title = profile.title;
 
 const homePage = await getEntrySlugMeta<HomePageEntryMetaItem>(
-  bcmsPrivate,
+  bcmsPublic,
   languageCode,
   "home-page",
   "home",
 );
 
 // TODO Replace by analogy with getEntrySlugMeta().
-const articleEntries = (await bcmsPrivate.entry.getAll(
+const articleEntries = (await bcmsPublic.entry.getAll(
   "article",
 )) as ArticleEntry[];
 const articleEntry = articleEntries.find((e) => {
