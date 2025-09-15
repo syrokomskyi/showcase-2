@@ -50,11 +50,11 @@ export function getLanguageName(code: string): string {
 }
 
 export function getCountryCode(name: string): string {
-  return COUNTRY_CODE_MAPPING[name] ?? name;
+  return COUNTRY_CODE_MAPPING[name.toLowerCase()] ?? name;
 }
 
 export function getLanguageCode(name: string): string {
-  return LANGUAGE_CODE_MAPPING[name] ?? name;
+  return LANGUAGE_CODE_MAPPING[name.toLowerCase()] ?? name;
 }
 
 export function isLanguageCode(name: string): boolean {
