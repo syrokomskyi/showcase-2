@@ -62,6 +62,9 @@ importers:
       marked:
         specifier: ^16.1.2
         version: 16.2.1
+      marked-gfm-heading-id:
+        specifier: ^4.1.2
+        version: 4.1.2(marked@16.2.1)
       react:
         specifier: ^19.1.1
         version: 19.1.1
@@ -1742,6 +1745,11 @@ packages:
 
   markdown-table@3.0.4:
     resolution: {integrity: sha512-wiYz4+JrLyb/DqW2hkFJxP7Vd7JuTDm77fvbM8VfEQdmSMqcImWeeRbHwZjBjIFki/VaMK2BhFi7oUUZeM5bqw==}
+
+  marked-gfm-heading-id@4.1.2:
+    resolution: {integrity: sha512-EQ1WiEGHJh0C8viU+hbXbhHyWTDgEia2i96fiSemm2wdYER6YBw/9QI5TB6YFTqFfmMOxBFXPcPJtlgD0fVV2w==}
+    peerDependencies:
+      marked: '>=13 <17'
 
   marked@16.2.1:
     resolution: {integrity: sha512-r3UrXED9lMlHF97jJByry90cwrZBBvZmjG1L68oYfuPMW+uDTnuMbyJDymCWwbTE+f+3LhpNDKfpR3a3saFyjA==}
@@ -4707,6 +4715,11 @@ snapshots:
       source-map-js: 1.2.1
 
   markdown-table@3.0.4: {}
+
+  marked-gfm-heading-id@4.1.2(marked@16.2.1):
+    dependencies:
+      github-slugger: 2.0.0
+      marked: 16.2.1
 
   marked@16.2.1: {}
 

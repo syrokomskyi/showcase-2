@@ -4,6 +4,7 @@ import type {
   PropRichTextDataParsed,
 } from "@thebcms/types";
 import { marked } from "marked";
+import { gfmHeadingId } from "marked-gfm-heading-id";
 import type {
   ArticleEntry,
   ArticleEntryMetaItem,
@@ -41,8 +42,10 @@ export const articleToLight = (
   };
 };
 
+marked.use(gfmHeadingId());
+
 export async function markdownToHtml(markdown: string): Promise<string> {
-  return marked(markdown.replaceAll("\n", "\n\n"));
+  return await marked(markdown.replaceAll("\n", "\n\n"));
 }
 
 // Remove the line with `title` from `text`.
