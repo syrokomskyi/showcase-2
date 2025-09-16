@@ -42,10 +42,16 @@ export const articleToLight = (
   };
 };
 
-marked.use(gfmHeadingId());
+marked.use({
+  ...gfmHeadingId(),
+  async: true,
+  pedantic: false,
+  gfm: true,
+  breaks: true,
+});
 
 export async function markdownToHtml(markdown: string): Promise<string> {
-  return await marked(markdown.replaceAll("\n", "\n\n"));
+  return await marked(markdown);
 }
 
 // Remove the line with `title` from `text`.
