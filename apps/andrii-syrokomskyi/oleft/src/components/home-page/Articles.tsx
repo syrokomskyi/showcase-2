@@ -5,7 +5,6 @@ import type {
   ArticleEntry,
   ArticleEntryMetaItem,
 } from "../../../bcms/types/ts";
-import ArrowIcon from "../../assets/icons/arrow-right.svg?raw";
 import { defaultCountry, defaultLanguage } from "../../configure";
 import type { ArticleLight } from "../../utils/article";
 import {
@@ -15,6 +14,7 @@ import {
 } from "../../utils/localization";
 import ArticlesCard from "../articles/Card";
 import Btn from "../Btn";
+import ArrowIcon from "../icons/ArrowIcon";
 
 interface Props {
   title?: string;
@@ -74,10 +74,7 @@ const HomePageArticles = ({
               theme="dark"
             >
               <span className="mr-2">{browseArticlesButton}</span>
-              <div
-                dangerouslySetInnerHTML={{ __html: ArrowIcon }}
-                className="w-[14px] h-[14px] lg:w-5 lg:h-5"
-              />
+              <ArrowIcon className="w-[14px] h-[14px] lg:w-5 lg:h-5" />
             </Btn>
           </div>
         )}

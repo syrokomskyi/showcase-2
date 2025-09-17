@@ -4,11 +4,11 @@ import type {
   PropMediaDataParsed,
   PropRichTextDataParsed,
 } from "@thebcms/types";
-import ArrowIcon from "../../assets/icons/arrow-right.svg?raw";
 import { defaultCountry, defaultLanguage } from "../../configure";
 import { getCountryName, getLanguageName } from "../../utils/localization";
 import Btn from "../Btn";
 import ContentManager from "../ContentManager";
+import ArrowIcon from "../icons/ArrowIcon";
 
 interface Props {
   headline: PropRichTextDataParsed;
@@ -62,10 +62,7 @@ const HomePageHero = ({
                   to={`/${getCountryName(country)}/${getLanguageName(language)}/articles`}
                 >
                   <span className="mr-2">{browseHeroButton}</span>
-                  <div
-                    dangerouslySetInnerHTML={{ __html: ArrowIcon }}
-                    className="w-[14px] h-[14px] lg:w-5 lg:h-5"
-                  />
+                  <ArrowIcon className="w-[14px] h-[14px] lg:w-5 lg:h-5" />
                 </Btn>
               )}
             </div>
