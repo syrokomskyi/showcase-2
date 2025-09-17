@@ -19,8 +19,8 @@
     "upgrade-packages:check": "pnpm outdated -r"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.2.3",
-    "@types/node": "^24.3.1",
+    "@biomejs/biome": "2.2.4",
+    "@types/node": "^24.5.1",
     "typescript": "^5.9.2"
   },
   "engines": {
