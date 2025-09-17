@@ -1,1 +1,41 @@
 @import "tailwindcss";
+
+/* Ensure proper stacking context and prevent overlapping */
+.hero-section {
+  position: relative;
+  z-index: 1;
+}
+
+.articles-section {
+  position: relative;
+  z-index: 2;
+  background-color: white;
+}
+
+/* Ensure container doesn't overflow */
+.container {
+  position: relative;
+}
+
+/* Prevent text overflow and ensure proper spacing */
+.homePage--hero-title {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Ensure proper image positioning */
+.position-top {
+  object-position: top;
+}
+
+/* Fix for mobile responsiveness */
+@media (max-width: 768px) {
+  .hero-section {
+    min-height: 400px;
+  }
+  
+  .homePage--hero-title {
+    font-size: 1.5rem !important;
+    line-height: 1.3 !important;
+  }
+}

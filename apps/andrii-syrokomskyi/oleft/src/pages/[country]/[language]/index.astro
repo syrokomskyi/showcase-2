@@ -69,25 +69,23 @@ const bcmsConfig = bcmsPublic.getConfig();
 ---
 
 <Layout title={`${homePage.seo?.title ?? homePage.title} - ${title}`}>
-  <div>
-    <HomePageHero
-      headline={homePage.headline}
-      description={homePage.description}
-      browseHeroButton={homePage.browse_hero_button}
-      coverImage={homePage.cover_image}
-      articles={lightArticles}
-      bcmsConfig={bcmsConfig}
-      country={countryCode}
-      language={languageCode}
-      client:load
-    />
-    <HomePageArticles
-      bcmsConfig={bcmsConfig}
-      title={homePage.articles_title}
-      articles={homePage.articles}
-      browseArticlesButton={homePage.browse_articles_button}
-      country={countryCode}
-      language={languageCode}
-    />
-  </div>
+  <HomePageHero
+    headline={homePage.headline}
+    description={homePage.description}
+    browseHeroButton={homePage.browse_hero_button}
+    coverImage={homePage.cover_image}
+    articles={lightArticles}
+    bcmsConfig={bcmsConfig}
+    country={countryCode}
+    language={languageCode}
+    client:load
+  />
+  <HomePageArticles
+    bcmsConfig={bcmsConfig}
+    title={homePage.articles_title}
+    articles={homePage.articles}
+    browseArticlesButton={homePage.browse_articles_button}
+    country={countryCode}
+    language={languageCode}
+  />
 </Layout>
