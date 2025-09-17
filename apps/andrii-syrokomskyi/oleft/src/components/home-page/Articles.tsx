@@ -1,5 +1,5 @@
 import type { ClientConfig } from "@thebcms/client";
-import type { Entry } from "@thebcms/types";
+import type { EntryParsed } from "@thebcms/types";
 import { useMemo } from "react";
 import type {
   ArticleEntry,
@@ -35,13 +35,18 @@ const HomePageArticles = ({
 }: Props) => {
   const articles = useMemo(() => {
     return items.map((e) => {
-      const meta = getEntryMeta<ArticleEntryMetaItem>(e as Entry, language);
+      const meta = getEntryMeta<ArticleEntryMetaItem>(
+        e as EntryParsed,
+        language,
+      );
       return {
         title: meta.title,
         slug: meta.slug,
         cover: meta.cover_image,
         categories: meta.category?.map(
-          (e) => getEntryMeta<ArticleEntryMetaItem>(e as Entry, language).title,
+          (e) =>
+            getEntryMeta<ArticleEntryMetaItem>(e as EntryParsed, language)
+              .title,
         ),
         description: meta.description,
       } as ArticleLight;
