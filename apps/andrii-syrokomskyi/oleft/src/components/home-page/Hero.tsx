@@ -6,7 +6,6 @@ import type {
 } from "@thebcms/types";
 import ArrowIcon from "../../assets/icons/arrow-right.svg?raw";
 import { defaultCountry, defaultLanguage } from "../../configure";
-import type { ArticleLight } from "../../utils/article";
 import { getCountryName, getLanguageName } from "../../utils/localization";
 import Btn from "../Btn";
 import ContentManager from "../ContentManager";
@@ -16,7 +15,6 @@ interface Props {
   description: PropRichTextDataParsed;
   browseHeroButton?: string;
   coverImage: PropMediaDataParsed;
-  articles: ArticleLight[];
   bcmsConfig: ClientConfig;
   country?: string;
   language?: string;
@@ -27,7 +25,6 @@ const HomePageHero = ({
   description,
   browseHeroButton,
   coverImage,
-  articles,
   bcmsConfig,
   country = defaultCountry,
   language = defaultLanguage,
@@ -44,7 +41,7 @@ const HomePageHero = ({
         <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
       </div>
-      
+
       {/* Content Layer */}
       <div className="relative z-10 h-full safe-area">
         <div className="container h-full">

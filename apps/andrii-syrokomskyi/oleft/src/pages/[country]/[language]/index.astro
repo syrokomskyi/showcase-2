@@ -1,6 +1,5 @@
 ---
 import type {
-  ArticleEntry,
   HomePageEntryMetaItem,
   ProfileEntryMetaItem,
 } from "../../../../bcms/types/ts";
@@ -59,12 +58,6 @@ const homePage = await getEntrySlugMeta<HomePageEntryMetaItem>(
   "home",
 );
 
-// TODO Replace by analogy with getEntrySlugMeta().
-const articles = await bcmsPublic.entry.getAll("article");
-const lightArticles = articles.map((e) => {
-  return articleToLight(e as ArticleEntry, languageCode);
-});
-
 const bcmsConfig = bcmsPublic.getConfig();
 ---
 
@@ -74,7 +67,6 @@ const bcmsConfig = bcmsPublic.getConfig();
     description={homePage.description}
     browseHeroButton={homePage.browse_hero_button}
     coverImage={homePage.cover_image}
-    articles={lightArticles}
     bcmsConfig={bcmsConfig}
     country={countryCode}
     language={languageCode}
