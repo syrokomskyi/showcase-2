@@ -16,9 +16,9 @@
   "dependencies": {
     "@astrojs/check": "^0.9.4",
     "@astrojs/react": "^4.3.1",
-    "@astrojs/tailwind": "^6.0.2",
     "@astrojs/vercel": "^8.2.7",
     "@tailwindcss/postcss": "^4.1.13",
+    "@tailwindcss/vite": "^4.1.13",
     "@thebcms/cli": "^1.4.1",
     "@thebcms/client": "^1.5.5",
     "@thebcms/components-react": "^2.0.0",
