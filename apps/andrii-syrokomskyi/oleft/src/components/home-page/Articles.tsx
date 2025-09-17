@@ -50,7 +50,7 @@ const HomePageArticles = ({
   }, [items, language]);
 
   return (
-    <section className="articles-section relative z-10 bg-gradient-to-b from-gray-50/50 to-white py-24 md:py-32 lg:py-40 xl:py-48 2xl:py-56">
+    <section className="articles-section relative z-10 bg-gradient-to-b from-gray-50/50 to-white py-24 md:py-32 lg:py-40 xl:py-48 2xl:py-56 safe-area">
       <div className="container">
         <ArticlesSearchBar
           articles={articles}

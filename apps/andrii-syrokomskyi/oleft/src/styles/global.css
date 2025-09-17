@@ -109,11 +109,89 @@ html {
 /* Enhanced spacing for better breathing room */
 .container {
   position: relative;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding-left: 3rem !important;
+  padding-right: 3rem !important;
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding-left: 4rem !important;
+    padding-right: 4rem !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding-left: 5rem !important;
+    padding-right: 5rem !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-left: 6rem !important;
+    padding-right: 6rem !important;
+    max-width: 1400px !important;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    padding-left: 8rem !important;
+    padding-right: 8rem !important;
+    max-width: 1600px !important;
+  }
+}
+
+@media (min-width: 1536px) {
+  .container {
+    padding-left: 10rem !important;
+    padding-right: 10rem !important;
+    max-width: 1800px !important;
+  }
 }
 
 /* Additional spacing utilities */
 .breathing-space {
   padding: 2rem;
+}
+
+/* Ensure content never touches screen edges */
+.safe-area {
+  padding-left: 2rem;
+  padding-right: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 640px) {
+  .safe-area {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .safe-area {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .safe-area {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .safe-area {
+    padding-left: 6rem;
+    padding-right: 6rem;
+  }
 }
 
 @media (min-width: 640px) {
@@ -136,24 +214,42 @@ html {
 
 /* Fix for mobile responsiveness with enhanced spacing */
 @media (max-width: 768px) {
+  .container {
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+    max-width: 100% !important;
+  }
+  
   .hero-section {
     min-height: 600px;
-    padding: 1.5rem 0;
+    padding: 2rem 0;
   }
   
   .homePage--hero-title {
     font-size: 2rem !important;
     line-height: 1.2 !important;
     margin-bottom: 2rem !important;
+    padding: 0 1rem !important;
   }
   
   .articles-section {
-    padding: 2rem 0;
+    padding: 3rem 0;
   }
   
   /* Ensure mobile cards have proper spacing */
   .mobile-card-spacing {
-    padding: 1.5rem;
+    padding: 2rem;
     margin-bottom: 2rem;
+  }
+  
+  /* Additional mobile spacing */
+  .hero-section .container > div {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+  }
+  
+  .articles-section .container {
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
   }
 }

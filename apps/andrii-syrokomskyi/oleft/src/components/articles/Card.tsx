@@ -22,10 +22,10 @@ const ArticlesCard = ({
   language = defaultLanguage,
 }: Props) => {
   return (
-    <article className="group">
+    <article className="group mx-4 md:mx-6 lg:mx-0">
       <a
         href={`/${getCountryName(country)}/${getLanguageName(language)}/articles/${card.slug}`}
-        className="flex flex-col h-full transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl p-4 lg:p-6 rounded-3xl hover:bg-white/50"
+        className="flex flex-col h-full transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl p-6 md:p-8 lg:p-6 xl:p-8 rounded-3xl hover:bg-white/50"
       >
         <div
           className={classnames("relative", {
