@@ -61,7 +61,7 @@ const HomePageArticles = ({
             {title}
           </h2>
         )}
-        <div className="grid grid-cols-1 gap-12 mb-20 sm:grid-cols-2 lg:grid-cols-3 lg:mb-28 xl:gap-16 2xl:gap-20">
+        <div className="grid grid-cols-1 gap-12 mb-20 sm:grid-cols-1 lg:grid-cols-2 lg:mb-28 xl:gap-16 2xl:gap-20">
           {articles.map((card, index) => (
             <ArticlesCard
               key={`article-${index}-${card.slug || index}`}

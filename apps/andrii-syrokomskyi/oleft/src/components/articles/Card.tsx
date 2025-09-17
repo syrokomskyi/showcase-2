@@ -25,7 +25,7 @@ const ArticlesCard = ({
     <article className="group mx-4 md:mx-6 lg:mx-0">
       <a
         href={`/${getCountryName(country)}/${getLanguageName(language)}/articles/${card.slug}`}
-        className="flex flex-col h-full transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl p-6 md:p-8 lg:p-6 xl:p-8 rounded-3xl hover:bg-white/50"
+        className="flex flex-col h-full transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl p-6 md:p-8 lg:p-6 xl:p-8 rounded-3xl hover:bg-white/60"
       >
         <div
           className={classnames("relative", {
@@ -39,7 +39,8 @@ const ArticlesCard = ({
               className={classnames(
                 "rounded-2xl aspect-square overflow-hidden object-cover w-full mb-4 transition-all duration-300 group-hover:rounded-3xl group-hover:shadow-lg",
                 {
-                  "lg:aspect-[1.88] lg:rounded-3xl lg:mb-0 lg:group-hover:rounded-[2rem]": showTitleLayer,
+                  "lg:aspect-[1.88] lg:rounded-3xl lg:mb-0 lg:group-hover:rounded-[2rem]":
+                    showTitleLayer,
                 },
               )}
             />

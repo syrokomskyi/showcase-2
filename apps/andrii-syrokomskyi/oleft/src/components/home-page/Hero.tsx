@@ -54,7 +54,7 @@ const HomePageHero = ({
               />
               <ContentManager
                 items={description.nodes}
-                className="text-sm leading-relaxed font-normal text-white/90 mb-12 md:text-lg md:mb-16 lg:text-2xl 
+                className="text-sm leading-relaxed font-normal text-white/60 mb-12 md:text-lg md:mb-16 lg:text-4xl 
                           lg:leading-relaxed lg:mb-20 max-w-4xl backdrop-blur-sm px-4 lg:px-0"
               />
               {browseHeroButton && (
