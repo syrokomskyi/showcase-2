@@ -48,17 +48,17 @@ const HomePageHero = ({
       {/* Content Layer */}
       <div className="relative z-10 h-full">
         <div className="container h-full">
-          <div className="flex flex-col justify-center h-full py-24 lg:py-32">
-            <div className="flex flex-col items-center text-center lg:items-start lg:text-left max-w-5xl animate-fade-in-up">
+          <div className="flex flex-col justify-center h-full py-32 md:py-40 lg:py-48 xl:py-56">
+            <div className="flex flex-col items-center text-center lg:items-start lg:text-left max-w-6xl mx-auto lg:mx-0 animate-fade-in-up">
               <ContentManager
                 items={headline.nodes}
-                className="homePage--hero-title text-2xl leading-[1.15] font-bold text-white mb-4 md:text-4xl md:mb-6
-                          lg:text-8xl lg:leading-[0.95] lg:mb-8 xl:text-9xl tracking-tight drop-shadow-2xl"
+                className="homePage--hero-title text-2xl leading-[1.15] font-bold text-white mb-8 md:text-4xl md:mb-12
+                          lg:text-8xl lg:leading-[0.95] lg:mb-16 xl:text-9xl tracking-tight drop-shadow-2xl"
               />
               <ContentManager
                 items={description.nodes}
-                className="text-sm leading-relaxed font-normal text-white/90 mb-8 md:text-lg md:mb-10 lg:text-2xl 
-                          lg:leading-relaxed lg:mb-12 max-w-3xl backdrop-blur-sm"
+                className="text-sm leading-relaxed font-normal text-white/90 mb-12 md:text-lg md:mb-16 lg:text-2xl 
+                          lg:leading-relaxed lg:mb-20 max-w-4xl backdrop-blur-sm px-4 lg:px-0"
               />
               {browseHeroButton && (
                 <Btn

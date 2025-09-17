@@ -25,7 +25,7 @@ const ArticlesCard = ({
     <article className="group">
       <a
         href={`/${getCountryName(country)}/${getLanguageName(language)}/articles/${card.slug}`}
-        className="flex flex-col h-full transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl"
+        className="flex flex-col h-full transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl p-4 lg:p-6 rounded-3xl hover:bg-white/50"
       >
         <div
           className={classnames("relative", {
@@ -58,12 +58,12 @@ const ArticlesCard = ({
             </div>
           </div>
         </div>
-        <div className="mb-6 lg:flex lg:flex-row-reverse lg:justify-between lg:mb-4">
-          <div className="flex flex-wrap gap-2 mb-3 lg:mb-0">
+        <div className="mb-8 lg:flex lg:flex-row-reverse lg:justify-between lg:mb-6">
+          <div className="flex flex-wrap gap-3 mb-4 lg:mb-0">
             {card.categories.map((category) => (
               <div
                 key={category}
-                className="px-3 py-2 bg-gradient-to-r from-appAccent/10 to-appAccent/5 rounded-full text-xs leading-none font-semibold tracking-wide text-appAccent border border-appAccent/20 transition-all duration-300 hover:bg-appAccent/20 hover:scale-105 lg:px-4 lg:py-2.5 lg:text-sm"
+                className="px-4 py-2.5 bg-gradient-to-r from-appAccent/10 to-appAccent/5 rounded-full text-xs leading-none font-semibold tracking-wide text-appAccent border border-appAccent/20 transition-all duration-300 hover:bg-appAccent/20 hover:scale-105 lg:px-5 lg:py-3 lg:text-sm"
               >
                 {category}
               </div>
@@ -85,10 +85,10 @@ const ArticlesCard = ({
           <ContentManager
             items={card.description?.nodes}
             className={classnames(
-              "text-lg font-medium leading-[1.4] tracking-[-0.41px] text-appGray-500 max-lg:hidden",
+              "text-lg font-medium leading-[1.5] tracking-[-0.41px] text-appGray-500 max-lg:hidden mt-4 px-2 lg:px-0",
               {
-                "lg:mb-6": showTitleLayer,
-                "mb-[18px]": !showTitleLayer,
+                "lg:mb-8 lg:mt-6": showTitleLayer,
+                "mb-6 mt-4": !showTitleLayer,
               },
             )}
           />

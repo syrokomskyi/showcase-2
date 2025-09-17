@@ -106,14 +106,54 @@ html {
   outline-offset: 2px;
 }
 
-/* Fix for mobile responsiveness */
+/* Enhanced spacing for better breathing room */
+.container {
+  position: relative;
+}
+
+/* Additional spacing utilities */
+.breathing-space {
+  padding: 2rem;
+}
+
+@media (min-width: 640px) {
+  .breathing-space {
+    padding: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .breathing-space {
+    padding: 4rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .breathing-space {
+    padding: 5rem;
+  }
+}
+
+/* Fix for mobile responsiveness with enhanced spacing */
 @media (max-width: 768px) {
   .hero-section {
-    min-height: 500px;
+    min-height: 600px;
+    padding: 1.5rem 0;
   }
   
   .homePage--hero-title {
     font-size: 2rem !important;
     line-height: 1.2 !important;
+    margin-bottom: 2rem !important;
+  }
+  
+  .articles-section {
+    padding: 2rem 0;
+  }
+  
+  /* Ensure mobile cards have proper spacing */
+  .mobile-card-spacing {
+    padding: 1.5rem;
+    margin-bottom: 2rem;
   }
 }
