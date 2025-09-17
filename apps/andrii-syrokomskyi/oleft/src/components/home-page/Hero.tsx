@@ -33,31 +33,32 @@ const HomePageHero = ({
   language = defaultLanguage,
 }: Props) => {
   return (
-    <section className="hero-section relative min-h-[500px] md:min-h-[600px] lg:min-h-[700px] overflow-hidden">
+    <section className="hero-section relative min-h-[500px] md:min-h-[600px] lg:min-h-[700px] xl:min-h-[800px] overflow-hidden">
       {/* Background Image Layer */}
       <div className="absolute inset-0 z-0">
         <BCMSImage
           media={coverImage}
           clientConfig={bcmsConfig}
-          className="w-full h-full object-cover position-top"
+          className="w-full h-full object-cover position-top scale-105 hover:scale-100 transition-transform duration-[3000ms] ease-out"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#1E1E1E] via-[#1E1E1E]/50 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
       </div>
       
       {/* Content Layer */}
       <div className="relative z-10 h-full">
         <div className="container h-full">
           <div className="flex flex-col justify-center h-full py-24 lg:py-32">
-            <div className="flex flex-col items-center text-center lg:items-start lg:text-left max-w-4xl">
+            <div className="flex flex-col items-center text-center lg:items-start lg:text-left max-w-5xl animate-fade-in-up">
               <ContentManager
                 items={headline.nodes}
-                className="homePage--hero-title text-xl leading-[1.2] font-medium text-white mb-3 md:text-3xl
-                          lg:text-7xl lg:leading-[1.1] lg:mb-6"
+                className="homePage--hero-title text-2xl leading-[1.15] font-bold text-white mb-4 md:text-4xl md:mb-6
+                          lg:text-8xl lg:leading-[0.95] lg:mb-8 xl:text-9xl tracking-tight drop-shadow-2xl"
               />
               <ContentManager
                 items={description.nodes}
-                className="text-xs leading-none font-medium text-white mb-6 md:text-sm lg:text-xl lg:leading-none
-                          lg:mb-10 max-w-2xl"
+                className="text-sm leading-relaxed font-normal text-white/90 mb-8 md:text-lg md:mb-10 lg:text-2xl 
+                          lg:leading-relaxed lg:mb-12 max-w-3xl backdrop-blur-sm"
               />
               {browseHeroButton && (
                 <Btn

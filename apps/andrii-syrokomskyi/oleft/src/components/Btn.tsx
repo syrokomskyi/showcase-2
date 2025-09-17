@@ -23,17 +23,17 @@ const Btn = ({
   onClick,
 }: BtnProps) => {
   const classes = classNames(
-    "flex items-center leading-none font-medium transition-colors duration-300 border border-transparent focus:outline-none lg:text-xl lg:leading-none",
+    "flex items-center leading-none font-semibold transition-all duration-300 border border-transparent focus:outline-none lg:text-xl lg:leading-none group relative overflow-hidden transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl",
     {
-      "bg-appGray-200 text-appAccent hover:bg-appAccent hover:text-appGray-200 hover:border-appGray-200":
+      "bg-white/95 text-appAccent hover:bg-white hover:text-appAccent-100 hover:border-white/20 backdrop-blur-sm":
         theme === "light",
-      "bg-appAccent text-appGray-200 hover:bg-appGray-200 hover:text-appAccent hover:border-appAccent":
+      "bg-appAccent text-white hover:bg-appAccent/90 hover:text-white hover:border-appAccent/20 shadow-appAccent/25":
         theme === "dark",
-      "bg-[#F2F2F2] text-appGray-600 hover:border-appAccent disabled:bg-[#F2F5F3] disabled:text-[#BABDBB] disabled:hover:border-transparent":
+      "bg-gray-50/95 text-appGray-600 hover:bg-white hover:border-appAccent/20 disabled:bg-gray-100/50 disabled:text-gray-400 disabled:hover:border-transparent disabled:hover:scale-100 disabled:shadow-none backdrop-blur-sm":
         theme === "gray",
-      "px-4 py-[13px] rounded-lg text-sm lg:px-8 lg:py-[18px]":
+      "px-6 py-4 rounded-xl text-sm lg:px-10 lg:py-5 lg:rounded-2xl":
         size === "regular",
-      "p-2.5 rounded-[5px] text-xs lg:px-6 lg:py-4 lg:rounded-lg":
+      "px-4 py-3 rounded-lg text-xs lg:px-8 lg:py-4 lg:rounded-xl":
         size === "sm",
     },
     className,
@@ -45,7 +45,7 @@ const Btn = ({
           {children}
         </a>
       ) : (
-        <button onClick={onClick} disabled={disabled} className={classes}>
+        <button type="button" onClick={onClick} disabled={disabled} className={classes}>
           {children}
         </button>
       )}

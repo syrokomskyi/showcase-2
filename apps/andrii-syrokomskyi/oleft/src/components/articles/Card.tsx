@@ -22,10 +22,10 @@ const ArticlesCard = ({
   language = defaultLanguage,
 }: Props) => {
   return (
-    <article>
+    <article className="group">
       <a
         href={`/${getCountryName(country)}/${getLanguageName(language)}/articles/${card.slug}`}
-        className="flex flex-col"
+        className="flex flex-col h-full transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl"
       >
         <div
           className={classnames("relative", {
@@ -37,9 +37,9 @@ const ArticlesCard = ({
               media={card.cover}
               clientConfig={bcmsConfig}
               className={classnames(
-                "rounded-[10px] aspect-square overflow-hidden object-cover w-full mb-[14px]",
+                "rounded-2xl aspect-square overflow-hidden object-cover w-full mb-4 transition-all duration-300 group-hover:rounded-3xl group-hover:shadow-lg",
                 {
-                  "lg:aspect-[1.88] lg:rounded-2xl lg:mb-0": showTitleLayer,
+                  "lg:aspect-[1.88] lg:rounded-3xl lg:mb-0 lg:group-hover:rounded-[2rem]": showTitleLayer,
                 },
               )}
             />
@@ -58,12 +58,12 @@ const ArticlesCard = ({
             </div>
           </div>
         </div>
-        <div className="mb-4 lg:flex lg:flex-row-reverse lg:justify-between lg:mb-3">
-          <div className="flex flex-wrap gap-2 mb-2.5 lg:mb-0">
-            {card.categories.map((category, index) => (
+        <div className="mb-6 lg:flex lg:flex-row-reverse lg:justify-between lg:mb-4">
+          <div className="flex flex-wrap gap-2 mb-3 lg:mb-0">
+            {card.categories.map((category) => (
               <div
-                key={index}
-                className="px-2.5 py-[7px] bg-[#BCBD87]/10 rounded-[5px] text-xs leading-none font-medium tracking-[-0.41px] text-appAccent lg:px-[14px] lg:py-[9px] lg:text-sm lg:leading-none"
+                key={category}
+                className="px-3 py-2 bg-gradient-to-r from-appAccent/10 to-appAccent/5 rounded-full text-xs leading-none font-semibold tracking-wide text-appAccent border border-appAccent/20 transition-all duration-300 hover:bg-appAccent/20 hover:scale-105 lg:px-4 lg:py-2.5 lg:text-sm"
               >
                 {category}
               </div>
@@ -71,10 +71,10 @@ const ArticlesCard = ({
           </div>
           <div
             className={classnames(
-              "text-appGray-600 text-sm leading-[1.3] font-medium tracking-[-0.41px] lg:leading-none",
+              "text-appGray-700 font-bold leading-[1.2] tracking-tight transition-colors duration-300 group-hover:text-appAccent",
               {
-                "lg:text-xl": showTitleLayer,
-                "lg:text-2xl": !showTitleLayer,
+                "text-lg lg:text-2xl": showTitleLayer,
+                "text-base lg:text-3xl": !showTitleLayer,
               },
             )}
           >
