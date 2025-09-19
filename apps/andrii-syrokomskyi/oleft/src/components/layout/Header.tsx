@@ -5,9 +5,10 @@ interface HeaderProps {
   country: string;
   language: string;
   articleTitle?: string;
+  legalTitle?: string;
 }
 
-const Header = ({ pathname, country, language, articleTitle }: HeaderProps) => {
+const Header = ({ pathname, country, language, articleTitle, legalTitle }: HeaderProps) => {
   return (
     <header className="bg-white border-b border-gray-100">
       <Breadcrumb
@@ -15,6 +16,7 @@ const Header = ({ pathname, country, language, articleTitle }: HeaderProps) => {
         countryOrCode={country}
         languageOrCode={language}
         articleTitle={articleTitle}
+        legalTitle={legalTitle}
       />
     </header>
   );

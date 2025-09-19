@@ -24,7 +24,7 @@ import {
 } from "../utils/localization";
 
 let { title } = Astro.props;
-const { articleTitle } = Astro.props;
+const { articleTitle, legalTitle } = Astro.props;
 
 const pathname = Astro.url.pathname;
 
@@ -111,6 +111,7 @@ const legalLinks = legalEntries
                 country={countryCode}
                 language={languageCode}
                 articleTitle={articleTitle}
+                legalTitle={legalTitle}
                 client:load
             />
             <main class="flex-1"><slot /></main>

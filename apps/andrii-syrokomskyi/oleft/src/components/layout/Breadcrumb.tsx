@@ -11,6 +11,7 @@ interface BreadcrumbProps {
   countryOrCode: string;
   languageOrCode: string;
   articleTitle?: string;
+  legalTitle?: string;
 }
 
 const Breadcrumb = ({
@@ -18,6 +19,7 @@ const Breadcrumb = ({
   countryOrCode,
   languageOrCode,
   articleTitle,
+  legalTitle,
 }: BreadcrumbProps) => {
   const country = getCountryName(countryOrCode).toLowerCase();
   const language = getLanguageName(languageOrCode).toLowerCase();
@@ -36,6 +38,10 @@ const Breadcrumb = ({
         label: "Articles",
         // TODO href: `/${country}/${language}/articles/`,
       });
+    }
+
+    if (pathSegments.includes("legal")) {
+      items.push({ label: "Legal" });
     }
 
     return items;
