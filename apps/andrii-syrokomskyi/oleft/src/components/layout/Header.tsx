@@ -8,16 +8,22 @@ interface HeaderProps {
 }
 
 const Header = ({ pathname, country, language }: HeaderProps) => {
+  const showBreadcrumb = !isHomePage(pathname, country, language);
+  
   return (
-    <header className="bg-white">
-      {!isHomePage(pathname, country, language) && (
-        <Breadcrumb
-          pathname={pathname}
-          countryOrCode={country}
-          languageOrCode={language}
-        />
-      )}
-    </header>
+    <>
+      <header className="bg-white">
+        {showBreadcrumb && (
+          <Breadcrumb
+            pathname={pathname}
+            countryOrCode={country}
+            languageOrCode={language}
+          />
+        )}
+      </header>
+      {/* Spacer для компенсации фиксированного Breadcrumb */}
+      {showBreadcrumb && <div className="h-20" />}
+    </>
   );
 };
 

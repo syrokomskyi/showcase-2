@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect } from "react";
+import { useMemo } from "react";
 import { getCountryName, getLanguageName } from "../../utils/localization";
 import { isHomePage } from "../../utils/tool";
 
@@ -20,35 +20,6 @@ const Breadcrumb = ({
 }: BreadcrumbProps) => {
   const country = getCountryName(countryOrCode).toLowerCase();
   const language = getLanguageName(languageOrCode).toLowerCase();
-  
-  const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      
-      // Показываем breadcrumb при прокрутке вверх или в самом верху страницы
-      if (currentScrollY < lastScrollY || currentScrollY <= 50) {
-        setIsVisible(true);
-      } else if (currentScrollY > lastScrollY && currentScrollY > 50) {
-        // Скрываем при прокрутке вниз, но только после 50px
-        setIsVisible(false);
-      }
-      
-      setLastScrollY(currentScrollY);
-    };
-
-    // Добавляем небольшую задержку для инициализации
-    const timeoutId = setTimeout(() => {
-      window.addEventListener('scroll', handleScroll, { passive: true });
-    }, 100);
-    
-    return () => {
-      clearTimeout(timeoutId);
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [lastScrollY]);
 
   const breadcrumbItems = useMemo(() => {
     const items: BreadcrumbItem[] = [];
@@ -74,15 +45,11 @@ const Breadcrumb = ({
   }, [pathname, language, country]);
 
   return (
-    <nav 
-      aria-label="Breadcrumb" 
-      className={`fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200 py-4 transition-all duration-300 ease-in-out ${
-        isVisible 
-          ? 'transform translate-y-0 opacity-100' 
-          : 'transform -translate-y-full opacity-0 pointer-events-none'
-      }`}
+    <nav
+      aria-label="Breadcrumb"
+      className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200/50 py-8 min-h-[60px]"
     >
-      <div className="container">
+      <div className="container flex items-center h-full">
         <ol className="flex items-center space-x-2 text-sm text-gray-600">
           {breadcrumbItems.map((item) => (
             <li key={item.href || item.label} className="flex items-center">
