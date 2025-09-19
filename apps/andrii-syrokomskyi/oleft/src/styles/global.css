@@ -303,3 +303,90 @@ html {
     padding-right: 2rem !important;
   }
 }
+
+/* Footer specific spacing overrides */
+footer {
+  padding-top: 3rem !important;
+  padding-bottom: 3rem !important;
+}
+
+footer .container {
+  padding-left: 2rem !important;
+  padding-right: 2rem !important;
+}
+
+@media (min-width: 640px) {
+  footer {
+    padding-top: 4rem !important;
+    padding-bottom: 4rem !important;
+  }
+  
+  footer .container {
+    padding-left: 3rem !important;
+    padding-right: 3rem !important;
+  }
+}
+
+@media (min-width: 768px) {
+  footer {
+    padding-top: 4rem !important;
+    padding-bottom: 4rem !important;
+  }
+  
+  footer .container {
+    padding-left: 4rem !important;
+    padding-right: 4rem !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  footer {
+    padding-top: 5rem !important;
+    padding-bottom: 5rem !important;
+  }
+  
+  footer .container {
+    padding-left: 5rem !important;
+    padding-right: 5rem !important;
+  }
+}
+
+@media (min-width: 1280px) {
+  footer {
+    padding-top: 5rem !important;
+    padding-bottom: 5rem !important;
+  }
+  
+  footer .container {
+    padding-left: 6rem !important;
+    padding-right: 6rem !important;
+  }
+}
+
+/* Footer legal links spacing */
+footer .flex.flex-wrap {
+  gap: 2rem 2rem !important;
+}
+
+@media (min-width: 768px) {
+  footer .flex.flex-wrap {
+    gap: 1rem 3rem !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  footer .flex.flex-wrap {
+    gap: 1rem 3rem !important;
+  }
+}
+
+/* Footer sections spacing */
+footer > div > div:first-child {
+  margin-bottom: 3rem !important;
+}
+
+@media (min-width: 1024px) {
+  footer > div > div:first-child {
+    margin-bottom: 4rem !important;
+  }
+}
