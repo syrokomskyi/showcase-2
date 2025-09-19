@@ -413,3 +413,26 @@ footer > div > div:first-child {
     margin-bottom: 4rem !important;
   }
 }
+
+/* Article content enhanced padding */
+.modern-article-content {
+  padding: 1.25rem !important;
+}
+
+@media (min-width: 768px) {
+  .modern-article-content {
+    padding: 2rem !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .modern-article-content {
+    padding: 2.5rem !important;
+  }
+}
+
+@media (min-width: 1280px) {
+  .modern-article-content {
+    padding: 3rem !important;
+  }
+}
