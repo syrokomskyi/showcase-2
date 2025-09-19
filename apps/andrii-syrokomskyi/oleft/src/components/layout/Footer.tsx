@@ -16,7 +16,7 @@ const Footer = ({ site, legalLinks = [] }: Props) => {
         {/* Legal Links Section */}
         {legalLinks.length > 0 && (
           <div>
-            <div className="flex flex-wrap justify-center md:justify-start">
+            <div className="flex flex-wrap justify-center">
               {legalLinks.map((link) => (
                 <a
                   key={link.slug}
@@ -32,7 +32,7 @@ const Footer = ({ site, legalLinks = [] }: Props) => {
         )}
         
         {/* Copyright Section */}
-        <div className="text-[#898C8A] leading-none font-medium tracking-[-0.41px] md:flex md:items-center md:justify-end">
+        <div className="text-[#898C8A] leading-none font-medium tracking-[-0.41px] flex items-center justify-center">
           <div className="text-xs lg:text-base lg:leading-none">
             &copy; {new Date().getFullYear()}
             {site && ` ${site}`}
