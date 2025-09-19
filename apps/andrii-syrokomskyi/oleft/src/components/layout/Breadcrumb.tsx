@@ -19,8 +19,8 @@ const Breadcrumb = ({
   languageOrCode,
   articleTitle,
 }: BreadcrumbProps) => {
-  const country = getCountryName(countryOrCode);
-  const language = getLanguageName(languageOrCode);
+  const country = getCountryName(countryOrCode).toLowerCase();
+  const language = getLanguageName(languageOrCode).toLowerCase();
 
   const breadcrumbItems = useMemo(() => {
     const items: BreadcrumbItem[] = [];
