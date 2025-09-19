@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import { getCountryName, getLanguageName } from "../../utils/localization";
+import { isHomePage } from "../../utils/tool";
 
 interface BreadcrumbItem {
   label: string;
@@ -43,12 +44,8 @@ const Breadcrumb = ({
     return items;
   }, [pathname, language, country]);
 
-  function isHomePath(p?: string) {
-    return p === `/${country}/${language}` || p === `/${country}/${language}/`;
-  }
-
   // don't render breadcrumb on home page
-  if (isHomePath(pathname)) {
+  if (isHomePage(pathname, country, language)) {
     return null;
   }
 
@@ -58,7 +55,7 @@ const Breadcrumb = ({
         <ol className="flex items-center space-x-2 text-sm text-gray-600">
           {breadcrumbItems.map((item) => (
             <li key={item.href || item.label} className="flex items-center">
-              {!isHomePath(item.href) && (
+              {!isHomePage(item.href) && (
                 <svg
                   className="w-4 h-4 mx-2 text-gray-400"
                   fill="currentColor"
