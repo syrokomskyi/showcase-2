@@ -436,3 +436,183 @@ footer > div > div:first-child {
     padding: 3rem !important;
   }
 }
+
+/* ===== RESPONSIVE TABLES FOR MARKDOWN CONTENT ===== */
+
+/* Table container with horizontal scroll */
+.modern-article-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  background-color: white;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+/* Table wrapper for horizontal scroll on mobile */
+.modern-article-content table {
+  display: block;
+  white-space: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.modern-article-content table thead,
+.modern-article-content table tbody,
+.modern-article-content table tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+/* Table headers */
+.modern-article-content table th {
+  background-color: #f8fafc;
+  color: #374151;
+  font-weight: 600;
+  text-align: left;
+  padding: 0.75rem 1rem;
+  border-bottom: 2px solid #e5e7eb;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Table cells */
+.modern-article-content table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #f3f4f6;
+  color: #374151;
+  vertical-align: top;
+}
+
+/* Zebra striping */
+.modern-article-content table tbody tr:nth-child(even) {
+  background-color: #f9fafb;
+}
+
+/* Hover effect for table rows */
+.modern-article-content table tbody tr:hover {
+  background-color: #f3f4f6;
+  transition: background-color 0.15s ease-in-out;
+}
+
+/* Mobile-specific table styles */
+@media (max-width: 768px) {
+  /* Create a scrollable container for tables */
+  .modern-article-content table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    margin: 1rem -1.25rem; /* Negative margin to extend to container edges */
+    border-radius: 0;
+    box-shadow: none;
+  }
+  
+  .modern-article-content table thead,
+  .modern-article-content table tbody,
+  .modern-article-content table tr {
+    display: table;
+    width: auto;
+    table-layout: auto;
+  }
+  
+  /* Ensure minimum width for table on mobile */
+  .modern-article-content table {
+    min-width: 600px; /* Minimum width to prevent cramping */
+  }
+  
+  /* Adjust padding for mobile */
+  .modern-article-content table th,
+  .modern-article-content table td {
+    padding: 0.5rem 0.75rem;
+    min-width: 120px; /* Minimum column width */
+    white-space: nowrap;
+  }
+  
+  /* Add scroll indicator shadow */
+  .modern-article-content table::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 20px;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0.8), transparent);
+    pointer-events: none;
+  }
+}
+
+/* Tablet styles */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .modern-article-content table {
+    font-size: 0.875rem;
+    margin: 2rem 0;
+  }
+  
+  .modern-article-content table th,
+  .modern-article-content table td {
+    padding: 0.875rem 1rem;
+  }
+}
+
+/* Desktop styles */
+@media (min-width: 1025px) {
+  .modern-article-content table {
+    font-size: 1rem;
+    margin: 2.5rem 0;
+  }
+  
+  .modern-article-content table th,
+  .modern-article-content table td {
+    padding: 1rem 1.5rem;
+  }
+}
+
+/* Special styling for first and last columns */
+.modern-article-content table th:first-child,
+.modern-article-content table td:first-child {
+  font-weight: 600;
+  background-color: #fefefe;
+  position: sticky;
+  left: 0;
+  z-index: 1;
+}
+
+/* Ensure proper text wrapping in table cells for longer content */
+@media (min-width: 769px) {
+  .modern-article-content table {
+    white-space: normal;
+  }
+  
+  .modern-article-content table th,
+  .modern-article-content table td {
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+}
+
+/* Custom scrollbar for table container */
+.modern-article-content table::-webkit-scrollbar {
+  height: 8px;
+}
+
+.modern-article-content table::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+
+.modern-article-content table::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+.modern-article-content table::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
