@@ -97,17 +97,6 @@ const articleText = removeTitle(
   articleEntryMeta.title ?? "UNDEFINED",
 );
 
-const categories =
-  articleEntries.reduce((acc, e) => {
-    e.meta.en?.category?.forEach((category) => {
-      const categoryTitle = category.meta.en?.title ?? "";
-      if (!acc.includes(categoryTitle)) {
-        acc.push(categoryTitle);
-      }
-    });
-    return acc;
-  }, [] as string[]) ?? [];
-
 const similarArticles =
   lightArticles.filter((e) => {
     const entryCategories =
@@ -129,7 +118,6 @@ const clientConfig = bcmsPublic.getConfig();
 
 <Layout
   title={`${articleEntryMeta.seo?.title ?? articleEntryMeta.title} - ${title}`}
-  articleTitle={articleEntryMeta.title}
 >
   <div class="pb-10 md:pb-16 lg:pb-[120px]">
     <div class="container">
