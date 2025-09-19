@@ -27,13 +27,13 @@ const Breadcrumb = ({
 
     items.push({
       label: "Home",
-      href: `/${country}/${language}/`,
+      href: `/${country}/${language}`,
     });
 
     if (pathSegments.includes("articles")) {
       items.push({
         label: "Articles",
-        // TODO href: `/${country}/${language}/articles/`,
+        // TODO href: `/${country}/${language}/articles`,
       });
     }
 
