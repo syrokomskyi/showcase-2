@@ -32,20 +32,14 @@ const Breadcrumb = ({
     });
 
     if (pathSegments.includes("articles")) {
-      //   TODO items.push({
-      //     label: "Articles",
-      //     href: `/${country}/${language}/articles/`,
-      //   });
-
-      if (articleTitle && pathSegments.length > 3) {
-        items.push({
-          label: articleTitle,
-        });
-      }
+      items.push({
+        label: "Articles",
+        // TODO href: `/${country}/${language}/articles/`,
+      });
     }
 
     return items;
-  }, [pathname, language, articleTitle, country]);
+  }, [pathname, language, country]);
 
   // don't render breadcrumb on home page
   if (
