@@ -41,11 +41,12 @@ const Breadcrumb = ({
     return items;
   }, [pathname, language, country]);
 
+  function isHomePath(p?: string) {
+    return p === `/${country}/${language}` || p === `/${country}/${language}/`;
+  }
+
   // don't render breadcrumb on home page
-  if (
-    pathname === `/${country}/${language}` ||
-    pathname === `/${country}/${language}/`
-  ) {
+  if (isHomePath(pathname)) {
     return null;
   }
 
@@ -55,7 +56,7 @@ const Breadcrumb = ({
         <ol className="flex items-center space-x-2 text-sm text-gray-600">
           {breadcrumbItems.map((item) => (
             <li key={item.href || item.label} className="flex items-center">
-              {item.href !== `/${country}/${language}/` && (
+              {!isHomePath(item.href) && (
                 <svg
                   className="w-4 h-4 mx-2 text-gray-400"
                   fill="currentColor"
