@@ -115,6 +115,29 @@ html {
   padding-right: 3rem !important;
 }
 
+/* Article page specific container constraints for better readability */
+.article-page .container {
+  max-width: 1000px !important;
+}
+
+@media (min-width: 1024px) {
+  .article-page .container {
+    max-width: 900px !important;
+  }
+}
+
+@media (min-width: 1280px) {
+  .article-page .container {
+    max-width: 1000px !important;
+  }
+}
+
+@media (min-width: 1536px) {
+  .article-page .container {
+    max-width: 1100px !important;
+  }
+}
+
 @media (min-width: 640px) {
   .container {
     padding-left: 4rem !important;
