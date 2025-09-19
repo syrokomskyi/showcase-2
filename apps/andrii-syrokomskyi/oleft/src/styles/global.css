@@ -217,6 +217,29 @@ html {
   margin-bottom: 1.5rem !important;
 }
 
+/* Force article card padding */
+.articles-section article a {
+  padding: 1.5rem !important;
+}
+
+@media (min-width: 768px) {
+  .articles-section article a {
+    padding: 2rem !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .articles-section article a {
+    padding: 1.5rem !important;
+  }
+}
+
+@media (min-width: 1280px) {
+  .articles-section article a {
+    padding: 2.5rem !important;
+  }
+}
+
 @media (min-width: 768px) and (max-width: 1023px) {
   .articles-section h2 {
     margin-bottom: 2rem !important;
