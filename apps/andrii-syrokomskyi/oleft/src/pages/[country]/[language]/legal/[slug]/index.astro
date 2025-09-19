@@ -1,0 +1,159 @@
+---
+import type {
+  LegalEntry,
+  LegalEntryMetaItem,
+  ProfileEntryMetaItem,
+} from "../../../../../../bcms/types/ts";
+import { bcmsPublic } from "../../../../../bcms-public";
+import Layout from "../../../../../layouts/Layout.astro";
+import {
+  markdownToHtml,
+  removeTitle,
+} from "../../../../../utils/article";
+import {
+  getEntrySlugMeta,
+  getLanguageCode,
+  getSupportedCountries,
+  getSupportedLanguages,
+} from "../../../../../utils/localization";
+
+export async function getStaticPaths() {
+  const countries = getSupportedCountries();
+  const languages = getSupportedLanguages();
+
+  const legalDocs = (await bcmsPublic.entry.getAll("legal")) as LegalEntry[];
+
+  const paths = [];
+  for (const country of countries) {
+    for (const language of languages) {
+      const languageCode = getLanguageCode(language);
+
+      for (const legalDoc of legalDocs) {
+        const slug =
+          legalDoc.meta[languageCode as keyof typeof legalDoc.meta]?.slug ||
+          legalDoc.meta.en?.slug ||
+          "";
+        if (slug) {
+          paths.push({
+            params: {
+              country,
+              language,
+              slug,
+            },
+          });
+        }
+      }
+    }
+  }
+
+  return paths;
+}
+
+const { language, slug } = Astro.params;
+
+const languageCode = getLanguageCode(language);
+
+const profile = await getEntrySlugMeta<ProfileEntryMetaItem>(
+  bcmsPublic,
+  languageCode,
+  "profile",
+);
+
+const title = profile.title;
+
+// Get the legal document entry
+const legalEntries = (await bcmsPublic.entry.getAll(
+  "legal",
+)) as LegalEntry[];
+const legalEntry = legalEntries.find((e) => {
+  const entrySlug =
+    e.meta[languageCode as keyof typeof e.meta]?.slug ?? e.meta.en?.slug;
+  return entrySlug === slug;
+});
+
+const legalEntryMeta =
+  (legalEntry?.meta[
+    languageCode as keyof typeof legalEntry.meta
+  ] as LegalEntryMetaItem) ?? (legalEntry?.meta.en as LegalEntryMetaItem);
+
+if (!legalEntryMeta) {
+  throw new Error(`Legal document with slug "${slug}" not found.`);
+}
+
+const legalText = removeTitle(
+  legalEntryMeta.text ?? "",
+  legalEntryMeta.title ?? "UNDEFINED",
+);
+---
+
+<Layout
+  title={`${legalEntryMeta.title} - ${title}`}
+  articleTitle={legalEntryMeta.title}
+>
+  <div class="pb-10 md:pb-16 lg:pb-[120px]">
+    <div class="container">
+      <div class="max-w-4xl mx-auto">
+        <h1
+          class="text-center leading-none font-medium tracking-[-0.41px] text-appGray-700 mb-[14px] lg:text-[40px] lg:leading-none lg:mb-6"
+        >
+          {legalEntryMeta.title}
+        </h1>
+        
+        {
+          legalText.length > 0 && (
+            <article class="prose prose-lg max-w-none mb-12 legal-content">
+              <div 
+                class="modern-legal-content text-appGray-600 leading-relaxed" 
+                set:html={await markdownToHtml(legalText)} 
+              />
+              
+              <!-- Decorative elements -->
+              <div class="flex justify-center mt-12 mb-8">
+                <div class="flex space-x-2">
+                  <div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                  <div class="w-2 h-2 bg-purple-500 rounded-full animate-pulse" style="animation-delay: 0.2s"></div>
+                  <div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse" style="animation-delay: 0.4s"></div>
+                </div>
+              </div>
+            </article>
+          )
+        }
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .legal-content {
+    @apply text-sm leading-relaxed;
+  }
+  
+  .modern-legal-content h2 {
+    @apply text-xl font-semibold text-appGray-700 mt-8 mb-4;
+  }
+  
+  .modern-legal-content h3 {
+    @apply text-lg font-medium text-appGray-700 mt-6 mb-3;
+  }
+  
+  .modern-legal-content p {
+    @apply mb-4 text-appGray-600;
+  }
+  
+  .modern-legal-content ul,
+  .modern-legal-content ol {
+    @apply mb-4 pl-6;
+  }
+  
+  .modern-legal-content li {
+    @apply mb-2;
+  }
+  
+  .modern-legal-content strong {
+    @apply font-semibold text-appGray-700;
+  }
+  
+  .modern-legal-content a {
+    @apply text-blue-600 hover:text-blue-800 underline;
+  }
+</style>
