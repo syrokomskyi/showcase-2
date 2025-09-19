@@ -22,10 +22,10 @@ const ArticlesCard = ({
   language = defaultLanguage,
 }: Props) => {
   return (
-    <article className="group mx-4 md:mx-6 lg:mx-0">
+    <article className="group">
       <a
         href={`/${getCountryName(country)}/${getLanguageName(language)}/articles/${card.slug}`}
-        className="flex flex-col h-full transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl p-12 md:p-16 lg:p-12 xl:p-20 rounded-3xl bg-white/20 hover:bg-white/80 border border-white/30 hover:border-white/50"
+        className="flex flex-col h-full transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl rounded-3xl bg-white/20 hover:bg-white/80 border border-white/30 hover:border-white/50"
       >
         <div
           className={classnames("relative", {
@@ -86,7 +86,7 @@ const ArticlesCard = ({
           <ContentManager
             items={card.description?.nodes}
             className={classnames(
-              "text-lg font-medium leading-[1.5] tracking-[-0.41px] text-appGray-500 max-lg:hidden mt-4 px-2 lg:px-0",
+              "text-lg font-medium leading-[1.5] tracking-[-0.41px] text-appGray-500 max-lg:hidden mt-4",
               {
                 "lg:mb-8 lg:mt-6": showTitleLayer,
                 "mb-6 mt-4": !showTitleLayer,

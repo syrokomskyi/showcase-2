@@ -43,10 +43,10 @@ const HomePageHero = ({
       </div>
 
       {/* Content Layer */}
-      <div className="relative z-10 h-full safe-area">
+      <div className="relative z-10 h-full">
         <div className="container h-full">
           <div className="flex flex-col justify-center h-full py-32 md:py-40 lg:py-48 xl:py-56">
-            <div className="flex flex-col items-center text-center lg:items-start lg:text-left max-w-4xl mx-auto lg:mx-0 animate-fade-in-up px-4 lg:px-0">
+            <div className="flex flex-col items-center text-center lg:items-start lg:text-left max-w-4xl mx-auto lg:mx-0 animate-fade-in-up">
               <ContentManager
                 items={headline.nodes}
                 className="homePage--hero-title text-2xl leading-[1.15] font-bold text-white mb-8 md:text-4xl md:mb-12
@@ -55,7 +55,7 @@ const HomePageHero = ({
               <ContentManager
                 items={description.nodes}
                 className="text-sm leading-relaxed font-normal text-white/60 mb-12 md:text-lg md:mb-16 lg:text-4xl 
-                          lg:leading-relaxed lg:mb-20 max-w-4xl backdrop-blur-sm px-4 lg:px-0"
+                          lg:leading-relaxed lg:mb-20 max-w-4xl backdrop-blur-sm"
               />
               {browseHeroButton && (
                 <Btn
