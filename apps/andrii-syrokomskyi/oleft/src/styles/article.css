@@ -1,12 +1,12 @@
-/* Minimalist Article Styling */
+/* Enhanced Article Styling with Better Spacing */
 
 .modern-article-content {
-  max-width: 65ch;
-  margin: 0 auto;
-  line-height: 1.7;
+  max-width: none;
+  margin: 0;
+  line-height: 1.8;
   color: #1a1a1a;
   font-size: 18px;
-  background: #ffffff;
+  background: transparent;
 }
 
 /* Clean Typography */
@@ -44,11 +44,12 @@
   line-height: 1.4;
 }
 
-/* Clean Paragraph Styling */
+/* Clean Paragraph Styling with Enhanced Spacing */
 .modern-article-content p {
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
   color: #2d2d2d;
-  line-height: 1.7;
+  line-height: 1.8;
+  font-size: 1.1rem;
 }
 
 /* Strong Text */
@@ -63,21 +64,22 @@
   color: #2d2d2d;
 }
 
-/* Clean List Styling */
+/* Enhanced List Styling with Better Spacing */
 .modern-article-content ul {
-  margin: 1.5rem 0;
-  padding-left: 1.5rem;
+  margin: 2rem 0;
+  padding-left: 2rem;
 }
 
 .modern-article-content ol {
-  margin: 1.5rem 0;
-  padding-left: 1.5rem;
+  margin: 2rem 0;
+  padding-left: 2rem;
 }
 
 .modern-article-content li {
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
   color: #2d2d2d;
-  line-height: 1.7;
+  line-height: 1.8;
+  font-size: 1.05rem;
 }
 
 .modern-article-content ul li {
@@ -100,13 +102,28 @@
   color: #004499;
 }
 
-/* Clean Blockquote Styling */
+/* Enhanced Blockquote Styling */
 .modern-article-content blockquote {
-  border-left: 3px solid #e0e0e0;
-  padding-left: 1.5rem;
-  margin: 2rem 0;
+  border-left: 4px solid #3b82f6;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  padding: 2rem;
+  margin: 3rem 0;
   font-style: italic;
-  color: #666666;
+  color: #475569;
+  border-radius: 0 12px 12px 0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.modern-article-content blockquote::before {
+  content: '"';
+  font-size: 4rem;
+  color: #3b82f6;
+  position: absolute;
+  top: -0.5rem;
+  left: 1rem;
+  font-family: serif;
+  opacity: 0.3;
 }
 
 /* Clean Code Styling */
@@ -145,12 +162,17 @@
   margin: 3rem 0;
 }
 
-/* Responsive Design */
+/* Enhanced Responsive Design */
 @media (max-width: 768px) {
   .modern-article-content {
     max-width: 100%;
-    padding: 0 1rem;
+    padding: 0;
     font-size: 16px;
+  }
+
+  .modern-article-content p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
   }
 
   .modern-article-content h1 {
@@ -166,5 +188,44 @@
   .modern-article-content h3 {
     font-size: 1.25rem;
     margin: 1.5rem 0 0.75rem 0;
+  }
+
+  .modern-article-content blockquote {
+    padding: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .modern-article-content blockquote::before {
+    font-size: 3rem;
+    top: -0.25rem;
+    left: 0.75rem;
+  }
+
+  .modern-article-content ul,
+  .modern-article-content ol {
+    padding-left: 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .modern-article-content li {
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+  }
+}
+
+/* Additional spacing utilities for article page */
+.article-section-spacing {
+  margin-bottom: 4rem;
+}
+
+@media (min-width: 768px) {
+  .article-section-spacing {
+    margin-bottom: 5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .article-section-spacing {
+    margin-bottom: 6rem;
   }
 }
