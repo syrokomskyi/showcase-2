@@ -57,7 +57,7 @@ const HomePageArticles = ({
     <section className="articles-section relative z-10 bg-gradient-to-b from-gray-50/50 to-white py-24 md:py-32 lg:py-40 xl:py-48 2xl:py-56 safe-area">
       <div className="container">
         {title && (
-          <h2 className="text-2xl leading-tight font-bold tracking-tight text-appGray-800 mb-12 md:mb-16 lg:text-4xl lg:mb-24 xl:text-6xl xl:mb-28 text-center lg:text-left max-w-4xl mx-auto lg:mx-0">
+          <h2 className="text-2xl leading-tight font-bold tracking-tight text-appGray-800 mb-24 md:mb-32 lg:text-4xl lg:mb-48 xl:text-6xl xl:mb-64 text-center lg:text-left max-w-4xl mx-auto lg:mx-0">
             {title}
           </h2>
         )}

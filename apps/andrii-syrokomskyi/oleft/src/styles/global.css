@@ -212,8 +212,31 @@ html {
   }
 }
 
+/* Enhanced spacing for articles section */
+.articles-section h2 {
+  margin-bottom: 1.5rem !important;
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .articles-section h2 {
+    margin-bottom: 2rem !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .articles-section h2 {
+    margin-bottom: 3.5rem !important;
+  }
+}
+
+@media (min-width: 1280px) {
+  .articles-section h2 {
+    margin-bottom: 4rem !important;
+  }
+}
+
 /* Fix for mobile responsiveness with enhanced spacing */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .container {
     padding-left: 2rem !important;
     padding-right: 2rem !important;
@@ -234,6 +257,10 @@ html {
   
   .articles-section {
     padding: 3rem 0;
+  }
+  
+  .articles-section h2 {
+    margin-bottom: 2rem !important;
   }
   
   /* Ensure mobile cards have proper spacing */
