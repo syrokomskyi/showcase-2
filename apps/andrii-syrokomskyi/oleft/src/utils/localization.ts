@@ -45,7 +45,7 @@ export const LANGUAGE_CODE_MAPPING = Object.fromEntries(
 ) as Record<string, keyof typeof LANGUAGE_MAPPING>;
 
 export function getCountryName(
-  code: keyof typeof COUNTRY_MAPPING | string,
+  code: keyof typeof COUNTRY_MAPPING | string | undefined,
 ): string {
   return (
     COUNTRY_MAPPING[code as keyof typeof COUNTRY_MAPPING] ?? defaultCountry
@@ -53,7 +53,7 @@ export function getCountryName(
 }
 
 export function getLanguageName(
-  code: keyof typeof LANGUAGE_MAPPING | string,
+  code: keyof typeof LANGUAGE_MAPPING | string | undefined,
 ): string {
   return (
     LANGUAGE_MAPPING[code as keyof typeof LANGUAGE_MAPPING] ?? defaultLanguage
