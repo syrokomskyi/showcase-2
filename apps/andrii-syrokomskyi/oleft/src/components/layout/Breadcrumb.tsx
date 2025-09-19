@@ -44,11 +44,6 @@ const Breadcrumb = ({
     return items;
   }, [pathname, language, country]);
 
-  // don't render breadcrumb on home page
-  if (isHomePage(pathname, country, language)) {
-    return null;
-  }
-
   return (
     <nav aria-label="Breadcrumb" className="py-4">
       <div className="container">
