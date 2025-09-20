@@ -32,12 +32,14 @@ const HomePageHero = ({
   return (
     <section className="hero-section relative min-h-[500px] md:min-h-[600px] lg:min-h-[700px] xl:min-h-[800px] overflow-hidden">
       {/* Background Image Layer */}
-      <div className="absolute inset-0 z-0">
-        <BCMSImage
-          media={coverImage}
-          clientConfig={bcmsConfig}
-          className="w-full h-full object-cover position-top scale-105 hover:scale-100 transition-transform duration-[3000ms] ease-out"
-        />
+      <div className="absolute inset-0 z-0 group">
+        <div className="w-full h-full overflow-hidden">
+          <BCMSImage
+            media={coverImage}
+            clientConfig={bcmsConfig}
+            className="w-full h-full object-cover position-top scale-106 group-hover:scale-100 transition-transform duration-[3000ms] ease-out"
+          />
+        </div>
         <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
       </div>
