@@ -13,7 +13,6 @@ export interface ArticleEntryMetaItem {
     category?: Array<ArticleCategoryEntry>;
     seo?: SeoGroup;
     description?: PropRichTextDataParsed;
-    goods?: string[];
 }
 
 export interface ArticleEntryMeta {
