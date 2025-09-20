@@ -3,7 +3,14 @@
  */
 
 import { describe, expect, it } from "vitest";
-import { EnhancedArticle } from "../src/enhanced-article";
+import {
+  type Code,
+  EnhancedArticle,
+  type Guest,
+  type MarkedList,
+  type NumericList,
+  type Table,
+} from "../src/enhanced-article";
 import {
   complexTestCases,
   expectedResults,
@@ -66,7 +73,7 @@ describe("EnhancedArticle", () => {
 
       expect(structures).toHaveLength(1);
       expect(structures[0].getType()).toBe("guest");
-      expect((structures[0] as any).getGuestId()).toBe(
+      expect((structures[0] as Guest).getGuestId()).toBe(
         "olm-g-e56b84bb-b432-4bcb-a9a2-fef7afd58c8c",
       );
     });
@@ -77,7 +84,7 @@ describe("EnhancedArticle", () => {
 
       expect(structures).toHaveLength(1);
       expect(structures[0].getType()).toBe("table");
-      expect((structures[0] as any).getRows()).toHaveLength(3);
+      expect((structures[0] as Table).getRows()).toHaveLength(3);
     });
 
     it("should parse single code block correctly", () => {
@@ -86,7 +93,7 @@ describe("EnhancedArticle", () => {
 
       expect(structures).toHaveLength(1);
       expect(structures[0].getType()).toBe("code");
-      expect((structures[0] as any).getLanguage()).toBe("javascript");
+      expect((structures[0] as Code).getLanguage()).toBe("javascript");
     });
 
     it("should parse single numeric list correctly", () => {
@@ -95,7 +102,7 @@ describe("EnhancedArticle", () => {
 
       expect(structures).toHaveLength(1);
       expect(structures[0].getType()).toBe("numeric-list");
-      expect((structures[0] as any).getItems()).toHaveLength(3);
+      expect((structures[0] as NumericList).getItems()).toHaveLength(3);
     });
 
     it("should parse single marked list correctly", () => {
@@ -104,7 +111,7 @@ describe("EnhancedArticle", () => {
 
       expect(structures).toHaveLength(1);
       expect(structures[0].getType()).toBe("marked-list");
-      expect((structures[0] as any).getItems()).toHaveLength(3);
+      expect((structures[0] as MarkedList).getItems()).toHaveLength(3);
     });
 
     it("should parse single separator correctly", () => {
@@ -124,10 +131,10 @@ describe("EnhancedArticle", () => {
       expect(structures).toHaveLength(2);
       expect(structures[0].getType()).toBe("guest");
       expect(structures[1].getType()).toBe("guest");
-      expect((structures[0] as any).getGuestId()).toBe(
+      expect((structures[0] as Guest).getGuestId()).toBe(
         "olm-g-e56b84bb-b432-4bcb-a9a2-fef7afd58c8c",
       );
-      expect((structures[1] as any).getGuestId()).toBe(
+      expect((structures[1] as Guest).getGuestId()).toBe(
         "olm-g-768af193-e254-4c27-ab58-c614434872b1",
       );
     });
@@ -235,9 +242,9 @@ const x: number = 42;
       expect(structures[1].getType()).toBe("code");
       expect(structures[2].getType()).toBe("code");
 
-      expect((structures[0] as any).getLanguage()).toBe("python");
-      expect((structures[1] as any).getLanguage()).toBe("");
-      expect((structures[2] as any).getLanguage()).toBe("typescript");
+      expect((structures[0] as Code).getLanguage()).toBe("python");
+      expect((structures[1] as Code).getLanguage()).toBe("");
+      expect((structures[2] as Code).getLanguage()).toBe("typescript");
     });
 
     it("should handle different separator styles", () => {
@@ -314,7 +321,7 @@ ___
       const guestBlocks = structures.filter((s) => s.getType() === "guest");
       expect(guestBlocks).toHaveLength(2);
 
-      const guestIds = guestBlocks.map((g) => (g as any).getGuestId());
+      const guestIds = guestBlocks.map((g) => (g as Guest).getGuestId());
       expect(guestIds).toContain("olm-g-e56b84bb-b432-4bcb-a9a2-fef7afd58c8c");
       expect(guestIds).toContain("olm-g-768af193-e254-4c27-ab58-c614434872b1");
 
@@ -322,7 +329,7 @@ ___
       const tables = structures.filter((s) => s.getType() === "table");
       expect(tables).toHaveLength(1);
 
-      const tableRows = (tables[0] as any).getRows();
+      const tableRows = (tables[0] as Table).getRows();
       expect(tableRows.length).toBeGreaterThan(5); // Заголовок + разделитель + данные
     });
 
