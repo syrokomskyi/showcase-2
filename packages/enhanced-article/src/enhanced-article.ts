@@ -209,17 +209,18 @@ export class Guest extends ArticleStructure {
  * Основной класс для разбора статьи на структурированные части
  */
 export class EnhancedArticle {
-  private text: string;
-  private _cachedStructures: ArticleStructure[] | null = null;
+  readonly text: string;
 
   constructor(text: string) {
     this.text = text.trim();
   }
 
+  private _cachedStructures: ArticleStructure[] | null = null;
+
   /**
    * Возвращает массив разобранных структур с кэшированием
    */
-  splitted(): ArticleStructure[] {
+  get splitted(): ArticleStructure[] {
     // Если структуры уже разобраны, возвращаем кэшированный результат
     if (this._cachedStructures !== null) {
       return this._cachedStructures;
