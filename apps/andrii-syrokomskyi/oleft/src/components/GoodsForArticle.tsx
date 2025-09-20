@@ -1,8 +1,8 @@
 import type { ClientConfig } from "@thebcms/client";
-import classnames from "classnames";
-import ArrowIcon from "../../assets/
 
+interface Props {
   title?: string;
+  goods?: string[];
   previousButton?: string;
   nextButton?: string;
   bcmsConfig: ClientConfig;
@@ -16,7 +16,7 @@ export const GoodsForArticle = ({
   nextButton,
 }: Props) => {
   throw new Error("Not implemented");
-  
+
   // const [activeGoods, setActiveGoods] = useState(0);
   // return (
   //   <div className="mb-8 lg:mb-20 xl:mb-[120px]">
