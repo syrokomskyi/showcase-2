@@ -3,6 +3,7 @@ import type {
   PropMediaDataParsed,
   PropRichTextDataParsed,
 } from "@thebcms/types";
+import { EnhancedArticle } from "enhanced-article";
 import { marked } from "marked";
 import { gfmHeadingId } from "marked-gfm-heading-id";
 import type {
@@ -52,6 +53,23 @@ marked.use({
 
 export async function markdownToHtml(markdown: string): Promise<string> {
   return await marked(markdown);
+}
+
+// Transform markdown to 1/ article with goods and 2/ HTML.
+export async function markdownToArticle(markdown: string): Promise<string> {
+  const enhanced = new EnhancedArticle(markdown);
+  const list = enhanced.splitted;
+  const r: string[] = [];
+  // TODO optimize Parallel.
+  for (let i = 0; i < list.length; ++i) {
+    const block = list[i];
+    r[i] =
+      block.getType() === "guest"
+        ? await markdownToHtml(`\`\`\`Goods: ${block.content}\`\`\``)
+        : await markdownToHtml(block.content);
+  }
+
+  return r.join("");
 }
 
 // Remove the line with `title` from `text`.

@@ -68,6 +68,9 @@ importers:
       classnames:
         specifier: ^2.5.1
         version: 2.5.1
+      enhanced-article:
+        specifier: workspace:*
+        version: link:../../../packages/enhanced-article
       marked:
         specifier: ^16.3.0
         version: 16.3.0
