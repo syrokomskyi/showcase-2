@@ -245,6 +245,15 @@ html {
   padding: 1.5rem !important;
 }
 
+/* Article card image spacing - override for better visual hierarchy */
+.articles-section article a > div:first-child {
+  margin-bottom: 1rem !important;
+}
+
+.articles-section article a > div:first-child.show-title-layer {
+  margin-bottom: 1.5rem !important;
+}
+
 @media (min-width: 768px) {
   .articles-section article a {
     padding: 2rem !important;
@@ -255,11 +264,29 @@ html {
   .articles-section article a {
     padding: 1.5rem !important;
   }
+  
+  /* Enhanced spacing for larger screens */
+  .articles-section article a > div:first-child {
+    margin-bottom: 1.5rem !important;
+  }
+  
+  .articles-section article a > div:first-child.show-title-layer {
+    margin-bottom: 2rem !important;
+  }
 }
 
 @media (min-width: 1280px) {
   .articles-section article a {
     padding: 2.5rem !important;
+  }
+  
+  /* Maximum spacing for very large screens */
+  .articles-section article a > div:first-child {
+    margin-bottom: 2rem !important;
+  }
+  
+  .articles-section article a > div:first-child.show-title-layer {
+    margin-bottom: 2.5rem !important;
   }
 }
 

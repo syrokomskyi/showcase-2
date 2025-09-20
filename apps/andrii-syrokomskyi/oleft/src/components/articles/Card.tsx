@@ -29,7 +29,8 @@ const ArticlesCard = ({
       >
         <div
           className={classnames("relative", {
-            "lg:mb-[34px]": showTitleLayer,
+            "mb-8 lg:mb-12 show-title-layer": showTitleLayer,
+            "mb-10": !showTitleLayer,
           })}
         >
           {card.cover && (
@@ -37,9 +38,9 @@ const ArticlesCard = ({
               media={card.cover}
               clientConfig={bcmsConfig}
               className={classnames(
-                "rounded-2xl aspect-square overflow-hidden object-cover w-full mb-4 transition-all duration-300 group-hover:rounded-3xl group-hover:shadow-lg",
+                "rounded-2xl aspect-square overflow-hidden object-cover w-full shadow-2xl transition-all duration-300 group-hover:rounded-3xl group-hover:shadow-2xl",
                 {
-                  "lg:aspect-[1.88] lg:rounded-3xl lg:mb-0 lg:group-hover:rounded-[2rem]":
+                  "lg:aspect-[1.88] lg:rounded-3xl lg:group-hover:rounded-[2rem]":
                     showTitleLayer,
                 },
               )}
