@@ -4,9 +4,12 @@ import type { BCMSEntryStatuses } from '../status';
 export interface GoodsEntryMetaItem {
     title: string;
     slug: string;
+    magic?: string;
     price_value?: number;
     price_currency?: string;
     image?: string[];
+    clear_link_to_market?: string;
+    affiliate_link_to_market?: string;
 }
 
 export interface GoodsEntryMeta {
