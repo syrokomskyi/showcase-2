@@ -60,7 +60,7 @@ const ArticlesCard = ({
             </div>
           </div>
         </div>
-        <div className="mb-8 lg:flex lg:flex-row-reverse lg:justify-between lg:mb-6">
+        <div className="article-card-title-container mb-8 lg:flex lg:flex-row-reverse lg:justify-between lg:mb-6">
           <div className="flex flex-wrap gap-3 mb-4 lg:mb-0">
             {card.categories.map((category) => (
               <div

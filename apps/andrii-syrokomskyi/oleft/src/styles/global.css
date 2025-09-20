@@ -643,3 +643,14 @@ footer > div > div:first-child {
 .modern-article-content table::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
 }
+
+/* Article Card Title Spacing */
+.article-card-title-container {
+  margin-bottom: 1.5rem !important;
+}
+
+@media (min-width: 1024px) {
+  .article-card-title-container {
+    margin-bottom: 1.25rem !important;
+  }
+}
