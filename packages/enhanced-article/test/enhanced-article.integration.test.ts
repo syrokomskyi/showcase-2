@@ -4,13 +4,20 @@
  */
 
 import { beforeEach, describe, expect, it } from "vitest";
-import { EnhancedArticle } from "../src/enhanced-article";
+import {
+  type ArticleStructure,
+  EnhancedArticle,
+  type Guest,
+  type MarkedList,
+  type Table,
+  type Title1,
+} from "../src/enhanced-article";
 import { fullTestText } from "./fixture";
 
 describe("Integration Tests", () => {
   describe("Full Article Processing", () => {
     let article: EnhancedArticle;
-    let structures: any[];
+    let structures: ArticleStructure[];
 
     beforeEach(() => {
       article = new EnhancedArticle(fullTestText);
@@ -37,7 +44,7 @@ describe("Integration Tests", () => {
 
       expect(guestBlocks).toHaveLength(2);
 
-      const guestIds = guestBlocks.map((g) => g.getGuestId());
+      const guestIds = guestBlocks.map((g) => (g as Guest).getGuestId());
       expect(guestIds).toContain("olm-g-e56b84bb-b432-4bcb-a9a2-fef7afd58c8c");
       expect(guestIds).toContain("olm-g-768af193-e254-4c27-ab58-c614434872b1");
     });
@@ -46,9 +53,11 @@ describe("Integration Tests", () => {
       const titles = structures.filter((s) => s.getType().startsWith("title"));
 
       // Находим заголовок с эмодзи
-      const emojiTitle = titles.find((t) => t.getContent().includes("🍂"));
+      const emojiTitle = titles.find((t) =>
+        (t as Title1).getContent().includes("🍂"),
+      );
       expect(emojiTitle).toBeDefined();
-      expect(emojiTitle.getContent()).toBe(
+      expect((emojiTitle as Title1).getContent()).toBe(
         "🍂 Warum gerade jetzt die richtige Zeit ist",
       );
     });
@@ -59,7 +68,7 @@ describe("Integration Tests", () => {
       expect(tables).toHaveLength(1);
 
       const table = tables[0];
-      const rows = table.getRows();
+      const rows = (table as Table).getRows();
 
       // Проверяем структуру таблицы
       expect(rows.length).toBeGreaterThan(5);
@@ -87,7 +96,7 @@ describe("Integration Tests", () => {
 
       // Проверяем один из списков
       const list = markedLists[0];
-      const items = list.getItems();
+      const items = (list as MarkedList).getItems();
 
       expect(items.length).toBeGreaterThan(1);
       expect(items.some((item) => item.includes("Preis:"))).toBe(true);
@@ -109,7 +118,7 @@ describe("Integration Tests", () => {
         .map((s, i) => ({
           type: s.getType(),
           index: i,
-          content: s.getContent?.() || "",
+          content: (s as Title1).getContent?.() || "",
         }))
         .filter((item) => item.type.startsWith("title"));
 
