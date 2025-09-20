@@ -127,13 +127,15 @@ const clientConfig = bcmsPublic.getConfig();
         <!-- Cover Image Section -->
         {
           articleEntryMeta.cover_image && (
-            <div class="cover-image-spacing">
-              <BCMSImage
-                media={articleEntryMeta.cover_image}
-                clientConfig={clientConfig}
-                className="aspect-[16/9] rounded-3xl w-full overflow-hidden object-cover shadow-2xl"
-                client:load
-              />
+            <div class="cover-image-spacing group">
+              <div class="aspect-[16/9] rounded-3xl w-full overflow-hidden shadow-2xl">
+                <BCMSImage
+                  media={articleEntryMeta.cover_image}
+                  clientConfig={clientConfig}
+                  className="w-full h-full object-cover scale-106 group-hover:scale-100 transition-transform duration-[3000ms] ease-out"
+                  client:load
+                />
+              </div>
             </div>
           )
         }
