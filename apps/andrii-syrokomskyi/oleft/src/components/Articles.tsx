@@ -1,20 +1,17 @@
 import type { ClientConfig } from "@thebcms/client";
 import type { EntryParsed } from "@thebcms/types";
 import { useMemo } from "react";
-import type {
-  ArticleEntry,
-  ArticleEntryMetaItem,
-} from "../../../bcms/types/ts";
-import { defaultCountry, defaultLanguage } from "../../configure";
-import type { ArticleLight } from "../../utils/article";
+import type { ArticleEntry, ArticleEntryMetaItem } from "../../bcms/types/ts";
+import { defaultCountry, defaultLanguage } from "../configure";
+import type { ArticleLight } from "../utils/article";
 import {
   getCountryName,
   getEntryMeta,
   getLanguageName,
-} from "../../utils/localization";
-import ArticlesCard from "../articles/Card";
-import Btn from "../Btn";
-import ArrowIcon from "../icons/ArrowIcon";
+} from "../utils/localization";
+import Btn from "./Btn";
+import ArticlesCard from "./Card";
+import ArrowIcon from "./icons/ArrowIcon";
 
 interface Props {
   title?: string;

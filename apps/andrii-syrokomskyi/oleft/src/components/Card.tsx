@@ -1,10 +1,10 @@
 import type { ClientConfig } from "@thebcms/client";
 import { BCMSImage } from "@thebcms/components-react";
 import classnames from "classnames";
-import { defaultCountry, defaultLanguage } from "../../configure";
-import type { ArticleLight } from "../../utils/article";
-import { getCountryName, getLanguageName } from "../../utils/localization";
-import ContentManager from "../ContentManager";
+import { defaultCountry, defaultLanguage } from "../configure";
+import type { ArticleLight } from "../utils/article";
+import { getCountryName, getLanguageName } from "../utils/localization";
+import ContentManager from "./ContentManager";
 
 interface Props {
   card: ArticleLight;
@@ -28,7 +28,7 @@ const ArticlesCard = ({
         className="flex flex-col h-full transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl bg-white rounded-2xl shadow-lg p-8 md:p-10 lg:p-12 hover:bg-white/95"
       >
         <div
-          className={classnames("relative", {
+          className={classnames("relative overflow-hidden rounded-2xl", {
             "mb-8 lg:mb-12 show-title-layer": showTitleLayer,
             "mb-10": !showTitleLayer,
           })}
@@ -38,10 +38,9 @@ const ArticlesCard = ({
               media={card.cover}
               clientConfig={bcmsConfig}
               className={classnames(
-                "rounded-2xl aspect-square overflow-hidden object-cover w-full shadow-lg transition-all duration-300 group-hover:shadow-2xl group-hover:scale-[1.02]",
+                "aspect-square object-cover w-full shadow-lg scale-106 group-hover:scale-100 transition-transform duration-[3000ms] ease-out",
                 {
-                  "lg:aspect-[1.88] lg:rounded-2xl":
-                    showTitleLayer,
+                  "lg:aspect-[1.88]": showTitleLayer,
                 },
               )}
             />

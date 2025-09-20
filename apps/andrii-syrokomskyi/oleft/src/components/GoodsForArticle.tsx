@@ -1,13 +1,8 @@
 import type { ClientConfig } from "@thebcms/client";
-import { BCMSImage } from "@thebcms/components-react";
 import classnames from "classnames";
-import { useState } from "react";
-import ArrowIcon from "../../assets/icons/arrow-right.svg?raw";
-import Btn from "../Btn";
+import ArrowIcon from "../../assets/
 
-interface Props {
   title?: string;
-  goods?: string[];
   previousButton?: string;
   nextButton?: string;
   bcmsConfig: ClientConfig;

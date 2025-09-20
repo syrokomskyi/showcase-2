@@ -1,4 +1,4 @@
-import { isHomePage } from "../../utils/tool";
+import { isHomePage } from "../utils/tool";
 import Breadcrumb from "./Breadcrumb";
 
 interface HeaderProps {
@@ -9,7 +9,7 @@ interface HeaderProps {
 
 const Header = ({ pathname, country, language }: HeaderProps) => {
   const showBreadcrumb = !isHomePage(pathname, country, language);
-  
+
   return (
     <>
       <header className="bg-white">

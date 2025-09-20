@@ -1,6 +1,6 @@
 import { useMemo } from "react";
-import { getCountryName, getLanguageName } from "../../utils/localization";
-import { isHomePage } from "../../utils/tool";
+import { getCountryName, getLanguageName } from "../utils/localization";
+import { isHomePage } from "../utils/tool";
 
 interface BreadcrumbItem {
   label: string;

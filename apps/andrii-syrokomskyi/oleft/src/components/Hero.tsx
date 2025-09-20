@@ -4,11 +4,11 @@ import type {
   PropMediaDataParsed,
   PropRichTextDataParsed,
 } from "@thebcms/types";
-import { defaultCountry, defaultLanguage } from "../../configure";
-import { getCountryName, getLanguageName } from "../../utils/localization";
-import Btn from "../Btn";
-import ContentManager from "../ContentManager";
-import ArrowIcon from "../icons/ArrowIcon";
+import { defaultCountry, defaultLanguage } from "../configure";
+import { getCountryName, getLanguageName } from "../utils/localization";
+import Btn from "./Btn";
+import ContentManager from "./ContentManager";
+import ArrowIcon from "./icons/ArrowIcon";
 
 interface Props {
   headline: PropRichTextDataParsed;
