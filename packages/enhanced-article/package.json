@@ -1,0 +1,32 @@
+{
+  "name": "enhanced-article",
+  "version": "1.0.0",
+  "description": "Transforms a markdown-like text into structured parts.",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "src/index.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./src/index.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist",
+    "type-check": "tsc --noEmit",
+    "test:integration:enhanced-article": "vitest test/enhanced-article.integration.test.ts",
+    "test:performance:enhanced-article": "vitest test/enhanced-article.performance.test.ts",
+    "test:unit:enhanced-article": "vitest test/enhanced-article.unit.test.ts",
+    "test:unit:article-structures": "vitest test/article-structures.unit.test.ts",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:watch": "vitest --watch",
+    "test:coverage": "vitest run --coverage"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.2",
+    "vitest": "^3.2.4"
+  }
+}
