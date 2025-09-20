@@ -26,7 +26,7 @@ describe("Article Structures", () => {
       const title = new Title1(simpleTestCases.title1);
 
       expect(title.getType()).toBe("title1");
-      expect(title.getClassName()).toBe("title-1");
+      expect(title.getClassName()).toBe("title");
       expect(title.getContent()).toBe("Заголовок первого уровня");
       expect(title.content).toBe(simpleTestCases.title1);
     });
@@ -35,7 +35,7 @@ describe("Article Structures", () => {
       const title = new Title2(simpleTestCases.title2);
 
       expect(title.getType()).toBe("title2");
-      expect(title.getClassName()).toBe("title-2");
+      expect(title.getClassName()).toBe("title");
       expect(title.getContent()).toBe("Заголовок второго уровня");
       expect(title.content).toBe(simpleTestCases.title2);
     });
@@ -44,7 +44,7 @@ describe("Article Structures", () => {
       const title = new Title3(simpleTestCases.title3);
 
       expect(title.getType()).toBe("title3");
-      expect(title.getClassName()).toBe("title-3");
+      expect(title.getClassName()).toBe("title");
       expect(title.getContent()).toBe("Заголовок третьего уровня");
       expect(title.content).toBe(simpleTestCases.title3);
     });
@@ -53,7 +53,7 @@ describe("Article Structures", () => {
       const title = new Title4(simpleTestCases.title4);
 
       expect(title.getType()).toBe("title4");
-      expect(title.getClassName()).toBe("title-4");
+      expect(title.getClassName()).toBe("title");
       expect(title.getContent()).toBe("Заголовок четвертого уровня");
       expect(title.content).toBe(simpleTestCases.title4);
     });
@@ -62,7 +62,7 @@ describe("Article Structures", () => {
       const title = new Title5(simpleTestCases.title5);
 
       expect(title.getType()).toBe("title5");
-      expect(title.getClassName()).toBe("title-5");
+      expect(title.getClassName()).toBe("title");
       expect(title.getContent()).toBe("Заголовок пятого уровня");
       expect(title.content).toBe(simpleTestCases.title5);
     });
@@ -71,7 +71,7 @@ describe("Article Structures", () => {
       const title = new Title6(simpleTestCases.title6);
 
       expect(title.getType()).toBe("title6");
-      expect(title.getClassName()).toBe("title-6");
+      expect(title.getClassName()).toBe("title");
       expect(title.getContent()).toBe("Заголовок шестого уровня");
       expect(title.content).toBe(simpleTestCases.title6);
     });

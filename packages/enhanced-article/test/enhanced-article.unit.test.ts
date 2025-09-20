@@ -56,7 +56,7 @@ describe("EnhancedArticle", () => {
 
       expect(structures).toHaveLength(1);
       expect(structures[0].getType()).toBe("title1");
-      expect(structures[0].getClassName()).toBe("title-1");
+      expect(structures[0].getClassName()).toBe("title");
     });
 
     it("should parse single paragraph correctly", () => {

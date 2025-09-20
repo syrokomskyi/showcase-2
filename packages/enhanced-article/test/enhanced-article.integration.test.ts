@@ -10,7 +10,7 @@ import {
   type Guest,
   type MarkedList,
   type Table,
-  type Title1,
+  type Title,
 } from "../src/enhanced-article";
 import { fullTestText } from "./fixture";
 
@@ -54,10 +54,10 @@ describe("Integration Tests", () => {
 
       // Находим заголовок с эмодзи
       const emojiTitle = titles.find((t) =>
-        (t as Title1).getContent().includes("🍂"),
+        (t as Title).getContent().includes("🍂"),
       );
       expect(emojiTitle).toBeDefined();
-      expect((emojiTitle as Title1).getContent()).toBe(
+      expect((emojiTitle as Title).getContent()).toBe(
         "🍂 Warum gerade jetzt die richtige Zeit ist",
       );
     });
@@ -118,7 +118,7 @@ describe("Integration Tests", () => {
         .map((s, i) => ({
           type: s.getType(),
           index: i,
-          content: (s as Title1).getContent?.() || "",
+          content: (s as Title).getContent?.() || "",
         }))
         .filter((item) => item.type.startsWith("title"));
 
@@ -148,7 +148,7 @@ describe("Integration Tests", () => {
         p.content.includes("**Kleiner Tipp von mir:**"),
       );
       expect(boldParagraph).toBeDefined();
-      expect(boldParagraph.content).toContain(
+      expect(boldParagraph?.content).toContain(
         "Bevor Sie neue Küchenhelfer kaufen",
       );
 
@@ -201,24 +201,24 @@ describe("Integration Tests", () => {
 
         // Проверяем специфичные методы для разных типов
         if (structure.getType().startsWith("title")) {
-          const titleContent = (structure as any).getContent();
+          const titleContent = (structure as Title).getContent();
           expect(titleContent.length).toBeGreaterThan(0);
           expect(titleContent).not.toMatch(/^#+\s/); // Не должно содержать markdown символы
         }
 
         if (structure.getType() === "guest") {
-          const guestId = (structure as any).getGuestId();
+          const guestId = (structure as Guest).getGuestId();
           expect(guestId.length).toBeGreaterThan(0);
           expect(guestId).toMatch(/^[a-z0-9-]+$/); // Должно быть валидным ID
         }
 
         if (structure.getType() === "table") {
-          const rows = (structure as any).getRows();
+          const rows = (structure as Table).getRows();
           expect(rows.length).toBeGreaterThan(2); // Минимум заголовок + разделитель + данные
         }
 
         if (structure.getType().includes("list")) {
-          const items = (structure as any).getItems();
+          const items = (structure as MarkedList).getItems();
           expect(items.length).toBeGreaterThan(0);
           items.forEach((item: string) => {
             expect(item.trim().length).toBeGreaterThan(0);

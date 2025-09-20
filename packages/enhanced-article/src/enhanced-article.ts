@@ -11,14 +11,23 @@ export abstract class ArticleStructure {
   abstract getClassName(): string;
 }
 
-// Заголовки разных уровней
-export class Title1 extends ArticleStructure {
+export class Title extends ArticleStructure {
   getType(): string {
-    return "title1";
+    return "title";
   }
 
   getClassName(): string {
-    return "title-1";
+    return "title";
+  }
+
+  getContent(): string {
+    return this.content.replace(/^#{1,6}\s+/, "");
+  }
+}
+
+export class Title1 extends Title {
+  getType(): string {
+    return "title1";
   }
 
   getContent(): string {
@@ -26,13 +35,9 @@ export class Title1 extends ArticleStructure {
   }
 }
 
-export class Title2 extends ArticleStructure {
+export class Title2 extends Title {
   getType(): string {
     return "title2";
-  }
-
-  getClassName(): string {
-    return "title-2";
   }
 
   getContent(): string {
@@ -40,13 +45,9 @@ export class Title2 extends ArticleStructure {
   }
 }
 
-export class Title3 extends ArticleStructure {
+export class Title3 extends Title {
   getType(): string {
     return "title3";
-  }
-
-  getClassName(): string {
-    return "title-3";
   }
 
   getContent(): string {
@@ -54,13 +55,9 @@ export class Title3 extends ArticleStructure {
   }
 }
 
-export class Title4 extends ArticleStructure {
+export class Title4 extends Title {
   getType(): string {
     return "title4";
-  }
-
-  getClassName(): string {
-    return "title-4";
   }
 
   getContent(): string {
@@ -68,13 +65,9 @@ export class Title4 extends ArticleStructure {
   }
 }
 
-export class Title5 extends ArticleStructure {
+export class Title5 extends Title {
   getType(): string {
     return "title5";
-  }
-
-  getClassName(): string {
-    return "title-5";
   }
 
   getContent(): string {
@@ -82,13 +75,9 @@ export class Title5 extends ArticleStructure {
   }
 }
 
-export class Title6 extends ArticleStructure {
+export class Title6 extends Title {
   getType(): string {
     return "title6";
-  }
-
-  getClassName(): string {
-    return "title-6";
   }
 
   getContent(): string {
