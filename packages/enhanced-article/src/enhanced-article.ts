@@ -17,7 +17,7 @@ export class Title extends ArticleStructure {
   }
 
   getClassName(): string {
-    return "title";
+    return "Title";
   }
 
   getContent(): string {
@@ -92,7 +92,7 @@ export class Paragraph extends ArticleStructure {
   }
 
   getClassName(): string {
-    return "paragraph";
+    return "Paragraph";
   }
 }
 
@@ -103,7 +103,7 @@ export class Table extends ArticleStructure {
   }
 
   getClassName(): string {
-    return "table";
+    return "Table";
   }
 
   getRows(): string[] {
@@ -118,7 +118,7 @@ export class Code extends ArticleStructure {
   }
 
   getClassName(): string {
-    return "code";
+    return "Code";
   }
 
   getLanguage(): string {
@@ -138,7 +138,7 @@ export class NumericList extends ArticleStructure {
   }
 
   getClassName(): string {
-    return "numeric-list";
+    return "NumericList";
   }
 
   getItems(): string[] {
@@ -156,7 +156,7 @@ export class MarkedList extends ArticleStructure {
   }
 
   getClassName(): string {
-    return "marked-list";
+    return "MarkedList";
   }
 
   getItems(): string[] {
@@ -174,7 +174,7 @@ export class Separator extends ArticleStructure {
   }
 
   getClassName(): string {
-    return "separator";
+    return "Separator";
   }
 }
 
@@ -185,7 +185,7 @@ export class Guest extends ArticleStructure {
   }
 
   getClassName(): string {
-    return "guest";
+    return "Guest";
   }
 
   getGuestId(): string {

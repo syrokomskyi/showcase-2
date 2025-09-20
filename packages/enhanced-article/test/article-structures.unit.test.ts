@@ -26,7 +26,7 @@ describe("Article Structures", () => {
       const title = new Title1(simpleTestCases.title1);
 
       expect(title.getType()).toBe("title1");
-      expect(title.getClassName()).toBe("title");
+      expect(title.getClassName()).toBe("Title");
       expect(title.getContent()).toBe("Заголовок первого уровня");
       expect(title.content).toBe(simpleTestCases.title1);
     });
@@ -35,7 +35,7 @@ describe("Article Structures", () => {
       const title = new Title2(simpleTestCases.title2);
 
       expect(title.getType()).toBe("title2");
-      expect(title.getClassName()).toBe("title");
+      expect(title.getClassName()).toBe("Title");
       expect(title.getContent()).toBe("Заголовок второго уровня");
       expect(title.content).toBe(simpleTestCases.title2);
     });
@@ -44,7 +44,7 @@ describe("Article Structures", () => {
       const title = new Title3(simpleTestCases.title3);
 
       expect(title.getType()).toBe("title3");
-      expect(title.getClassName()).toBe("title");
+      expect(title.getClassName()).toBe("Title");
       expect(title.getContent()).toBe("Заголовок третьего уровня");
       expect(title.content).toBe(simpleTestCases.title3);
     });
@@ -53,7 +53,7 @@ describe("Article Structures", () => {
       const title = new Title4(simpleTestCases.title4);
 
       expect(title.getType()).toBe("title4");
-      expect(title.getClassName()).toBe("title");
+      expect(title.getClassName()).toBe("Title");
       expect(title.getContent()).toBe("Заголовок четвертого уровня");
       expect(title.content).toBe(simpleTestCases.title4);
     });
@@ -62,7 +62,7 @@ describe("Article Structures", () => {
       const title = new Title5(simpleTestCases.title5);
 
       expect(title.getType()).toBe("title5");
-      expect(title.getClassName()).toBe("title");
+      expect(title.getClassName()).toBe("Title");
       expect(title.getContent()).toBe("Заголовок пятого уровня");
       expect(title.content).toBe(simpleTestCases.title5);
     });
@@ -71,7 +71,7 @@ describe("Article Structures", () => {
       const title = new Title6(simpleTestCases.title6);
 
       expect(title.getType()).toBe("title6");
-      expect(title.getClassName()).toBe("title");
+      expect(title.getClassName()).toBe("Title");
       expect(title.getContent()).toBe("Заголовок шестого уровня");
       expect(title.content).toBe(simpleTestCases.title6);
     });
@@ -93,7 +93,7 @@ describe("Article Structures", () => {
       const title = new Paragraph(simpleTestCases.notitle1);
 
       expect(title.getType()).toBe("paragraph");
-      expect(title.getClassName()).toBe("paragraph");
+      expect(title.getClassName()).toBe("Paragraph");
       expect(title.content).toBe(simpleTestCases.notitle1);
     });
 
@@ -101,7 +101,7 @@ describe("Article Structures", () => {
       const title = new Paragraph(simpleTestCases.notitle2);
 
       expect(title.getType()).toBe("paragraph");
-      expect(title.getClassName()).toBe("paragraph");
+      expect(title.getClassName()).toBe("Paragraph");
       expect(title.content).toBe(simpleTestCases.notitle2);
     });
 
@@ -109,7 +109,7 @@ describe("Article Structures", () => {
       const title = new Paragraph(simpleTestCases.notitle3);
 
       expect(title.getType()).toBe("paragraph");
-      expect(title.getClassName()).toBe("paragraph");
+      expect(title.getClassName()).toBe("Paragraph");
       expect(title.content).toBe(simpleTestCases.notitle3);
     });
 
@@ -117,7 +117,7 @@ describe("Article Structures", () => {
       const title = new Paragraph(simpleTestCases.notitle4);
 
       expect(title.getType()).toBe("paragraph");
-      expect(title.getClassName()).toBe("paragraph");
+      expect(title.getClassName()).toBe("Paragraph");
       expect(title.content).toBe(simpleTestCases.notitle4);
     });
 
@@ -125,7 +125,7 @@ describe("Article Structures", () => {
       const title = new Paragraph(simpleTestCases.notitle5);
 
       expect(title.getType()).toBe("paragraph");
-      expect(title.getClassName()).toBe("paragraph");
+      expect(title.getClassName()).toBe("Paragraph");
       expect(title.content).toBe(simpleTestCases.notitle5);
     });
 
@@ -133,7 +133,7 @@ describe("Article Structures", () => {
       const title = new Paragraph(simpleTestCases.notitle6);
 
       expect(title.getType()).toBe("paragraph");
-      expect(title.getClassName()).toBe("paragraph");
+      expect(title.getClassName()).toBe("Paragraph");
       expect(title.content).toBe(simpleTestCases.notitle6);
     });
   });
@@ -143,7 +143,7 @@ describe("Article Structures", () => {
       const paragraph = new Paragraph(simpleTestCases.paragraph);
 
       expect(paragraph.getType()).toBe("paragraph");
-      expect(paragraph.getClassName()).toBe("paragraph");
+      expect(paragraph.getClassName()).toBe("Paragraph");
       expect(paragraph.content).toBe(simpleTestCases.paragraph);
     });
 
@@ -164,7 +164,7 @@ describe("Article Structures", () => {
       const table = new Table(simpleTestCases.table);
 
       expect(table.getType()).toBe("table");
-      expect(table.getClassName()).toBe("table");
+      expect(table.getClassName()).toBe("Table");
 
       const rows = table.getRows();
       expect(rows).toHaveLength(3);
@@ -194,7 +194,7 @@ describe("Article Structures", () => {
       const code = new Code(simpleTestCases.codeWithLanguage);
 
       expect(code.getType()).toBe("code");
-      expect(code.getClassName()).toBe("code");
+      expect(code.getClassName()).toBe("Code");
       expect(code.getLanguage()).toBe("javascript");
 
       const codeContent = code.getCodeContent();
@@ -227,7 +227,7 @@ const y = 'test';`);
       const list = new NumericList(simpleTestCases.numericList);
 
       expect(list.getType()).toBe("numeric-list");
-      expect(list.getClassName()).toBe("numeric-list");
+      expect(list.getClassName()).toBe("NumericList");
 
       const items = list.getItems();
       expect(items).toHaveLength(3);
@@ -256,7 +256,7 @@ const y = 'test';`);
       const list = new MarkedList(simpleTestCases.markedList);
 
       expect(list.getType()).toBe("marked-list");
-      expect(list.getClassName()).toBe("marked-list");
+      expect(list.getClassName()).toBe("MarkedList");
 
       const items = list.getItems();
       expect(items).toHaveLength(3);
@@ -291,7 +291,7 @@ const y = 'test';`);
       const separator = new Separator(simpleTestCases.separatorDash);
 
       expect(separator.getType()).toBe("separator");
-      expect(separator.getClassName()).toBe("separator");
+      expect(separator.getClassName()).toBe("Separator");
       expect(separator.content).toBe("---");
     });
 
@@ -305,7 +305,7 @@ const y = 'test';`);
       separators.forEach((sep) => {
         const separator = new Separator(sep);
         expect(separator.getType()).toBe("separator");
-        expect(separator.getClassName()).toBe("separator");
+        expect(separator.getClassName()).toBe("Separator");
       });
     });
   });
@@ -315,7 +315,7 @@ const y = 'test';`);
       const guest = new Guest(simpleTestCases.guest);
 
       expect(guest.getType()).toBe("guest");
-      expect(guest.getClassName()).toBe("guest");
+      expect(guest.getClassName()).toBe("Guest");
       expect(guest.getGuestId()).toBe(
         "olm-g-e56b84bb-b432-4bcb-a9a2-fef7afd58c8c",
       );
