@@ -129,7 +129,7 @@ export class Code extends ArticleStructure {
   }
 
   getClassName(): string {
-    return "code-block";
+    return "code";
   }
 
   getLanguage(): string {
@@ -196,7 +196,7 @@ export class Guest extends ArticleStructure {
   }
 
   getClassName(): string {
-    return "guest-block";
+    return "guest";
   }
 
   getGuestId(): string {
