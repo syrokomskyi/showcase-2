@@ -116,6 +116,7 @@ Use the guides from `WORKER.md` file for Cloudflare Worker development.
 # Others
 
 - Don't remove the debug console statements and comments.
+- Write comments and doc in English.
 - Use `pnpm` as package manager.
 
 Refer to Astro’s official documentation for deeper insights on components, routing, integrations, and best practices.
