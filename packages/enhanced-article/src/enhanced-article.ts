@@ -199,14 +199,11 @@ export class Guest extends ArticleStructure {
   }
 
   getGuestIds(): string[] {
-    const match = this.raw
+    return this.raw
       .split("\n")
-      .map((line) => line.match(/\[\[(.+?)\]\]/));
-    console.log({ raw: this.raw, match });
-    const r = match.map((m) => m?.[1].trim() || "").filter((s) => s.length > 0);
-    console.log({ r });
-
-    return r;
+      .map((line) => line.match(/\[\[(.+?)\]\]/))
+      .map((m) => m?.[1].trim() ?? null)
+      .filter((s) => s !== null);
   }
 }
 
