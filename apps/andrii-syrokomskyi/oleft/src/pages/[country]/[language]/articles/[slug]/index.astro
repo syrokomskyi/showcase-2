@@ -3,16 +3,15 @@ import { BCMSImage } from "@thebcms/components-react";
 import type {
   ArticleEntry,
   ArticleEntryMetaItem,
-  HomePageEntryMetaItem,
   ProfileEntryMetaItem,
 } from "../../../../../../bcms/types/ts";
 import { bcmsPublic } from "../../../../../bcms-public";
+import ArticleRenderer from "../../../../../components/ArticleRenderer.astro";
 import ArticlesCard from "../../../../../components/Card";
-// import { GoodsForArticle } from "../../../../../components/articles/GoodsForArticle";
 import Layout from "../../../../../layouts/Layout.astro";
 import {
   articleToLight,
-  markdownToArticle,
+  markdownToStructures,
   removeTitle,
 } from "../../../../../utils/article";
 import {
@@ -68,13 +67,6 @@ const profile = await getEntrySlugMeta<ProfileEntryMetaItem>(
 
 const title = profile.title;
 
-const homePage = await getEntrySlugMeta<HomePageEntryMetaItem>(
-  bcmsPublic,
-  languageCode,
-  "home-page",
-  "home",
-);
-
 // TODO Replace by analogy with getEntrySlugMeta().
 const articleEntries = (await bcmsPublic.entry.getAll(
   "article",
@@ -96,6 +88,8 @@ const articleText = removeTitle(
   articleEntryMeta.text ?? "",
   articleEntryMeta.title ?? "UNDEFINED",
 );
+
+const articleStructures = markdownToStructures(articleText);
 
 const similarArticles =
   lightArticles.filter((e) => {
@@ -150,18 +144,15 @@ const clientConfig = bcmsPublic.getConfig();
         </header>
 
         <!-- Article Content -->
-        {
-          articleText.length > 0 && (
-            <article class="mb-16 md:mb-20 lg:mb-24">
-              <div class="max-w-4xl mx-auto">
-                <div
-                  class="modern-article-content bg-white rounded-2xl shadow-lg p-10 md:p-16 lg:p-20 xl:p-24"
-                  set:html={await markdownToArticle(articleText)}
-                />
-              </div>
-            </article>
-          )
-        }
+        <article class="mb-16 md:mb-20 lg:mb-24">
+          <div class="max-w-4xl mx-auto">
+            <div
+              class="modern-article-content bg-white rounded-2xl shadow-lg p-10 md:p-16 lg:p-20 xl:p-24"
+            >
+              <ArticleRenderer structures={articleStructures} />
+            </div>
+          </div>
+        </article>
 
         <!-- Similar Articles Section -->
         {
