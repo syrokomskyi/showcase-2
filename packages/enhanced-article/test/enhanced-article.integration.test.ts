@@ -45,12 +45,13 @@ describe("Integration Tests", () => {
       expect(guestBlocks).toHaveLength(2);
 
       const guestIds = guestBlocks.map((g) => (g as Guest).getGuestIds());
-      expect(guestIds[0]).toContain(
+      expect(guestIds[0]).toStrictEqual([
         "olm-g-e56b84bb-b432-4bcb-a9a2-fef7afd58c8c",
-      );
-      expect(guestIds[1]).toContain(
         "olm-g-768af193-e254-4c27-ab58-c614434872b1",
-      );
+      ]);
+      expect(guestIds[1]).toStrictEqual([
+        "d210e5d6-0254-4146-8eb3-6e644e86c031",
+      ]);
     });
 
     it("should parse titles with emojis correctly", () => {

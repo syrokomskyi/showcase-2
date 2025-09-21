@@ -60,7 +60,10 @@ Die Investition in gute Linkshänder-Küchenhelfer ist eine Investition in Ihre 
 **Kleine Erinnerung:** 🍁 Die besten Küchenhelfer für Linkshänder finden Sie in spezialisierten Online-Shops oder gut sortierten Haushaltswarengeschäften. Fragen Sie gezielt nach – oft haben die Verkäufer diese Produkte vorrätig, zeigen sie aber nicht prominent.
 
 _Der Herbst wartet nicht. Ihre neue, linkshänderfreundliche Küche auch nicht._
----`;
+---
+
+[[d210e5d6-0254-4146-8eb3-6e644e86c031]]
+`;
 
 // Простые тестовые случаи для отдельных структур
 export const simpleTestCases = {

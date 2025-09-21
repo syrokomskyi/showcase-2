@@ -268,7 +268,30 @@ export class EnhancedArticle {
         inCodeBlock = inTable = inList = false;
         listType = null;
 
-        structures.push(new Guest(trimmedLine));
+        // Собираем все подряд идущие Guest-строки в один блок
+        const guestLines = [trimmedLine];
+        let nextIndex = i + 1;
+        
+        // Проверяем следующие строки на наличие Guest-блоков
+        while (nextIndex < lines.length) {
+          const nextLine = lines[nextIndex].trim();
+          if (this.isGuestLine(nextLine)) {
+            guestLines.push(nextLine);
+            nextIndex++;
+          } else if (nextLine === "") {
+            // Пропускаем пустые строки между Guest-блоками
+            nextIndex++;
+          } else {
+            // Встретили не-Guest строку, прерываем сбор
+            break;
+          }
+        }
+        
+        // Создаем один Guest-блок из всех собранных строк
+        structures.push(new Guest(guestLines.join("\n")));
+        
+        // Пропускаем обработанные строки
+        i = nextIndex - 1;
         continue;
       }
 

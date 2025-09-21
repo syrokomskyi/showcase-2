@@ -129,12 +129,10 @@ describe("EnhancedArticle", () => {
       const article = new EnhancedArticle(simpleTestCases.guest2a);
       const structures = article.splitted;
 
-      expect(structures).toHaveLength(2);
+      expect(structures).toHaveLength(1);
       expect(structures[0].getType()).toBe("guest");
       expect((structures[0] as Guest).getGuestIds()).toStrictEqual([
         "olm-g-e56b84bb-b432-4bcb-a9a2-fef7afd58c8c",
-      ]);
-      expect((structures[1] as Guest).getGuestIds()).toStrictEqual([
         "olm-g-768af193-e254-4c27-ab58-c614434872b1",
       ]);
     });
@@ -322,8 +320,11 @@ ___
 
       const guestIds = guestBlocks.map((g) => (g as Guest).getGuestIds());
       expect(guestIds).toStrictEqual([
-        ["olm-g-e56b84bb-b432-4bcb-a9a2-fef7afd58c8c"],
-        ["olm-g-768af193-e254-4c27-ab58-c614434872b1"],
+        [
+          "olm-g-e56b84bb-b432-4bcb-a9a2-fef7afd58c8c",
+          "olm-g-768af193-e254-4c27-ab58-c614434872b1",
+        ],
+        ["d210e5d6-0254-4146-8eb3-6e644e86c031"],
       ]);
 
       // Проверяем, что таблица правильно распознана
