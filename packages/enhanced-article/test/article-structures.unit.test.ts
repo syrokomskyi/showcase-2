@@ -227,7 +227,7 @@ const y = 'test';`);
       const list = new NumericList(simpleTestCases.numericList);
 
       expect(list.getType()).toBe("numeric-list");
-      expect(list.getClassName()).toBe("NumericList");
+      expect(list.getClassName()).toBe("List");
 
       const items = list.getItems();
       expect(items).toHaveLength(3);
@@ -256,7 +256,7 @@ const y = 'test';`);
       const list = new MarkedList(simpleTestCases.markedList);
 
       expect(list.getType()).toBe("marked-list");
-      expect(list.getClassName()).toBe("MarkedList");
+      expect(list.getClassName()).toBe("List");
 
       const items = list.getItems();
       expect(items).toHaveLength(3);

@@ -131,14 +131,28 @@ export class Code extends ArticleStructure {
   }
 }
 
-// Нумерованный список
-export class NumericList extends ArticleStructure {
+// Cписок
+export class List extends ArticleStructure {
   getType(): string {
-    return "numeric-list";
+    return "list";
   }
 
   getClassName(): string {
-    return "NumericList";
+    return "List";
+  }
+
+  getItems(): string[] {
+    return this.content
+      .split("\n")
+      .filter((line) => line.trim().length > 0)
+      .map((line) => line.replace(/^[-*+]|\d+\.\s+/, ""));
+  }
+}
+
+// Нумерованный список
+export class NumericList extends List {
+  getType(): string {
+    return "numeric-list";
   }
 
   getItems(): string[] {
@@ -150,13 +164,9 @@ export class NumericList extends ArticleStructure {
 }
 
 // Маркированный список
-export class MarkedList extends ArticleStructure {
+export class MarkedList extends List {
   getType(): string {
     return "marked-list";
-  }
-
-  getClassName(): string {
-    return "MarkedList";
   }
 
   getItems(): string[] {
