@@ -198,9 +198,15 @@ export class Guest extends ArticleStructure {
     return "Guest";
   }
 
-  getGuestId(): string {
-    const match = this.raw.match(/\[\[(.+?)\]\]/);
-    return match ? match[1] : "";
+  getGuestIds(): string[] {
+    const match = this.raw
+      .split("\n")
+      .map((line) => line.match(/\[\[(.+?)\]\]/));
+    console.log({ raw: this.raw, match });
+    const r = match.map((m) => m?.[1].trim() || "").filter((s) => s.length > 0);
+    console.log({ r });
+
+    return r;
   }
 }
 

@@ -44,9 +44,13 @@ describe("Integration Tests", () => {
 
       expect(guestBlocks).toHaveLength(2);
 
-      const guestIds = guestBlocks.map((g) => (g as Guest).getGuestId());
-      expect(guestIds).toContain("olm-g-e56b84bb-b432-4bcb-a9a2-fef7afd58c8c");
-      expect(guestIds).toContain("olm-g-768af193-e254-4c27-ab58-c614434872b1");
+      const guestIds = guestBlocks.map((g) => (g as Guest).getGuestIds());
+      expect(guestIds[0]).toContain(
+        "olm-g-e56b84bb-b432-4bcb-a9a2-fef7afd58c8c",
+      );
+      expect(guestIds[1]).toContain(
+        "olm-g-768af193-e254-4c27-ab58-c614434872b1",
+      );
     });
 
     it("should parse titles with emojis correctly", () => {
@@ -207,9 +211,9 @@ describe("Integration Tests", () => {
         }
 
         if (structure.getType() === "guest") {
-          const guestId = (structure as Guest).getGuestId();
-          expect(guestId.length).toBeGreaterThan(0);
-          expect(guestId).toMatch(/^[a-z0-9-]+$/); // Должно быть валидным ID
+          const guestIds = (structure as Guest).getGuestIds();
+          expect(guestIds.length).toBeGreaterThan(0);
+          expect(guestIds[0]).toMatch(/^[a-z0-9-]+$/); // Должно быть валидным ID
         }
 
         if (structure.getType() === "table") {

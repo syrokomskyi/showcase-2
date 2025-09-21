@@ -311,36 +311,50 @@ const y = 'test';`);
   });
 
   describe("Guest Class", () => {
-    it("should create Guest and extract guest ID", () => {
-      const guest = new Guest(simpleTestCases.guest);
+    it("should create Guest with 1 guest and extract guest ID", () => {
+      const guest = new Guest(simpleTestCases.guest1a);
 
       expect(guest.getType()).toBe("guest");
       expect(guest.getClassName()).toBe("Guest");
-      expect(guest.getGuestId()).toBe(
+      expect(guest.getGuestIds()).toStrictEqual([
         "olm-g-e56b84bb-b432-4bcb-a9a2-fef7afd58c8c",
-      );
-      expect(guest.raw).toBe(simpleTestCases.guest);
+      ]);
+      expect(guest.raw).toBe(simpleTestCases.guest1a);
+    });
+
+    it("should create Guest with 2 guests and extract guest IDs", () => {
+      const guest = new Guest(simpleTestCases.guest2a);
+
+      expect(guest.getType()).toBe("guest");
+      expect(guest.getClassName()).toBe("Guest");
+      expect(guest.getGuestIds()).toStrictEqual([
+        "olm-g-e56b84bb-b432-4bcb-a9a2-fef7afd58c8c",
+        "olm-g-768af193-e254-4c27-ab58-c614434872b1",
+      ]);
+      expect(guest.raw).toBe(simpleTestCases.guest2a);
     });
 
     it("should handle different guest ID formats", () => {
       const customGuest = "[[custom-guest-id-123]]";
       const guest = new Guest(customGuest);
 
-      expect(guest.getGuestId()).toBe("custom-guest-id-123");
+      expect(guest.getGuestIds()).toStrictEqual(["custom-guest-id-123"]);
     });
 
     it("should handle guest blocks with special characters", () => {
       const specialGuest = "[[guest-id-with-special-chars_123-abc]]";
       const guest = new Guest(specialGuest);
 
-      expect(guest.getGuestId()).toBe("guest-id-with-special-chars_123-abc");
+      expect(guest.getGuestIds()).toStrictEqual([
+        "guest-id-with-special-chars_123-abc",
+      ]);
     });
 
     it("should return empty string for malformed guest blocks", () => {
       const malformedGuest = "[guest-without-double-brackets]";
       const guest = new Guest(malformedGuest);
 
-      expect(guest.getGuestId()).toBe("");
+      expect(guest.getGuestIds()).toStrictEqual([]);
     });
   });
 });

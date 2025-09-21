@@ -1,6 +1,7 @@
 /**
  * Тесты для основного класса EnhancedArticle
  */
+/** biome-ignore-all lint/suspicious/noFocusedTests: test */
 
 import { describe, expect, it } from "vitest";
 import {
@@ -67,15 +68,15 @@ describe("EnhancedArticle", () => {
       expect(structures[0].getType()).toBe("paragraph");
     });
 
-    it("should parse single guest block correctly", () => {
-      const article = new EnhancedArticle(simpleTestCases.guest);
+    it("should parse single guest block with 1 guest correctly", () => {
+      const article = new EnhancedArticle(simpleTestCases.guest1a);
       const structures = article.splitted;
 
       expect(structures).toHaveLength(1);
       expect(structures[0].getType()).toBe("guest");
-      expect((structures[0] as Guest).getGuestId()).toBe(
+      expect((structures[0] as Guest).getGuestIds()).toStrictEqual([
         "olm-g-e56b84bb-b432-4bcb-a9a2-fef7afd58c8c",
-      );
+      ]);
     });
 
     it("should parse single table correctly", () => {
@@ -124,19 +125,18 @@ describe("EnhancedArticle", () => {
   });
 
   describe("Multiple Guest Blocks", () => {
-    it("should parse multiple guest blocks correctly", () => {
-      const article = new EnhancedArticle(simpleTestCases.guestMultiple);
+    it("should parse guest blocks with 2 guests correctly", () => {
+      const article = new EnhancedArticle(simpleTestCases.guest2a);
       const structures = article.splitted;
 
       expect(structures).toHaveLength(2);
       expect(structures[0].getType()).toBe("guest");
-      expect(structures[1].getType()).toBe("guest");
-      expect((structures[0] as Guest).getGuestId()).toBe(
+      expect((structures[0] as Guest).getGuestIds()).toStrictEqual([
         "olm-g-e56b84bb-b432-4bcb-a9a2-fef7afd58c8c",
-      );
-      expect((structures[1] as Guest).getGuestId()).toBe(
+      ]);
+      expect((structures[1] as Guest).getGuestIds()).toStrictEqual([
         "olm-g-768af193-e254-4c27-ab58-c614434872b1",
-      );
+      ]);
     });
   });
 
@@ -282,7 +282,6 @@ ___
 
       const article = new EnhancedArticle(mixedLists);
       const structures = article.splitted;
-      console.log(structures);
 
       expect(structures).toHaveLength(4);
       expect(structures[0].getType()).toBe("numeric-list");
@@ -321,9 +320,11 @@ ___
       const guestBlocks = structures.filter((s) => s.getType() === "guest");
       expect(guestBlocks).toHaveLength(2);
 
-      const guestIds = guestBlocks.map((g) => (g as Guest).getGuestId());
-      expect(guestIds).toContain("olm-g-e56b84bb-b432-4bcb-a9a2-fef7afd58c8c");
-      expect(guestIds).toContain("olm-g-768af193-e254-4c27-ab58-c614434872b1");
+      const guestIds = guestBlocks.map((g) => (g as Guest).getGuestIds());
+      expect(guestIds).toStrictEqual([
+        ["olm-g-e56b84bb-b432-4bcb-a9a2-fef7afd58c8c"],
+        ["olm-g-768af193-e254-4c27-ab58-c614434872b1"],
+      ]);
 
       // Проверяем, что таблица правильно распознана
       const tables = structures.filter((s) => s.getType() === "table");

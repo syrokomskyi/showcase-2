@@ -65,69 +65,70 @@ _Der Herbst wartet nicht. Ihre neue, linkshänderfreundliche Küche auch nicht._
 // Простые тестовые случаи для отдельных структур
 export const simpleTestCases = {
   // Заголовки разных уровней
-  title1: '# Заголовок первого уровня',
-  title2: '## Заголовок второго уровня',
-  title3: '### Заголовок третьего уровня',
-  title4: '#### Заголовок четвертого уровня',
-  title5: '##### Заголовок пятого уровня',
-  title6: '###### Заголовок шестого уровня',
-  
+  title1: "# Заголовок первого уровня",
+  title2: "## Заголовок второго уровня",
+  title3: "### Заголовок третьего уровня",
+  title4: "#### Заголовок четвертого уровня",
+  title5: "##### Заголовок пятого уровня",
+  title6: "###### Заголовок шестого уровня",
+
   // Заголовки разных уровней без пробела - это параграфы
-  notitle1: '#Заголовок первого уровня',
-  notitle2: '##Заголовок второго уровня',
-  notitle3: '###Заголовок третьего уровня',
-  notitle4: '####Заголовок четвертого уровня',
-  notitle5: '#####Заголовок пятого уровня',
-  notitle6: '######Заголовок шестого уровня',
-  
+  notitle1: "#Заголовок первого уровня",
+  notitle2: "##Заголовок второго уровня",
+  notitle3: "###Заголовок третьего уровня",
+  notitle4: "####Заголовок четвертого уровня",
+  notitle5: "#####Заголовок пятого уровня",
+  notitle6: "######Заголовок шестого уровня",
+
   // Параграф
-  paragraph: 'Это обычный параграф текста с несколькими предложениями. Он может содержать различные знаки препинания и символы.',
-  
+  paragraph:
+    "Это обычный параграф текста с несколькими предложениями. Он может содержать различные знаки препинания и символы.",
+
   // Guest блоки
-  guest: '[[olm-g-e56b84bb-b432-4bcb-a9a2-fef7afd58c8c]]',
-  guestMultiple: `[[olm-g-e56b84bb-b432-4bcb-a9a2-fef7afd58c8c]]
+  guest1a: "[[olm-g-e56b84bb-b432-4bcb-a9a2-fef7afd58c8c]]",
+  guest2a: `[[olm-g-e56b84bb-b432-4bcb-a9a2-fef7afd58c8c]]
 [[olm-g-768af193-e254-4c27-ab58-c614434872b1]]`,
-  
+
   // Таблица
   table: `|Колонка 1|Колонка 2|Колонка 3|
 |---|---|---|
 |Значение 1|Значение 2|Значение 3|`,
-  
+
   // Код
   codeWithLanguage: `\`\`\`javascript
 function hello() {
   console.log('Hello, World!');
 }
 \`\`\``,
-  
+
   codeWithoutLanguage: `\`\`\`
 const x = 42;
 const y = 'test';
 \`\`\``,
-  
+
   // Нумерованный список
   numericList: `1. Первый элемент списка
 2. Второй элемент списка
 3. Третий элемент списка`,
-  
+
   // Маркированный список
   markedList: `- Первый элемент
 - Второй элемент
 - Третий элемент`,
-  
+
   markedListWithAsterisk: `* Первый элемент
 * Второй элемент
 * Третий элемент`,
-  
+
   markedListWithPlus: `+ Первый элемент
 + Второй элемент
 + Третий элемент`,
-  
+
   // Разделители
-  separatorDash: '---',
-  separatorEqual: '===',
-  separatorUnderscore: '___',
-  separatorAsterisk: '***',
+  separatorDash: "---",
+  separatorEqual: "===",
+  separatorUnderscore: "___",
+  separatorAsterisk: "***",
 };
 
 // Комплексные тестовые случаи
@@ -208,12 +209,12 @@ const example = 'код';
 export const expectedResults = {
   fullTextStructureCount: 27, // Ожидаемое количество структур в полном тексте
   fullTextTypes: {
-    'paragraph': 11,
-    'guest': 2,
-    'title2': 5,
-    'title3': 5,
-    'marked-list': 2,
-    'table': 1,
-    'separator': 1,
+    paragraph: 11,
+    guest: 2,
+    title2: 5,
+    title3: 5,
+    "marked-list": 2,
+    table: 1,
+    separator: 1,
   },
 };
