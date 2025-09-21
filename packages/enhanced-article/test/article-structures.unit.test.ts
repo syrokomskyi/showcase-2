@@ -28,7 +28,7 @@ describe("Article Structures", () => {
       expect(title.getType()).toBe("title1");
       expect(title.getClassName()).toBe("Title");
       expect(title.getContent()).toBe("Заголовок первого уровня");
-      expect(title.content).toBe(simpleTestCases.title1);
+      expect(title.raw).toBe(simpleTestCases.title1);
     });
 
     it("should create Title2 with correct type and content", () => {
@@ -37,7 +37,7 @@ describe("Article Structures", () => {
       expect(title.getType()).toBe("title2");
       expect(title.getClassName()).toBe("Title");
       expect(title.getContent()).toBe("Заголовок второго уровня");
-      expect(title.content).toBe(simpleTestCases.title2);
+      expect(title.raw).toBe(simpleTestCases.title2);
     });
 
     it("should create Title3 with correct type and content", () => {
@@ -46,7 +46,7 @@ describe("Article Structures", () => {
       expect(title.getType()).toBe("title3");
       expect(title.getClassName()).toBe("Title");
       expect(title.getContent()).toBe("Заголовок третьего уровня");
-      expect(title.content).toBe(simpleTestCases.title3);
+      expect(title.raw).toBe(simpleTestCases.title3);
     });
 
     it("should create Title4 with correct type and content", () => {
@@ -55,7 +55,7 @@ describe("Article Structures", () => {
       expect(title.getType()).toBe("title4");
       expect(title.getClassName()).toBe("Title");
       expect(title.getContent()).toBe("Заголовок четвертого уровня");
-      expect(title.content).toBe(simpleTestCases.title4);
+      expect(title.raw).toBe(simpleTestCases.title4);
     });
 
     it("should create Title5 with correct type and content", () => {
@@ -64,7 +64,7 @@ describe("Article Structures", () => {
       expect(title.getType()).toBe("title5");
       expect(title.getClassName()).toBe("Title");
       expect(title.getContent()).toBe("Заголовок пятого уровня");
-      expect(title.content).toBe(simpleTestCases.title5);
+      expect(title.raw).toBe(simpleTestCases.title5);
     });
 
     it("should create Title6 with correct type and content", () => {
@@ -73,7 +73,7 @@ describe("Article Structures", () => {
       expect(title.getType()).toBe("title6");
       expect(title.getClassName()).toBe("Title");
       expect(title.getContent()).toBe("Заголовок шестого уровня");
-      expect(title.content).toBe(simpleTestCases.title6);
+      expect(title.raw).toBe(simpleTestCases.title6);
     });
 
     it("should handle titles with emojis and special characters", () => {
@@ -94,7 +94,7 @@ describe("Article Structures", () => {
 
       expect(title.getType()).toBe("paragraph");
       expect(title.getClassName()).toBe("Paragraph");
-      expect(title.content).toBe(simpleTestCases.notitle1);
+      expect(title.raw).toBe(simpleTestCases.notitle1);
     });
 
     it("should create paragraph from Title2 with correct type and content", () => {
@@ -102,7 +102,7 @@ describe("Article Structures", () => {
 
       expect(title.getType()).toBe("paragraph");
       expect(title.getClassName()).toBe("Paragraph");
-      expect(title.content).toBe(simpleTestCases.notitle2);
+      expect(title.raw).toBe(simpleTestCases.notitle2);
     });
 
     it("should create paragraph from Title3 with correct type and content", () => {
@@ -110,7 +110,7 @@ describe("Article Structures", () => {
 
       expect(title.getType()).toBe("paragraph");
       expect(title.getClassName()).toBe("Paragraph");
-      expect(title.content).toBe(simpleTestCases.notitle3);
+      expect(title.raw).toBe(simpleTestCases.notitle3);
     });
 
     it("should create paragraph from Title4 with correct type and content", () => {
@@ -118,7 +118,7 @@ describe("Article Structures", () => {
 
       expect(title.getType()).toBe("paragraph");
       expect(title.getClassName()).toBe("Paragraph");
-      expect(title.content).toBe(simpleTestCases.notitle4);
+      expect(title.raw).toBe(simpleTestCases.notitle4);
     });
 
     it("should create paragraph from Title5 with correct type and content", () => {
@@ -126,7 +126,7 @@ describe("Article Structures", () => {
 
       expect(title.getType()).toBe("paragraph");
       expect(title.getClassName()).toBe("Paragraph");
-      expect(title.content).toBe(simpleTestCases.notitle5);
+      expect(title.raw).toBe(simpleTestCases.notitle5);
     });
 
     it("should create paragraph from Title6 with correct type and content", () => {
@@ -134,7 +134,7 @@ describe("Article Structures", () => {
 
       expect(title.getType()).toBe("paragraph");
       expect(title.getClassName()).toBe("Paragraph");
-      expect(title.content).toBe(simpleTestCases.notitle6);
+      expect(title.raw).toBe(simpleTestCases.notitle6);
     });
   });
 
@@ -144,7 +144,7 @@ describe("Article Structures", () => {
 
       expect(paragraph.getType()).toBe("paragraph");
       expect(paragraph.getClassName()).toBe("Paragraph");
-      expect(paragraph.content).toBe(simpleTestCases.paragraph);
+      expect(paragraph.raw).toBe(simpleTestCases.paragraph);
     });
 
     it("should handle multiline paragraphs", () => {
@@ -155,7 +155,7 @@ describe("Article Structures", () => {
       const paragraph = new Paragraph(multilineParagraph);
 
       expect(paragraph.getType()).toBe("paragraph");
-      expect(paragraph.content).toBe(multilineParagraph);
+      expect(paragraph.raw).toBe(multilineParagraph);
     });
   });
 
@@ -292,7 +292,7 @@ const y = 'test';`);
 
       expect(separator.getType()).toBe("separator");
       expect(separator.getClassName()).toBe("Separator");
-      expect(separator.content).toBe("---");
+      expect(separator.raw).toBe("---");
     });
 
     it("should handle different separator types", () => {
@@ -319,7 +319,7 @@ const y = 'test';`);
       expect(guest.getGuestId()).toBe(
         "olm-g-e56b84bb-b432-4bcb-a9a2-fef7afd58c8c",
       );
-      expect(guest.content).toBe(simpleTestCases.guest);
+      expect(guest.raw).toBe(simpleTestCases.guest);
     });
 
     it("should handle different guest ID formats", () => {

@@ -105,7 +105,7 @@ describe("Integration Tests", () => {
     it("should maintain correct order of structures", () => {
       // Проверяем, что первая структура - параграф (введение)
       expect(structures[0].getType()).toBe("paragraph");
-      expect(structures[0].content).toContain("Der erste Herbstnebel");
+      expect(structures[0].raw).toContain("Der erste Herbstnebel");
 
       // Проверяем, что guest блоки идут после введения
       const firstGuestIndex = structures.findIndex(
@@ -145,15 +145,15 @@ describe("Integration Tests", () => {
 
       // Проверяем параграф с жирным текстом
       const boldParagraph = paragraphs.find((p) =>
-        p.content.includes("**Kleiner Tipp von mir:**"),
+        p.raw.includes("**Kleiner Tipp von mir:**"),
       );
       expect(boldParagraph).toBeDefined();
-      expect(boldParagraph?.content).toContain(
+      expect(boldParagraph?.raw).toContain(
         "Bevor Sie neue Küchenhelfer kaufen",
       );
 
       // Проверяем параграф с эмодзи
-      const emojiParagraph = paragraphs.find((p) => p.content.includes("💡"));
+      const emojiParagraph = paragraphs.find((p) => p.raw.includes("💡"));
       expect(emojiParagraph).toBeDefined();
     });
 
@@ -161,7 +161,7 @@ describe("Integration Tests", () => {
       const separators = structures.filter((s) => s.getType() === "separator");
 
       expect(separators).toHaveLength(1);
-      expect(separators[0].content).toBe("---");
+      expect(separators[0].raw).toBe("---");
     });
 
     it("should provide detailed structure information", () => {
@@ -197,7 +197,7 @@ describe("Integration Tests", () => {
 
       structures.forEach((structure, _index) => {
         // Каждая структура должна иметь непустое содержимое
-        expect(structure.content.trim().length).toBeGreaterThan(0);
+        expect(structure.raw.trim().length).toBeGreaterThan(0);
 
         // Проверяем специфичные методы для разных типов
         if (structure.getType().startsWith("title")) {
@@ -234,13 +234,13 @@ describe("Integration Tests", () => {
       // Проверяем, что немецкие символы сохраняются
       const germanChars = ["ä", "ö", "ü", "ß"];
       const hasGermanContent = structures.some((s) =>
-        germanChars.some((char) => s.content.includes(char)),
+        germanChars.some((char) => s.raw.includes(char)),
       );
 
       expect(hasGermanContent).toBe(true);
 
       // Проверяем конкретные немецкие слова
-      const allContent = structures.map((s) => s.content).join(" ");
+      const allContent = structures.map((s) => s.raw).join(" ");
       expect(allContent).toContain("Küche");
       expect(allContent).toContain("Linkshänder");
       expect(allContent).toContain("Küchenhelfer");

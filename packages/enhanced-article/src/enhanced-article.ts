@@ -5,7 +5,7 @@
 
 // Базовый абстрактный класс для всех структур
 export abstract class ArticleStructure {
-  constructor(public content: string) {}
+  constructor(public raw: string) {}
 
   abstract getType(): string;
   abstract getClassName(): string;
@@ -21,7 +21,7 @@ export class Title extends ArticleStructure {
   }
 
   getContent(): string {
-    return this.content.replace(/^#{1,6}\s+/, "");
+    return this.raw.replace(/^#{1,6}\s+/, "");
   }
 }
 
@@ -31,7 +31,7 @@ export class Title1 extends Title {
   }
 
   getContent(): string {
-    return this.content.replace(/^#\s+/, "");
+    return this.raw.replace(/^#\s+/, "");
   }
 }
 
@@ -41,7 +41,7 @@ export class Title2 extends Title {
   }
 
   getContent(): string {
-    return this.content.replace(/^##\s+/, "");
+    return this.raw.replace(/^##\s+/, "");
   }
 }
 
@@ -51,7 +51,7 @@ export class Title3 extends Title {
   }
 
   getContent(): string {
-    return this.content.replace(/^###\s+/, "");
+    return this.raw.replace(/^###\s+/, "");
   }
 }
 
@@ -61,7 +61,7 @@ export class Title4 extends Title {
   }
 
   getContent(): string {
-    return this.content.replace(/^####\s+/, "");
+    return this.raw.replace(/^####\s+/, "");
   }
 }
 
@@ -71,7 +71,7 @@ export class Title5 extends Title {
   }
 
   getContent(): string {
-    return this.content.replace(/^#####\s+/, "");
+    return this.raw.replace(/^#####\s+/, "");
   }
 }
 
@@ -81,7 +81,7 @@ export class Title6 extends Title {
   }
 
   getContent(): string {
-    return this.content.replace(/^######\s+/, "");
+    return this.raw.replace(/^######\s+/, "");
   }
 }
 
@@ -107,7 +107,7 @@ export class Table extends ArticleStructure {
   }
 
   getRows(): string[] {
-    return this.content.split("\n").filter((line) => line.trim().length > 0);
+    return this.raw.split("\n").filter((line) => line.trim().length > 0);
   }
 }
 
@@ -122,12 +122,12 @@ export class Code extends ArticleStructure {
   }
 
   getLanguage(): string {
-    const match = this.content.match(/^```(\w+)/);
+    const match = this.raw.match(/^```(\w+)/);
     return match ? match[1] : "";
   }
 
   getCodeContent(): string {
-    return this.content.replace(/^```\w*\n?/, "").replace(/\n?```$/, "");
+    return this.raw.replace(/^```\w*\n?/, "").replace(/\n?```$/, "");
   }
 }
 
@@ -142,7 +142,7 @@ export class List extends ArticleStructure {
   }
 
   getItems(): string[] {
-    return this.content
+    return this.raw
       .split("\n")
       .filter((line) => line.trim().length > 0)
       .map((line) => line.replace(/^[-*+]|\d+\.\s+/, ""));
@@ -156,7 +156,7 @@ export class NumericList extends List {
   }
 
   getItems(): string[] {
-    return this.content
+    return this.raw
       .split("\n")
       .filter((line) => line.trim().length > 0)
       .map((line) => line.replace(/^\d+\.\s+/, ""));
@@ -170,7 +170,7 @@ export class MarkedList extends List {
   }
 
   getItems(): string[] {
-    return this.content
+    return this.raw
       .split("\n")
       .filter((line) => line.trim().length > 0)
       .map((line) => line.replace(/^[-*+]\s+/, ""));
@@ -199,7 +199,7 @@ export class Guest extends ArticleStructure {
   }
 
   getGuestId(): string {
-    const match = this.content.match(/\[\[(.+?)\]\]/);
+    const match = this.raw.match(/\[\[(.+?)\]\]/);
     return match ? match[1] : "";
   }
 }

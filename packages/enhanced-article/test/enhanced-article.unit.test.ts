@@ -45,7 +45,7 @@ describe("EnhancedArticle", () => {
 
       expect(structures).toHaveLength(1);
       expect(structures[0].getType()).toBe("paragraph");
-      expect(structures[0].content).toBe("Simple text");
+      expect(structures[0].raw).toBe("Simple text");
     });
   });
 
