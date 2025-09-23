@@ -1,0 +1,231 @@
+/* Enhanced Article Styling with Better Spacing */
+
+.modern-article-content {
+  max-width: none;
+  margin: 0;
+  line-height: 1.8;
+  color: #1a1a1a;
+  font-size: 18px;
+  background: transparent;
+}
+
+/* Clean Typography */
+.modern-article-content h1 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #000000;
+  margin: 3rem 0 2rem 0;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+.modern-article-content h2 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #000000;
+  margin: 2.5rem 0 1rem 0;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+.modern-article-content h3 {
+  font-size: 1.375rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 2rem 0 0.75rem 0;
+  line-height: 1.4;
+}
+
+.modern-article-content h4 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 1.5rem 0 0.5rem 0;
+  line-height: 1.4;
+}
+
+/* Clean Paragraph Styling with Enhanced Spacing */
+.modern-article-content p {
+  margin-bottom: 2rem;
+  color: #2d2d2d;
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+
+/* Strong Text */
+.modern-article-content strong {
+  font-weight: 600;
+  color: #000000;
+}
+
+/* Italic Text */
+.modern-article-content em {
+  font-style: italic;
+  color: #2d2d2d;
+}
+
+/* Enhanced List Styling with Better Spacing */
+.modern-article-content ul {
+  margin: 2rem 0;
+  padding-left: 2rem;
+}
+
+.modern-article-content ol {
+  margin: 2rem 0;
+  padding-left: 2rem;
+}
+
+.modern-article-content li {
+  margin-bottom: 1rem;
+  color: #2d2d2d;
+  line-height: 1.8;
+  font-size: 1.05rem;
+}
+
+.modern-article-content ul li {
+  list-style-type: disc;
+}
+
+.modern-article-content ol li {
+  list-style-type: decimal;
+}
+
+/* Clean Link Styling */
+.modern-article-content a {
+  color: #0066cc;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+.modern-article-content a:hover {
+  color: #004499;
+}
+
+/* Enhanced Blockquote Styling */
+.modern-article-content blockquote {
+  border-left: 4px solid #3b82f6;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  padding: 2rem;
+  margin: 3rem 0;
+  font-style: italic;
+  color: #475569;
+  border-radius: 0 12px 12px 0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.modern-article-content blockquote::before {
+  content: '"';
+  font-size: 4rem;
+  color: #3b82f6;
+  position: absolute;
+  top: -0.5rem;
+  left: 1rem;
+  font-family: serif;
+  opacity: 0.3;
+}
+
+/* Clean Code Styling */
+.modern-article-content code {
+  background: #f5f5f5;
+  color: #333333;
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  font-size: 0.9em;
+  font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
+}
+
+.modern-article-content pre {
+  background: #f8f8f8;
+  color: #333333;
+  padding: 1.5rem;
+  border-radius: 4px;
+  overflow-x: auto;
+  margin: 2rem 0;
+  border: 1px solid #e0e0e0;
+}
+
+.modern-article-content pre code {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+  border: none;
+  font-size: inherit;
+}
+
+/* Clean HR Styling */
+.modern-article-content hr {
+  border: none;
+  height: 1px;
+  background: #e0e0e0;
+  margin: 3rem 0;
+}
+
+/* Enhanced Responsive Design */
+@media (max-width: 768px) {
+  .modern-article-content {
+    max-width: 100%;
+    padding: 0;
+    font-size: 16px;
+  }
+
+  .modern-article-content p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .modern-article-content h1 {
+    font-size: 1.875rem;
+    margin: 2rem 0 1.5rem 0;
+  }
+
+  .modern-article-content h2 {
+    font-size: 1.5rem;
+    margin: 2rem 0 1rem 0;
+  }
+
+  .modern-article-content h3 {
+    font-size: 1.25rem;
+    margin: 1.5rem 0 0.75rem 0;
+  }
+
+  .modern-article-content blockquote {
+    padding: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .modern-article-content blockquote::before {
+    font-size: 3rem;
+    top: -0.25rem;
+    left: 0.75rem;
+  }
+
+  .modern-article-content ul,
+  .modern-article-content ol {
+    padding-left: 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .modern-article-content li {
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+  }
+}
+
+/* Additional spacing utilities for article page */
+.article-section-spacing {
+  margin-bottom: 4rem;
+}
+
+@media (min-width: 768px) {
+  .article-section-spacing {
+    margin-bottom: 5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .article-section-spacing {
+    margin-bottom: 6rem;
+  }
+}

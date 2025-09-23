@@ -1,0 +1,28 @@
+---
+import {
+  getSupportedCountries,
+  getSupportedLanguages,
+} from "../../../../utils/localization";
+
+export async function getStaticPaths() {
+  const countries = getSupportedCountries();
+  const languages = getSupportedLanguages();
+
+  const paths = [];
+  for (const country of countries) {
+    for (const language of languages) {
+      paths.push({
+        params: { country, language },
+      });
+    }
+  }
+
+  return paths;
+}
+
+const { country, language } = Astro.params;
+
+// redirect to home
+// TODO Implement a page with list of articles. See ContentManager and ArticlesList components.
+return Astro.redirect(`/${country}/${language}`);
+---

@@ -1,0 +1,142 @@
+---
+import "../styles/global.css";
+
+import type {
+    FontEntryMetaItem,
+    FooterEntryMetaItem,
+    LegalEntry,
+    LegalEntryMetaItem,
+    ProfileEntryMetaItem,
+    ThumbnailEntryMetaItem,
+} from "../../bcms/types/ts";
+import { bcmsPublic } from "../bcms-public";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
+import {
+    defaultCountry,
+    defaultLanguage,
+    defaultLanguageCodeInBcms,
+} from "../configure";
+import {
+    getCountryCode,
+    getEntrySlugMeta,
+    getLanguageCode,
+} from "../utils/localization";
+
+let { title } = Astro.props;
+
+const pathname = Astro.url.pathname;
+
+const profile = await getEntrySlugMeta<ProfileEntryMetaItem>(
+    bcmsPublic,
+    defaultLanguageCodeInBcms,
+    "profile",
+);
+
+const country = (
+    profile.country.length > 0 ? profile.country[0] : defaultCountry
+).toLowerCase();
+const countryCode = getCountryCode(country);
+
+const language = (
+    profile.language.length > 0 ? profile.language[0] : defaultLanguage
+).toLowerCase();
+const languageCode = getLanguageCode(language);
+
+if (!title) {
+    title = profile.title;
+}
+
+const thumbnail = await getEntrySlugMeta<ThumbnailEntryMetaItem>(
+    bcmsPublic,
+    languageCode,
+    "thumbnail",
+);
+const thumbnailMedia = await bcmsPublic.media.getById(thumbnail.image._id);
+const ogImageUrl =
+    bcmsPublic.getConfig().cmsOrigin +
+    bcmsPublic.media.toUri(thumbnailMedia._id, thumbnailMedia.name);
+
+const font = await getEntrySlugMeta<FontEntryMetaItem>(
+    bcmsPublic,
+    languageCode,
+    "font",
+);
+
+const footer = await getEntrySlugMeta<FooterEntryMetaItem>(
+    bcmsPublic,
+    languageCode,
+    "footer",
+);
+
+const legalEntries = (await bcmsPublic.entry.getAll("legal")) as LegalEntry[];
+const legalLinks = legalEntries
+    .map((entry) => {
+        const meta =
+            (entry.meta[
+                languageCode as keyof typeof entry.meta
+            ] as LegalEntryMetaItem) ?? (entry.meta.en as LegalEntryMetaItem);
+        return {
+            title: meta?.title || "",
+            slug: meta?.slug || "",
+            url: `/${country}/${language}/legal/${meta?.slug || ""}`,
+        };
+    })
+    .filter((link) => link.title && link.slug);
+---
+
+<!doctype html>
+<html lang={languageCode}>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="description" content={profile.description} />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+        <meta name="generator" content={Astro.generator} />
+        <meta property="og:image" content={ogImageUrl} />
+        <meta property="og:image:secure_url" content={ogImageUrl} />
+        <meta property="twitter:title" content={title} />
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:image" content={ogImageUrl} />
+        <link rel="preconnect" href={font.preconnect} />
+        <link rel="preconnect" href={font.crossorigin_preconnect} crossorigin />
+        <link rel="stylesheet" href={font.stylesheet} />
+        <title>{title}</title>
+    </head>
+    <body class="font-inter overflow-x-hidden bg-white">
+        <div class="flex flex-col min-h-screen">
+            <Header
+                pathname={pathname}
+                country={countryCode}
+                language={languageCode}
+                client:load
+            />
+            <main class="flex-1"><slot /></main>
+            <Footer site={footer.copyright_note} legalLinks={legalLinks} />
+        </div>
+    </body>
+</html>
+
+<style is:global>
+    @import "../styles/global.css";
+    @import "../styles/article.css";
+    @import "../styles/cover-image.css";
+
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Transitions */
+    .fade-enter-active,
+    .fade-leave-active {
+        transition: opacity 0.3s;
+    }
+    .fade-enter-from,
+    .fade-leave-to {
+        opacity: 0;
+    }
+</style>

@@ -1,0 +1,161 @@
+---
+import type { ArticleStructure } from "enhanced-article";
+import { markdownToHtml } from "../utils/article";
+import GoodsBlock from "./GoodsBlock.astro";
+
+export interface Props {
+    structures: ArticleStructure[];
+    className?: string;
+}
+
+const { structures, className = "" } = Astro.props;
+---
+
+<div class={`article-renderer ${className}`}>
+    {
+        structures.map((block, index) => {
+            const blockType = block.getType();
+
+            // Handle guest blocks with modern Astro component
+            if (blockType === "guest") {
+                const guestIds = (block as any).getGuestIds?.() || [];
+                return <GoodsBlock guestIds={guestIds} blockIndex={index} />;
+            }
+
+            // Handle other block types with appropriate HTML rendering
+            const htmlContent = markdownToHtml(block.raw);
+
+            return (
+                <div
+                    class={`article-block article-block--${blockType}`}
+                    data-block-type={blockType}
+                    data-block-index={index}
+                    set:html={htmlContent}
+                />
+            );
+        })
+    }
+</div>
+
+<style>
+    .article-renderer {
+        /* Inherit styles from modern-article-content */
+    }
+
+    .article-block {
+        margin-bottom: 1.5rem;
+    }
+
+    .article-block:last-child {
+        margin-bottom: 0;
+    }
+
+    /* Specific styling for different block types */
+    .article-block--title1 h1,
+    .article-block--title2 h2,
+    .article-block--title3 h3,
+    .article-block--title4 h4,
+    .article-block--title5 h5,
+    .article-block--title6 h6 {
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .article-block--title1 h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        line-height: 1.2;
+        color: #1f2937;
+    }
+
+    .article-block--title2 h2 {
+        font-size: 2rem;
+        font-weight: 600;
+        line-height: 1.3;
+        color: #374151;
+    }
+
+    .article-block--title3 h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        line-height: 1.4;
+        color: #4b5563;
+    }
+
+    .article-block--code {
+        margin: 2rem 0;
+    }
+
+    .article-block--code pre {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 0.5rem;
+        padding: 1.5rem;
+        overflow-x: auto;
+        font-family: "Fira Code", "Monaco", "Menlo", monospace;
+        font-size: 0.875rem;
+        line-height: 1.5;
+    }
+
+    .article-block--table {
+        margin: 2rem 0;
+        overflow-x: auto;
+    }
+
+    .article-block--separator {
+        margin: 3rem 0;
+        text-align: center;
+    }
+
+    .article-block--separator hr {
+        border: none;
+        height: 2px;
+        background: linear-gradient(
+            to right,
+            transparent,
+            #e5e7eb,
+            transparent
+        );
+        margin: 0;
+    }
+
+    .article-block--list ul,
+    .article-block--numeric-list ol,
+    .article-block--marked-list ul {
+        margin: 1rem 0;
+        padding-left: 2rem;
+    }
+
+    .article-block--list li,
+    .article-block--numeric-list li,
+    .article-block--marked-list li {
+        margin-bottom: 0.5rem;
+        line-height: 1.6;
+    }
+
+    .article-block--paragraph p {
+        margin-bottom: 1rem;
+        line-height: 1.7;
+        color: #374151;
+    }
+
+    .article-block--paragraph p:last-child {
+        margin-bottom: 0;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .article-block--title1 h1 {
+            font-size: 2rem;
+        }
+
+        .article-block--title2 h2 {
+            font-size: 1.75rem;
+        }
+
+        .article-block--code pre {
+            padding: 1rem;
+            font-size: 0.8rem;
+        }
+    }
+</style>

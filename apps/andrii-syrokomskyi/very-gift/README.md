@@ -1,8 +1,6 @@
-# OLeft
+# Very Gift
 
-! ACTUAL VERSION: `very-gift`
-
-<https://github.com/bcms/starters/assets/15079459/05d4a313-d7b6-4b0f-95d9-e041eca3ce9e>
+Source: `oleft` project.
 
 ## Deploy
 
@@ -253,27 +251,3 @@ We have errors now after deploy:
 2025-08-06T11:51:17.050Z Cloudflare collects anonymous telemetry about your usage of Wrangler. Learn more at https://github.com/cloudflare/workers-sdk/tree/main/packages/wrangler/telemetry.md
 2025-08-06T11:51:17.148Z Failed: error occurred while running deploy command
 ```
-
-## BCMS Articles code starter for Astro.js
-
-This is an Astro.js starter kit for BCMS, a headless CMS. It's minimal but solid, with a clean codebase that hooks directly into your BCMS project, ready to extend and scale as needed.
-
-## Getting Started
-
-Run the following command
-
-```bash
-npx @thebcms/cli create astro starter articles
-```
-
-and follow the prompts.
-
----
-
-### Useful links
-
-- [BCMS website](https://thebcms.com/)
-- [BCMS documentation](https://thebcms.com/docs/)
-- [BCMS and Astro integration](https://thebcms.com/docs/integrations/astro)
-- [All BCMS starters](https://thebcms.com/starters)
-- [Join our Discord](https://discord.com/invite/SYBY89ccaR)

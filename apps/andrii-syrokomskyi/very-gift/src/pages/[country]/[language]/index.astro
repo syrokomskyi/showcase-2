@@ -1,0 +1,83 @@
+---
+import type {
+  HomePageEntryMetaItem,
+  ProfileEntryMetaItem,
+} from "../../../../bcms/types/ts";
+import { bcmsPublic } from "../../../bcms-public";
+import HomePageArticles from "../../../components/Articles";
+import HomePageHero from "../../../components/Hero";
+import {
+  defaultCountry,
+  defaultLanguage,
+  defaultLanguageCodeInBcms,
+} from "../../../configure";
+import Layout from "../../../layouts/Layout.astro";
+import { articleToLight } from "../../../utils/article";
+import {
+  getCountryCode,
+  getEntrySlugMeta,
+  getLanguageCode,
+  getSupportedCountries,
+  getSupportedLanguages,
+} from "../../../utils/localization";
+
+export async function getStaticPaths() {
+  const countries = getSupportedCountries();
+  const languages = getSupportedLanguages();
+
+  const paths = [];
+  for (const country of countries) {
+    for (const language of languages) {
+      paths.push({
+        params: { country, language },
+      });
+    }
+  }
+
+  return paths;
+}
+
+const profile = await getEntrySlugMeta<ProfileEntryMetaItem>(
+  bcmsPublic,
+  defaultLanguageCodeInBcms,
+  "profile",
+);
+
+const language =
+  profile.language.length > 0 ? profile.language[0] : defaultLanguage;
+const country =
+  profile.country.length > 0 ? profile.country[0] : defaultCountry;
+const languageCode = getLanguageCode(language);
+const countryCode = getCountryCode(country);
+const title = profile.title;
+
+const homePage = await getEntrySlugMeta<HomePageEntryMetaItem>(
+  bcmsPublic,
+  languageCode,
+  "home-page",
+  "home",
+);
+
+const bcmsConfig = bcmsPublic.getConfig();
+---
+
+<Layout title={`${homePage.seo?.title ?? homePage.title} - ${title}`}>
+  <HomePageHero
+    headline={homePage.headline}
+    description={homePage.description}
+    browseHeroButton={homePage.browse_hero_button}
+    coverImage={homePage.cover_image}
+    bcmsConfig={bcmsConfig}
+    country={countryCode}
+    language={languageCode}
+    client:load
+  />
+  <HomePageArticles
+    bcmsConfig={bcmsConfig}
+    title={homePage.articles_title}
+    articles={homePage.articles}
+    browseArticlesButton={homePage.browse_articles_button}
+    country={countryCode}
+    language={languageCode}
+  />
+</Layout>

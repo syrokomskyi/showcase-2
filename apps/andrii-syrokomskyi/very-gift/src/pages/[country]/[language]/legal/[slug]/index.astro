@@ -1,0 +1,118 @@
+---
+import type {
+  LegalEntry,
+  LegalEntryMetaItem,
+  ProfileEntryMetaItem,
+} from "../../../../../../bcms/types/ts";
+import { bcmsPublic } from "../../../../../bcms-public";
+import Layout from "../../../../../layouts/Layout.astro";
+import { markdownToHtml, removeTitle } from "../../../../../utils/article";
+import {
+  getEntrySlugMeta,
+  getLanguageCode,
+  getSupportedCountries,
+  getSupportedLanguages,
+} from "../../../../../utils/localization";
+
+export async function getStaticPaths() {
+  const countries = getSupportedCountries();
+  const languages = getSupportedLanguages();
+
+  const legalDocs = (await bcmsPublic.entry.getAll("legal")) as LegalEntry[];
+
+  const paths = [];
+  for (const country of countries) {
+    for (const language of languages) {
+      const languageCode = getLanguageCode(language);
+
+      for (const legalDoc of legalDocs) {
+        const slug =
+          legalDoc.meta[languageCode as keyof typeof legalDoc.meta]?.slug ||
+          legalDoc.meta.en?.slug ||
+          "";
+        if (slug) {
+          paths.push({
+            params: {
+              country,
+              language,
+              slug,
+            },
+          });
+        }
+      }
+    }
+  }
+
+  return paths;
+}
+
+const { language, slug } = Astro.params;
+
+const languageCode = getLanguageCode(language);
+
+const profile = await getEntrySlugMeta<ProfileEntryMetaItem>(
+  bcmsPublic,
+  languageCode,
+  "profile",
+);
+
+const title = profile.title;
+
+// Get the legal document entry
+const legalEntries = (await bcmsPublic.entry.getAll("legal")) as LegalEntry[];
+const legalEntry = legalEntries.find((e) => {
+  const entrySlug =
+    e.meta[languageCode as keyof typeof e.meta]?.slug ?? e.meta.en?.slug;
+  return entrySlug === slug;
+});
+
+const legalEntryMeta =
+  (legalEntry?.meta[
+    languageCode as keyof typeof legalEntry.meta
+  ] as LegalEntryMetaItem) ?? (legalEntry?.meta.en as LegalEntryMetaItem);
+
+if (!legalEntryMeta) {
+  throw new Error(`Legal document with slug "${slug}" not found.`);
+}
+
+const legalText = removeTitle(
+  legalEntryMeta.text ?? "",
+  legalEntryMeta.title ?? "UNDEFINED",
+);
+---
+
+<Layout
+  title={`${legalEntryMeta.title} - ${title}`}
+  legalTitle={legalEntryMeta.title}
+>
+  <!-- Legal Page Container with Enhanced Spacing -->
+  <div class="min-h-screen bg-gradient-to-b from-gray-50 to-white article-page">
+    <!-- Main Legal Content -->
+    <div class="py-12 md:py-20 lg:py-24">
+      <div class="container">
+        <!-- Legal Header -->
+        <header class="text-center mb-12 md:mb-16 lg:mb-20">
+          <h1
+            class="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight tracking-tight text-gray-900 mb-6 max-w-4xl mx-auto"
+          >
+            {legalEntryMeta.title}
+          </h1>
+        </header>
+
+        <!-- Legal Content -->
+        {
+          legalText.length > 0 && (
+            <article class="mb-16 md:mb-20 lg:mb-24">
+              <div class="max-w-4xl mx-auto">
+                <div
+                  class="modern-article-content bg-white rounded-2xl shadow-lg p-10 md:p-16 lg:p-20 xl:p-24"
+                  set:html={await markdownToHtml(legalText)}
+                />
+              </div>
+            </article>
+          )
+        }
+      </div>
+    </div>
+  </div>
+</Layout>

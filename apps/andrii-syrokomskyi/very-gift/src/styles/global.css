@@ -1,0 +1,656 @@
+@import "tailwindcss";
+
+/* Modern animations */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(10, 34, 19, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(10, 34, 19, 0.6);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Ensure proper stacking context and prevent overlapping */
+.hero-section {
+  position: relative;
+  z-index: 1;
+}
+
+.articles-section {
+  position: relative;
+  z-index: 2;
+  background-color: white;
+}
+
+/* Ensure container doesn't overflow */
+.container {
+  position: relative;
+}
+
+/* Prevent text overflow and ensure proper spacing */
+.homePage--hero-title {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Ensure proper image positioning */
+.position-top {
+  object-position: top;
+}
+
+/* Modern glass morphism effect */
+.glass-morphism {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #0A2213;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #1A3A1F;
+}
+
+/* Focus styles for accessibility */
+*:focus-visible {
+  outline: 2px solid #0A2213;
+  outline-offset: 2px;
+}
+
+/* Enhanced spacing for better breathing room */
+.container {
+  position: relative;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding-left: 3rem !important;
+  padding-right: 3rem !important;
+}
+
+/* Article page specific container constraints for better readability */
+.article-page .container {
+  max-width: 1000px !important;
+}
+
+@media (min-width: 1024px) {
+  .article-page .container {
+    max-width: 900px !important;
+  }
+}
+
+@media (min-width: 1280px) {
+  .article-page .container {
+    max-width: 1000px !important;
+  }
+}
+
+@media (min-width: 1536px) {
+  .article-page .container {
+    max-width: 1100px !important;
+  }
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding-left: 4rem !important;
+    padding-right: 4rem !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding-left: 5rem !important;
+    padding-right: 5rem !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-left: 6rem !important;
+    padding-right: 6rem !important;
+    max-width: 1400px !important;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    padding-left: 8rem !important;
+    padding-right: 8rem !important;
+    max-width: 1600px !important;
+  }
+}
+
+@media (min-width: 1536px) {
+  .container {
+    padding-left: 10rem !important;
+    padding-right: 10rem !important;
+    max-width: 1800px !important;
+  }
+}
+
+/* Additional spacing utilities */
+.breathing-space {
+  padding: 2rem;
+}
+
+/* Ensure content never touches screen edges */
+.safe-area {
+  padding-left: 2rem;
+  padding-right: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 640px) {
+  .safe-area {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .safe-area {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .safe-area {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .safe-area {
+    padding-left: 6rem;
+    padding-right: 6rem;
+  }
+}
+
+@media (min-width: 640px) {
+  .breathing-space {
+    padding: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .breathing-space {
+    padding: 4rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .breathing-space {
+    padding: 5rem;
+  }
+}
+
+/* Enhanced spacing for articles section */
+.articles-section h2 {
+  margin-bottom: 1.5rem !important;
+}
+
+/* Force article card padding */
+.articles-section article a {
+  padding: 1.5rem !important;
+}
+
+/* Article card image spacing - override for better visual hierarchy */
+.articles-section article a > div:first-child {
+  margin-bottom: 1rem !important;
+}
+
+.articles-section article a > div:first-child.show-title-layer {
+  margin-bottom: 1.5rem !important;
+}
+
+@media (min-width: 768px) {
+  .articles-section article a {
+    padding: 2rem !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .articles-section article a {
+    padding: 1.5rem !important;
+  }
+  
+  /* Enhanced spacing for larger screens */
+  .articles-section article a > div:first-child {
+    margin-bottom: 1.5rem !important;
+  }
+  
+  .articles-section article a > div:first-child.show-title-layer {
+    margin-bottom: 2rem !important;
+  }
+}
+
+@media (min-width: 1280px) {
+  .articles-section article a {
+    padding: 2.5rem !important;
+  }
+  
+  /* Maximum spacing for very large screens */
+  .articles-section article a > div:first-child {
+    margin-bottom: 2rem !important;
+  }
+  
+  .articles-section article a > div:first-child.show-title-layer {
+    margin-bottom: 2.5rem !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .articles-section h2 {
+    margin-bottom: 2rem !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .articles-section h2 {
+    margin-bottom: 3.5rem !important;
+  }
+}
+
+@media (min-width: 1280px) {
+  .articles-section h2 {
+    margin-bottom: 4rem !important;
+  }
+}
+
+/* Fix for mobile responsiveness with enhanced spacing */
+@media (max-width: 1024px) {
+  .container {
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+    max-width: 100% !important;
+  }
+  
+  .hero-section {
+    min-height: 600px;
+    padding: 2rem 0;
+  }
+  
+  .homePage--hero-title {
+    font-size: 2rem !important;
+    line-height: 1.2 !important;
+    margin-bottom: 2rem !important;
+    padding: 0 1rem !important;
+  }
+  
+  .articles-section {
+    padding: 3rem 0;
+  }
+  
+  .articles-section h2 {
+    margin-bottom: 2rem !important;
+  }
+  
+  /* Ensure mobile cards have proper spacing */
+  .mobile-card-spacing {
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  /* Additional mobile spacing */
+  .hero-section .container > div {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+  }
+  
+  .articles-section .container {
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+  }
+}
+
+/* Footer specific spacing overrides */
+footer {
+  padding-top: 3rem !important;
+  padding-bottom: 3rem !important;
+}
+
+footer .container {
+  padding-left: 2rem !important;
+  padding-right: 2rem !important;
+}
+
+@media (min-width: 640px) {
+  footer {
+    padding-top: 4rem !important;
+    padding-bottom: 4rem !important;
+  }
+  
+  footer .container {
+    padding-left: 3rem !important;
+    padding-right: 3rem !important;
+  }
+}
+
+@media (min-width: 768px) {
+  footer {
+    padding-top: 4rem !important;
+    padding-bottom: 4rem !important;
+  }
+  
+  footer .container {
+    padding-left: 4rem !important;
+    padding-right: 4rem !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  footer {
+    padding-top: 5rem !important;
+    padding-bottom: 5rem !important;
+  }
+  
+  footer .container {
+    padding-left: 5rem !important;
+    padding-right: 5rem !important;
+  }
+}
+
+@media (min-width: 1280px) {
+  footer {
+    padding-top: 5rem !important;
+    padding-bottom: 5rem !important;
+  }
+  
+  footer .container {
+    padding-left: 6rem !important;
+    padding-right: 6rem !important;
+  }
+}
+
+/* Footer legal links spacing */
+footer .flex.flex-wrap {
+  gap: 2rem 2rem !important;
+}
+
+@media (min-width: 768px) {
+  footer .flex.flex-wrap {
+    gap: 1rem 3rem !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  footer .flex.flex-wrap {
+    gap: 1rem 3rem !important;
+  }
+}
+
+/* Footer sections spacing */
+footer > div > div:first-child {
+  margin-bottom: 3rem !important;
+}
+
+@media (min-width: 1024px) {
+  footer > div > div:first-child {
+    margin-bottom: 4rem !important;
+  }
+}
+
+/* Article content enhanced padding */
+.modern-article-content {
+  padding: 1.25rem !important;
+}
+
+@media (min-width: 768px) {
+  .modern-article-content {
+    padding: 2rem !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .modern-article-content {
+    padding: 2.5rem !important;
+  }
+}
+
+@media (min-width: 1280px) {
+  .modern-article-content {
+    padding: 3rem !important;
+  }
+}
+
+/* ===== RESPONSIVE TABLES FOR MARKDOWN CONTENT ===== */
+
+/* Table container with horizontal scroll */
+.modern-article-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  background-color: white;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+/* Table wrapper for horizontal scroll on mobile */
+.modern-article-content table {
+  display: block;
+  white-space: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.modern-article-content table thead,
+.modern-article-content table tbody,
+.modern-article-content table tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+/* Table headers */
+.modern-article-content table th {
+  background-color: #f8fafc;
+  color: #374151;
+  font-weight: 600;
+  text-align: left;
+  padding: 0.75rem 1rem;
+  border-bottom: 2px solid #e5e7eb;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Table cells */
+.modern-article-content table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #f3f4f6;
+  color: #374151;
+  vertical-align: top;
+}
+
+/* Zebra striping */
+.modern-article-content table tbody tr:nth-child(even) {
+  background-color: #f9fafb;
+}
+
+/* Hover effect for table rows */
+.modern-article-content table tbody tr:hover {
+  background-color: #f3f4f6;
+  transition: background-color 0.15s ease-in-out;
+}
+
+/* Mobile-specific table styles */
+@media (max-width: 768px) {
+  /* Create a scrollable container for tables */
+  .modern-article-content table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    margin: 1rem -1.25rem; /* Negative margin to extend to container edges */
+    border-radius: 0;
+    box-shadow: none;
+  }
+  
+  .modern-article-content table thead,
+  .modern-article-content table tbody,
+  .modern-article-content table tr {
+    display: table;
+    width: auto;
+    table-layout: auto;
+  }
+  
+  /* Ensure minimum width for table on mobile */
+  .modern-article-content table {
+    min-width: 600px; /* Minimum width to prevent cramping */
+  }
+  
+  /* Adjust padding for mobile */
+  .modern-article-content table th,
+  .modern-article-content table td {
+    padding: 0.5rem 0.75rem;
+    min-width: 120px; /* Minimum column width */
+    white-space: nowrap;
+  }
+  
+  /* Add scroll indicator shadow */
+  .modern-article-content table::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 20px;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0.8), transparent);
+    pointer-events: none;
+  }
+}
+
+/* Tablet styles */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .modern-article-content table {
+    font-size: 0.875rem;
+    margin: 2rem 0;
+  }
+  
+  .modern-article-content table th,
+  .modern-article-content table td {
+    padding: 0.875rem 1rem;
+  }
+}
+
+/* Desktop styles */
+@media (min-width: 1025px) {
+  .modern-article-content table {
+    font-size: 1rem;
+    margin: 2.5rem 0;
+  }
+  
+  .modern-article-content table th,
+  .modern-article-content table td {
+    padding: 1rem 1.5rem;
+  }
+}
+
+/* Special styling for first and last columns */
+.modern-article-content table th:first-child,
+.modern-article-content table td:first-child {
+  font-weight: 600;
+  background-color: #fefefe;
+  position: sticky;
+  left: 0;
+  z-index: 1;
+}
+
+/* Ensure proper text wrapping in table cells for longer content */
+@media (min-width: 769px) {
+  .modern-article-content table {
+    white-space: normal;
+  }
+  
+  .modern-article-content table th,
+  .modern-article-content table td {
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+}
+
+/* Custom scrollbar for table container */
+.modern-article-content table::-webkit-scrollbar {
+  height: 8px;
+}
+
+.modern-article-content table::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+
+.modern-article-content table::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+.modern-article-content table::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Article Card Title Spacing */
+.article-card-title-container {
+  margin-bottom: 1.5rem !important;
+}
+
+@media (min-width: 1024px) {
+  .article-card-title-container {
+    margin-bottom: 1.25rem !important;
+  }
+}
