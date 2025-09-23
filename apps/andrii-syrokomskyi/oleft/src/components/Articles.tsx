@@ -40,11 +40,6 @@ const HomePageArticles = ({
         title: meta.title,
         slug: meta.slug,
         cover: meta.cover_image,
-        categories: meta.category?.map(
-          (e) =>
-            getEntryMeta<ArticleEntryMetaItem>(e as EntryParsed, language)
-              .title,
-        ),
         description: meta.description,
       } as ArticleLight;
     });

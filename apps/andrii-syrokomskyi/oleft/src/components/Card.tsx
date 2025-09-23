@@ -60,16 +60,6 @@ const ArticlesCard = ({
           </div>
         </div>
         <div className="article-card-title-container mb-8 lg:flex lg:flex-row-reverse lg:justify-between lg:mb-6">
-          <div className="flex flex-wrap gap-3 mb-4 lg:mb-0">
-            {card.categories.map((category) => (
-              <div
-                key={category}
-                className="px-4 py-2.5 bg-gradient-to-r from-gray-100 to-gray-200 rounded-full text-xs leading-none font-semibold tracking-wide text-gray-700 transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-100 hover:to-blue-50 hover:text-blue-700 hover:scale-105 lg:px-5 lg:py-3 lg:text-sm"
-              >
-                {category}
-              </div>
-            ))}
-          </div>
           <div
             className={classnames(
               "text-gray-900 font-bold leading-[1.2] tracking-tight transition-colors duration-300 group-hover:text-blue-600",

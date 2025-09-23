@@ -17,7 +17,6 @@ export interface ArticleLight {
   slug: string;
   cover?: PropMediaDataParsed;
   description?: PropRichTextDataParsed;
-  categories: string[];
 }
 
 export const articleToLight = (
@@ -33,12 +32,6 @@ export const articleToLight = (
     title: meta.title,
     slug: meta.slug,
     cover: meta.cover_image,
-    categories:
-      meta.category?.map(
-        (e) =>
-          getEntryMeta<ArticleEntryMetaItem>(e as EntryParsed, language)
-            .title ?? "",
-      ) ?? [],
     description: meta.description,
   };
 };

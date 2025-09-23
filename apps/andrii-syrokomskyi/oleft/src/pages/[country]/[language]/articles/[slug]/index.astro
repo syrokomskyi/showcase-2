@@ -54,22 +54,21 @@ export async function getStaticPaths() {
   return paths;
 }
 
-const { country, language, slug } = Astro.params;
+const { language, slug } = Astro.params;
 
-const countryCode = getCountryCode(country);
 const languageCode = getLanguageCode(language);
 
 const profile = await getEntrySlugMeta<ProfileEntryMetaItem>(
   bcmsPublic,
   languageCode,
-  "profile",
+  "profile"
 );
 
 const title = profile.title;
 
 // TODO Replace by analogy with getEntrySlugMeta().
 const articleEntries = (await bcmsPublic.entry.getAll(
-  "article",
+  "article"
 )) as ArticleEntry[];
 const articleEntry = articleEntries.find((e) => {
   const entrySlug =
@@ -80,32 +79,13 @@ const articleEntryMeta =
   (articleEntry?.meta[
     languageCode as keyof typeof articleEntry.meta
   ] as ArticleEntryMetaItem) ?? (articleEntry?.meta.en as ArticleEntryMetaItem);
-const lightArticles = articleEntries.map((e) => {
-  return articleToLight(e, languageCode);
-});
 
 const articleText = removeTitle(
   articleEntryMeta.text ?? "",
-  articleEntryMeta.title ?? "UNDEFINED",
+  articleEntryMeta.title ?? "UNDEFINED"
 );
 
 const articleStructures = markdownToStructures(articleText);
-
-const similarArticles =
-  lightArticles.filter((e) => {
-    const entryCategories =
-      articleEntryMeta.category?.map((i) => i.meta.en?.title) ?? [];
-    const categories = e.categories.map((i) => i) ?? [];
-    for (let i = 0; i < categories.length; i++) {
-      if (
-        entryCategories.includes(categories[i]) &&
-        articleEntryMeta.slug !== e.slug
-      ) {
-        return true;
-      }
-    }
-    return false;
-  }) ?? [];
 
 const clientConfig = bcmsPublic.getConfig();
 ---
@@ -153,55 +133,6 @@ const clientConfig = bcmsPublic.getConfig();
             </div>
           </div>
         </article>
-
-        <!-- Similar Articles Section -->
-        {
-          similarArticles.length > 0 && (
-            <section class="mb-16 md:mb-20">
-              <div class="text-center mb-12 md:mb-16">
-                <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-                  Other articles you may like
-                </h2>
-                <p class="text-gray-600 text-lg max-w-2xl mx-auto mb-8">
-                  Discover more insights and stories that might interest you
-                </p>
-                <a
-                  href={`/${country}/${language}/articles`}
-                  class="inline-flex items-center space-x-2 text-blue-600 hover:text-blue-700 font-semibold transition-colors group"
-                >
-                  <span>Show all articles</span>
-                  <svg
-                    class="w-5 h-5 group-hover:translate-x-1 transition-transform"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
-                    />
-                  </svg>
-                </a>
-              </div>
-
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-                {similarArticles.map((card) => (
-                  <div class="transform hover:scale-105 transition-transform duration-300">
-                    <ArticlesCard
-                      card={card}
-                      bcmsConfig={clientConfig}
-                      country={countryCode}
-                      language={languageCode}
-                      showTitleLayer={true}
-                    />
-                  </div>
-                ))}
-              </div>
-            </section>
-          )
-        }
       </div>
     </div>
   </div>
