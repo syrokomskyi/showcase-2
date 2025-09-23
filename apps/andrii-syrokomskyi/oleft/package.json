@@ -16,7 +16,7 @@
   "dependencies": {
     "@astrojs/check": "^0.9.4",
     "@astrojs/react": "^4.3.1",
-    "@astrojs/vercel": "^8.2.7",
+    "@astrojs/vercel": "^8.2.8",
     "@tailwindcss/postcss": "^4.1.13",
     "@tailwindcss/vite": "^4.1.13",
     "@thebcms/cli": "^1.4.1",
@@ -26,7 +26,7 @@
     "@thebcms/utils": "^1.1.0",
     "@types/react": "^19.1.13",
     "@types/react-dom": "^19.1.9",
-    "astro": "^5.13.9",
+    "astro": "^5.13.10",
     "classnames": "^2.5.1",
     "enhanced-article": "workspace:*",
     "marked": "^16.3.0",
