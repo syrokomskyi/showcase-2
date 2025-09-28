@@ -1,0 +1,64 @@
+---
+// This component renders a decorative SVG arc with a dynamic, animated wave effect.
+
+interface Props {
+  color?: string;
+}
+
+const { color = "#000" } = Astro.props;
+---
+
+<div class="section-arc" aria-hidden="true">
+  <svg
+    data-name="Layer 1"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 1440 100"
+    preserveAspectRatio="none"
+  >
+    <path
+      class="animated-arc-path"
+      d="M1440,100H0V0c0,0,289.9,90.4,720,90.4S1440,0,1440,0V100Z"
+      fill={color}></path>
+  </svg>
+</div>
+
+<script>
+  // Client-side script to animate the SVG path
+  const path = document.querySelector(".animated-arc-path") as SVGPathElement;
+
+  if (path) {
+    let startTime: number | null = null;
+    const baseHeight = 60; // The middle height of the wave
+    const amplitude = 30; // The maximum displacement from the base height
+    const speed = 0.0006; // Controls the speed of the wave animation
+
+    const animate = (timestamp: number) => {
+      if (!startTime) {
+        startTime = timestamp;
+      }
+
+      const elapsed = timestamp - startTime;
+
+      // Calculate the new Y position for the curve's control point
+      // using a sine wave for smooth oscillation.
+      const y = baseHeight + amplitude * Math.sin(elapsed * speed);
+
+      // Update the 'd' attribute of the path to change its shape.
+      // The path is composed of:
+      // 1. M1440,100: Move to the bottom-right corner.
+      // 2. H0: Draw a line to the bottom-left corner (0, 100).
+      // 3. V0: Draw a line to the top-left corner (0, 0).
+      // 4. Q720,y: Define a quadratic Bézier curve with a control point at (720, y).
+      //    The 'y' value is animated, making the curve rise and fall.
+      // 5. T1440,0: Smoothly continue the curve to the top-right corner (1440, 0).
+      // 6. V100Z: Close the path by drawing a line to the bottom-right and finishing.
+      path.setAttribute("d", `M1440,100H0V0Q720,${y} 1440,0V100Z`);
+
+      // Request the next frame to create a continuous animation loop.
+      requestAnimationFrame(animate);
+    };
+
+    // Start the animation loop.
+    requestAnimationFrame(animate);
+  }
+</script>
