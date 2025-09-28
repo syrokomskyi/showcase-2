@@ -10,9 +10,9 @@ import type {
   ThumbnailEntryMetaItem,
 } from "../../bcms/types/ts";
 import { bcmsPublic } from "../bcms-public";
-import Arc from "../components/Arc.astro";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import StaticArc from "../components/StaticArc.astro";
 import {
   defaultCountry,
   defaultLanguage,
@@ -115,7 +115,7 @@ const legalLinks = legalEntries
       <main class="flex-1"><slot /></main>
       <Footer site={footer.copyright_note} legalLinks={legalLinks} />
       <!-- color consistent with footer text -->
-      <Arc color="#898C8A" />
+      <StaticArc color="#898C8A" />
     </div>
   </body>
 </html>
