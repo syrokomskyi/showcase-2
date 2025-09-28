@@ -1,0 +1,24 @@
+---
+// This component renders a decorative SVG arc using a quadratic Bézier curve
+// to create a wide, gentle transition into the footer.
+
+interface Props {
+  color?: string;
+}
+
+const { color = '#000' } = Astro.props;
+---
+
+<div class="section-arc" aria-hidden="true">
+  <svg
+    data-name="Layer 1"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 1440 100"
+    preserveAspectRatio="none"
+  >
+    <path
+      d="M1440,100H0V0c0,0,289.9,90.4,720,90.4S1440,0,1440,0V100Z"
+      fill={color}></path>
+  </svg>
+</div>
+
