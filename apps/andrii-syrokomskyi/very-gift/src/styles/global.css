@@ -82,6 +82,33 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Respect user's motion preferences for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  /* Disable specific animations */
+  .animate-fade-in-up,
+  .animate-float,
+  .animate-pulse-glow {
+    animation: none !important;
+  }
+  
+  /* Disable hover scale effects */
+  .hover\:scale-105:hover,
+  .hover\:scale-\[1\.02\]:hover,
+  .group-hover\:scale-100,
+  .scale-106 {
+    transform: none !important;
+  }
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
@@ -103,6 +130,28 @@ html {
 /* Focus styles for accessibility */
 *:focus-visible {
   outline: 2px solid #0A2213;
+  outline-offset: 2px;
+}
+
+/* Skip Link for Accessibility */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: #0A2213;
+  color: white;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 14px;
+  z-index: 9999;
+  transition: top 0.3s ease;
+}
+
+.skip-link:focus {
+  top: 6px;
+  outline: 2px solid #ffffff;
   outline-offset: 2px;
 }
 

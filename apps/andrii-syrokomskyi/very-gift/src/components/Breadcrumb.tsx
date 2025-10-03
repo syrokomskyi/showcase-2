@@ -51,15 +51,16 @@ const Breadcrumb = ({
     >
       <div className="container flex items-center h-full">
         <ol className="flex items-center space-x-2 text-sm text-gray-600">
-          {breadcrumbItems.map((item) => (
+          {breadcrumbItems.map((item, index) => (
             <li key={item.href || item.label} className="flex items-center">
-              {!isHomePage(item.href) && (
+              {index > 0 && (
                 <svg
                   className="w-4 h-4 mx-2 text-gray-400"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
                   aria-hidden="true"
+                  role="presentation"
                 >
                   <path
                     fillRule="evenodd"
@@ -72,11 +73,14 @@ const Breadcrumb = ({
                 <a
                   href={item.href}
                   className="text-gray-600 hover:text-gray-900 transition-colors duration-600"
+                  aria-label={`Navigate to ${item.label}`}
                 >
                   {item.label}
                 </a>
               ) : (
-                <span className="text-gray-600">{item.label}</span>
+                <span className="text-gray-600" aria-current="page">
+                  {item.label}
+                </span>
               )}
             </li>
           ))}

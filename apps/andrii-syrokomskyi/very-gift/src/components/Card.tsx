@@ -32,6 +32,8 @@ const ArticlesCard = ({
             "mb-8 lg:mb-12 show-title-layer": showTitleLayer,
             "mb-10": !showTitleLayer,
           })}
+          role="img"
+          aria-label={card.title ? `Cover image for ${card.title}` : "Article cover image"}
         >
           {card.cover && (
             <BCMSImage

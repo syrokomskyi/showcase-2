@@ -11,6 +11,7 @@ interface BtnProps extends PropsWithChildren {
   className?: string;
   disabled?: boolean;
   onClick?: () => void;
+  ariaLabel?: string;
 }
 
 const Btn = ({
@@ -21,6 +22,7 @@ const Btn = ({
   className = "",
   disabled = false,
   onClick,
+  ariaLabel,
 }: BtnProps) => {
   const classes = classNames(
     "flex items-center leading-none font-semibold transition-all duration-300 border border-transparent focus:outline-none lg:text-xl lg:leading-none group relative overflow-hidden transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl",
@@ -41,11 +43,17 @@ const Btn = ({
   return (
     <>
       {to ? (
-        <a href={to} className={classes}>
+        <a href={to} className={classes} aria-label={ariaLabel}>
           {children}
         </a>
       ) : (
-        <button type="button" onClick={onClick} disabled={disabled} className={classes}>
+        <button 
+          type="button" 
+          onClick={onClick} 
+          disabled={disabled} 
+          className={classes}
+          aria-label={ariaLabel}
+        >
           {children}
         </button>
       )}

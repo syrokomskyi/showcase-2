@@ -105,6 +105,9 @@ const legalLinks = legalEntries
     <title>{title}</title>
   </head>
   <body class="font-inter overflow-x-hidden bg-white">
+    <!-- Skip Links for Accessibility -->
+    <a href="#main-content" class="skip-link">Перейти к основному содержимому</a>
+    
     <div class="flex flex-col min-h-screen">
       <Header
         pathname={pathname}
@@ -112,7 +115,7 @@ const legalLinks = legalEntries
         language={languageCode}
         client:load
       />
-      <main class="flex-1"><slot /></main>
+      <main id="main-content" class="flex-1"><slot /></main>
       <Footer site={footer.copyright_note} legalLinks={legalLinks} />
       <!-- color consistent with footer text -->
       <StaticArc color="#898C8A" />

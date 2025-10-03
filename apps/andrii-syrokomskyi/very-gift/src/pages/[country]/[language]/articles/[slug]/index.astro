@@ -102,7 +102,11 @@ const clientConfig = bcmsPublic.getConfig();
         {
           articleEntryMeta.cover_image && (
             <div class="cover-image-spacing group">
-              <div class="aspect-[16/9] rounded-3xl w-full overflow-hidden shadow-2xl">
+              <div 
+                class="aspect-[16/9] rounded-3xl w-full overflow-hidden shadow-2xl"
+                role="img"
+                aria-label={`Cover image for ${articleEntryMeta.title}`}
+              >
                 <BCMSImage
                   media={articleEntryMeta.cover_image}
                   clientConfig={clientConfig}

@@ -33,7 +33,7 @@ const HomePageHero = ({
     <section className="hero-section relative min-h-[500px] md:min-h-[600px] lg:min-h-[700px] xl:min-h-[800px] overflow-hidden">
       {/* Background Image Layer */}
       <div className="absolute inset-0 z-0 group">
-        <div className="w-full h-full overflow-hidden">
+        <div className="w-full h-full overflow-hidden" role="img" aria-label="Hero background image">
           <BCMSImage
             media={coverImage}
             clientConfig={bcmsConfig}
@@ -62,6 +62,7 @@ const HomePageHero = ({
               {browseHeroButton && (
                 <Btn
                   to={`/${getCountryName(country)}/${getLanguageName(language)}/articles`}
+                  ariaLabel={`${browseHeroButton} - Navigate to articles page`}
                 >
                   <span className="mr-2">{browseHeroButton}</span>
                   <ArrowIcon className="w-[14px] h-[14px] lg:w-5 lg:h-5" />
